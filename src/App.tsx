@@ -24,10 +24,10 @@ const App: React.FC = () => {
       <Global />
       <ThemeProvider theme={whiteTheme}>
         <SomeText>
-          {t('title')}
+          {t('Title')}
           <br />
         </SomeText>
-        <SomeDescription>{t('description')}</SomeDescription>
+        <SomeDescription>{t('Description')}</SomeDescription>
       </ThemeProvider>
     </div>
   );
