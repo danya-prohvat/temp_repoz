@@ -4,12 +4,8 @@ import { Global } from './styles/Styles';
 import { darkTheme, whiteTheme, Theme } from './styles/themes';
 
 const SomeText = styled.span`
-  color: ${(props: Theme) => {
-    console.log(props.theme?.colors?.textColor);
-
-    return props.theme?.colors?.textColor;
-  }};
-  background-color: ${(props: Theme) => props.theme?.colors?.backgroundColor}};
+  color: ${(props: Theme) => props.theme?.colors?.textColor};
+  background-color: ${(props: Theme) => props.theme?.colors?.backgroundColor};
 `;
 
 const App: React.FC = () => {
