@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Global } from './styles/Styles';
-import { darkTheme, whiteTheme } from './styles/themes';
+import { Global } from 'styles/Styles';
+import { darkTheme, whiteTheme } from 'styles/themes';
 
 const SomeText = styled.span`
   color: ${(props) => props.colors?.textColor};
