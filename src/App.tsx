@@ -1,4 +1,4 @@
-import { Global } from './Styles';
+import { Global } from 'Styles';
 
 const App: React.FC = () => {
   return (
