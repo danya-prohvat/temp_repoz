@@ -1,5 +1,15 @@
 import { Global as EmotionGlobal, css } from '@emotion/react';
 
+const darkMode = {
+  textColor: 'gray',
+  backgroundColor: 'black',
+};
+
+const whiteMode = {
+  textColor: 'white',
+  backgroundColor: 'gray',
+};
+
 const Global: React.FC = () => {
   return (
     <EmotionGlobal
@@ -20,4 +30,4 @@ const Global: React.FC = () => {
   );
 };
 
-export { Global };
+export { Global, darkMode, whiteMode };
