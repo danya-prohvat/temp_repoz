@@ -5,15 +5,13 @@ const darkTheme = {
   },
 };
 
-const whiteTheme = {
+const whiteTheme: Theme = {
   colors: {
     textColor: 'white',
     backgroundColor: 'gray',
   },
 };
 
-export type Theme = {
-  theme?: Partial<typeof darkTheme>;
-};
+export type Theme = typeof darkTheme;
 
 export { darkTheme, whiteTheme };
