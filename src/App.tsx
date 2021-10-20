@@ -1,18 +1,23 @@
-import { Global, darkMode, whiteMode } from './Styles';
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Global } from './styles/Styles';
+import { darkTheme, whiteTheme, Theme } from './styles/themes';
 
 const SomeText = styled.span`
-  color: ${(props: any) => props.theme.textColor};
-  background-color: ${(props: any) => props.theme.backgroundColor};
+  color: ${(props: Theme) => {
+    console.log(props.theme.colors?.textColor);
+
+    return props.theme.colors?.textColor;
+  }};
+  background-color: ${(props: Theme) => props.theme.colors?.backgroundColor}};
 `;
 
 const App: React.FC = () => {
   return (
     <div>
       <Global />
-      <ThemeProvider theme={whiteMode}>
-        <SomeText>REACT</SomeText>
+      <ThemeProvider theme={darkTheme}>
+        <SomeText>REACT fd</SomeText>
       </ThemeProvider>
     </div>
   );
