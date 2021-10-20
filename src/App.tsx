@@ -5,11 +5,11 @@ import { darkTheme, whiteTheme, Theme } from './styles/themes';
 
 const SomeText = styled.span`
   color: ${(props: Theme) => {
-    console.log(props.theme.colors?.textColor);
+    console.log(props.theme?.colors?.textColor);
 
-    return props.theme.colors?.textColor;
+    return props.theme?.colors?.textColor;
   }};
-  background-color: ${(props: Theme) => props.theme.colors?.backgroundColor}};
+  background-color: ${(props: Theme) => props.theme?.colors?.backgroundColor}};
 `;
 
 const App: React.FC = () => {

@@ -1,4 +1,3 @@
-import { Theme } from './typing/emotion.d';
 const darkTheme = {
   colors: {
     textColor: 'gray',
@@ -14,7 +13,7 @@ const whiteTheme = {
 };
 
 export type Theme = {
-  theme: Partial<typeof darkTheme>;
+  theme?: Partial<typeof darkTheme>;
 };
 
 export { darkTheme, whiteTheme };
