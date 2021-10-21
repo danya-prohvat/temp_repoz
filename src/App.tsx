@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
-import { env, Global, whiteTheme, useTranslation } from 'index';
+import { env, Global, whiteTheme, useTranslation } from 'config/index';
 
 const SomeText = styled.span`
   color: ${(props) => props.theme.colors.textColor};
