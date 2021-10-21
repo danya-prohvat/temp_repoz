@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Global } from 'styles/Styles';
 import { whiteTheme } from 'styles/themes';
 import { useTranslation } from 'react-i18next';
+import { config } from 'config/index';
 
 const SomeText = styled.span`
   color: ${(props) => props.theme.colors.textColor};
@@ -28,6 +29,9 @@ const App: React.FC = () => {
           <br />
         </SomeText>
         <SomeDescription>{t('Description')}</SomeDescription>
+        <br /> {config.env.useMock}
+        <br /> {config.env.apiBaseUrl}
+        <br /> {config.env.apiDelay}
       </ThemeProvider>
     </div>
   );
