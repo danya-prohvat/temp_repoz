@@ -3,6 +3,7 @@ import { S } from './Sidebar.styles';
 import { useTranslation } from 'react-i18next';
 import { RouteLink } from 'components/common/routeLink';
 import { Icon } from 'components/common/icon';
+import { Typography } from 'components/common/typography';
 
 const Sidebar: React.FC = () => {
   const { t } = useTranslation();
@@ -14,31 +15,31 @@ const Sidebar: React.FC = () => {
     <S.Sidebar width={showSidebar ? '300px' : '60px'}>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && t('Main')}
+        {showSidebar && <Typography fontType="heading1Bold"> {t('Main')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && t('Explore')}
+        {showSidebar && <Typography> {t('Explore')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && t('Subscribers')}
+        {showSidebar && <Typography> {t('Subscribers')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && t('Subscriptions')}
+        {showSidebar && <Typography> {t('Subscriptions')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && t('Messages')}
+        {showSidebar && <Typography> {t('Messages')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && t('Saved')}
+        {showSidebar && <Typography> {t('Saved')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && t('Settings')}
+        {showSidebar && <Typography> {t('Settings')}</Typography>}
       </RouteLink>
       <S.SidebarButton onClick={toggleSidebar}>
         <Icon type={showSidebar ? '<' : '>'} />

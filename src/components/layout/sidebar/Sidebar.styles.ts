@@ -8,8 +8,8 @@ const S = {
     width: ${(props: { width: string }) => props.width};
     padding: 35px 25px;
     height: 100%;
-    background-color: #f3f3f3;
-    border-right: 2px solid #dedede;
+    background-color: ${(props) => props.theme.colors.backgroundColor.lightGray};
+    border-right: 2px solid ${(props) => props.theme.colors.borderColor.gray};
   `,
   SidebarButton: styled.button`
     position: absolute;
@@ -19,7 +19,7 @@ const S = {
     font-size: 40px;
     border: none;
     cursor: pointer;
-    background-color: transparent;
+    background-color: ${(props) => props.theme.colors.backgroundColor.transparent};
     outline: none;
   `,
 };

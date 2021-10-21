@@ -10,8 +10,8 @@ const S = {
     top: 0;
     display: flex;
     justify-content: space-between;
-    background-color: #f3f3f3;
-    border-bottom: 2px solid #dedede;
+    background-color: ${(props) => props.theme.colors.backgroundColor.lightGray};
+    border-bottom: 2px solid ${(props) => props.theme.colors.borderColor.gray};
     padding: 20px 40px;
     position: sticky;
     top: 0;
