@@ -5,7 +5,7 @@ const S = {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: ${(props: { width: string }) => props.width};
     padding: 35px 25px;
     height: 100%;
     background-color: #f3f3f3;
@@ -15,11 +15,12 @@ const S = {
     position: absolute;
     right: 0;
     transform: translateX(50%);
-    bottom: 200px;
+    bottom: 150px;
     font-size: 40px;
     border: none;
     cursor: pointer;
     background-color: transparent;
+    outline: none;
   `,
 };
 

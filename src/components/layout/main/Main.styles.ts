@@ -7,7 +7,6 @@ const S = {
     height: 100vh;
   `,
   Header: styled.header`
-    position: sticky;
     top: 0;
     display: flex;
     justify-content: space-between;
@@ -16,9 +15,11 @@ const S = {
     padding: 20px 40px;
     position: sticky;
     top: 0;
+    z-index: 99;
     width: 100%;
   `,
   MainContent: styled.main`
+    display: flex;
     height: 100%;
   `,
 };
