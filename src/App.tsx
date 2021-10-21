@@ -28,6 +28,9 @@ const App: React.FC = () => {
           <br />
         </SomeText>
         <SomeDescription>{t('Description')}</SomeDescription>
+        <br /> {process.env.REACT_APP_USE_MOCK}
+        <br /> {process.env.REACT_APP_API_BASE_URL}
+        <br /> {process.env.REACT_APP_API_DELAY}
       </ThemeProvider>
     </div>
   );
