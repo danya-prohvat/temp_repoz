@@ -12,6 +12,7 @@ const App: React.FC = () => {
       <ThemeProvider theme={whiteTheme}>
         <Main>som text from App.ts</Main>
       </ThemeProvider>
+      <span className="icon-checkMark"></span>
     </div>
   );
 };
