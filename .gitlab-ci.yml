@@ -1,0 +1,17 @@
+image: node:lts
+
+stages:
+  - build
+  - check
+
+build:
+  stage: build
+  script:
+    - npm install 
+    - npm run build
+
+check:
+  stage: check
+  script:
+    - npm install 
+    - npm run check:all
