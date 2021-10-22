@@ -25,9 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix --max-warnings=0",
     "check:typescript": "tsc --noEmit --composite false",
-    "check:all": ""
+    "check:all": "npm run lint && npm run check:typescript"
   },
   "eslintConfig": {
     "extends": [
