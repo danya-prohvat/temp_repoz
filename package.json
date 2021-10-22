@@ -31,6 +31,7 @@
   },
   "husky": {    
     "hooks": {      
+      "pre-commit": "check:all", 
       "pre-push": "check:all"   
     }  
  },
