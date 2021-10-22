@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
     <S.Sidebar width={showSidebar ? '300px' : '60px'}>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && <Typography fontType="heading1Bold"> {t('Main')}</Typography>}
+        {showSidebar && <Typography> {t('Main')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
