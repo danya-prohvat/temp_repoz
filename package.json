@@ -25,8 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "check:typescript": "tsc --noEmit --composite false"
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix --max-warnings=0",
+    "check:typescript": "tsc --noEmit --composite false",
+    "check:all": "npm run lint && npm run check:typescript"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +51,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
+    "husky": "^7.0.0",
     "prettier": "^2.4.1"
   }
 }
