@@ -27,14 +27,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "check:typescript": "tsc --noEmit --composite false",
-    "check:all": "some comands"
+    "check:all": ""
   },
-  "husky": {    
-    "hooks": {      
-      "pre-commit": "check:all", 
-      "pre-push": "check:all"   
-    }  
- },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -57,7 +51,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "prettier": "^2.4.1"
   }
 }
