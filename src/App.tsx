@@ -1,37 +1,26 @@
 import { ThemeProvider } from '@emotion/react';
-import styled from '@emotion/styled';
+import { useDispatch } from 'react-redux';
 import { Global } from 'styles/Styles';
 import { whiteTheme } from 'styles/themes';
-import { useTranslation } from 'react-i18next';
-import { config } from 'config/index';
-
-const SomeText = styled.span`
-  color: ${(props) => props.theme.colors.textColor};
-  background-color: ${(props) => props.theme.colors.backgroundColor};
-  font-size: 36px;
-`;
-
-const SomeDescription = styled.span`
-  color: ${(props) => props.theme.colors.textColor};
-  background-color: ${(props) => props.theme.colors.backgroundColor};
-  font-size: 20px;
-`;
+import { useTypedSelector } from 'hooks/useTypedSelector';
+import { changeUserName } from 'store/UserReducer';
 
 const App: React.FC = () => {
-  const { t } = useTranslation();
+  const { userName } = useTypedSelector((state) => state.UserSlice);
+  const dispatch = useDispatch();
+
+  const changeUserNameOnClick = () => {
+    dispatch(changeUserName('some userName'));
+  };
 
   return (
     <div>
       <Global />
       <ThemeProvider theme={whiteTheme}>
-        <SomeText>
-          {t('Title')}
-          <br />
-        </SomeText>
-        <SomeDescription>{t('Description')}</SomeDescription>
-        <br /> {config.env.useMock}
-        <br /> {config.env.apiBaseUrl}
-        <br /> {config.env.apiDelay}
+        {userName}
+        <br />
+        <button onClick={changeUserNameOnClick}>change UserName</button>
+        <br />
       </ThemeProvider>
     </div>
   );
