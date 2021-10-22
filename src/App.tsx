@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import { Global } from 'styles/Styles';
 import { whiteTheme } from 'styles/themes';
 import { useTypedSelector } from 'hooks/useTypedSelector';
-import { changeUserName } from 'store/UserReducer';
+import { changeUserName } from 'store/UserSlice';
 
 const App: React.FC = () => {
-  const { userName } = useTypedSelector((state) => state.UserSlice);
+  const { userName } = useTypedSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const changeUserNameOnClick = () => {
@@ -14,7 +14,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
       <Global />
       <ThemeProvider theme={whiteTheme}>
         {userName}
@@ -22,7 +22,7 @@ const App: React.FC = () => {
         <button onClick={changeUserNameOnClick}>change UserName</button>
         <br />
       </ThemeProvider>
-    </div>
+    </>
   );
 };
 

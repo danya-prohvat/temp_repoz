@@ -9,7 +9,7 @@ const initialState: UserinitialState = {
 };
 
 const UserSlice = createSlice({
-  name: 'laptops',
+  name: 'user',
   initialState,
   reducers: {
     changeUserName(state, action: PayloadAction<string>) {
@@ -19,4 +19,4 @@ const UserSlice = createSlice({
 });
 
 export const { changeUserName } = UserSlice.actions;
-export default UserSlice.reducer;
+export { UserSlice };
