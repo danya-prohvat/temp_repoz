@@ -4,7 +4,6 @@ import { config } from 'config';
 export const instance = axios.create({
   baseURL: config.env.apiBaseUrl,
   timeout: config.env.axiosTimeout,
-  // timeout: 7000,
   responseType: 'json',
 });
 
