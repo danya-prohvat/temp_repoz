@@ -1,39 +1,36 @@
 import { ThemeProvider } from '@emotion/react';
-import styled from '@emotion/styled';
+import { useDispatch } from 'react-redux';
 import { Global } from 'styles/Styles';
 import { whiteTheme } from 'styles/themes';
-import { useTranslation } from 'react-i18next';
-import { config } from 'config/index';
-
-const SomeText = styled.span`
-  color: ${(props) => props.theme.colors.textColor};
-  background-color: ${(props) => props.theme.colors.backgroundColor};
-  font-size: 36px;
-`;
-
-const SomeDescription = styled.span`
-  color: ${(props) => props.theme.colors.textColor};
-  background-color: ${(props) => props.theme.colors.backgroundColor};
-  font-size: 20px;
-`;
+import { useSelector } from 'hooks/useTypedSelector';
+import { changeUserName, getUserName } from 'store/UserSlice';
+import { toggleSideBar, getVisibilitySideBar } from 'store/UiSlice';
 
 const App: React.FC = () => {
-  const { t } = useTranslation();
+  const userName = useSelector(getUserName);
+  const showSideBar = useSelector(getVisibilitySideBar);
+  const dispatch = useDispatch();
+
+  const toggleSideBarOnClick = () => {
+    dispatch(toggleSideBar());
+  };
+
+  const inputOnChange = (event: React.FormEvent<HTMLInputElement>) => {
+    dispatch(changeUserName(event.currentTarget.value));
+  };
 
   return (
-    <div>
+    <>
       <Global />
       <ThemeProvider theme={whiteTheme}>
-        <SomeText>
-          {t('Title')}
-          <br />
-        </SomeText>
-        <SomeDescription>{t('Description')}</SomeDescription>
-        <br /> {config.env.useMock}
-        <br /> {config.env.apiBaseUrl}
-        <br /> {config.env.apiDelay}
+        {userName}
+        <br />
+        <input type="text" onChange={inputOnChange} />
+        <br />
+        <button onClick={toggleSideBarOnClick}>{showSideBar ? 'hide' : 'show'} SideBar</button>
+        <br />
       </ThemeProvider>
-    </div>
+    </>
   );
 };
 
