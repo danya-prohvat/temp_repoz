@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { UserSlice } from './UserSlice';
-import { UiSlice } from './UiSlice';
+import { UserSlice, UserStore } from './UserSlice';
+import { UiSlice, UiStore } from './UiSlice';
 
 const persistConfig = {
   key: 'app',
@@ -21,5 +21,10 @@ export const store = configureStore({
   reducer: persistedReducer,
 });
 persistStore(store);
+
+export type State = {
+  user: UserStore;
+  ui: UiStore;
+};
 
 export type RootState = ReturnType<typeof store.getState>;
