@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from './store';
 
-interface UserinitialState {
+interface UserInitialState {
   showSideBar: boolean;
 }
 
-const initialState: UserinitialState = {
+const initialState: UserInitialState = {
   showSideBar: true,
 };
 
@@ -17,6 +18,8 @@ const UiSlice = createSlice({
     },
   },
 });
+
+export const getVisibilitySideBar = (state: RootState) => state.ui.showSideBar;
 
 export const { toggleSideBar } = UiSlice.actions;
 export { UiSlice };

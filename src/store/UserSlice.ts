@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from './store';
 
-interface UserinitialState {
+interface UserInitialState {
   userName: string;
 }
 
-const initialState: UserinitialState = {
+const initialState: UserInitialState = {
   userName: 'dasfdsafasfasfasf 645654',
 };
 
@@ -17,6 +18,8 @@ const UserSlice = createSlice({
     },
   },
 });
+
+export const getUserName = (state: RootState) => state.user.userName;
 
 export const { changeUserName } = UserSlice.actions;
 export { UserSlice };

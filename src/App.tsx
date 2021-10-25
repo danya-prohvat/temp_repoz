@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Global } from 'styles/Styles';
 import { whiteTheme } from 'styles/themes';
 import { useSelector } from 'hooks/useTypedSelector';
-import { changeUserName } from 'store/UserSlice';
-import { toggleSideBar } from 'store/UiSlice';
+import { changeUserName, getUserName } from 'store/UserSlice';
+import { toggleSideBar, getVisibilitySideBar } from 'store/UiSlice';
 
 const App: React.FC = () => {
-  const { userName } = useSelector((state) => state.user);
-  const { showSideBar } = useSelector((state) => state.ui);
+  const userName = getUserName(useSelector((state) => state));
+  const showSideBar = getVisibilitySideBar(useSelector((state) => state));
   const dispatch = useDispatch();
 
   const toggleSideBarOnClick = () => {
