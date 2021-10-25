@@ -2,15 +2,21 @@ import { ThemeProvider } from '@emotion/react';
 import { useDispatch } from 'react-redux';
 import { Global } from 'styles/Styles';
 import { whiteTheme } from 'styles/themes';
-import { useTypedSelector } from 'hooks/useTypedSelector';
+import { useSelector } from 'hooks/useTypedSelector';
 import { changeUserName } from 'store/UserSlice';
+import { toggleSideBar } from 'store/UiSlice';
 
 const App: React.FC = () => {
-  const { userName } = useTypedSelector((state) => state.user);
+  const { userName } = useSelector((state) => state.user);
+  const { showSideBar } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
 
-  const changeUserNameOnClick = () => {
-    dispatch(changeUserName('some userName'));
+  const toggleSideBarOnClick = () => {
+    dispatch(toggleSideBar());
+  };
+
+  const inputOnChange = (event: React.FormEvent<HTMLInputElement>) => {
+    dispatch(changeUserName(event.currentTarget.value));
   };
 
   return (
@@ -19,7 +25,9 @@ const App: React.FC = () => {
       <ThemeProvider theme={whiteTheme}>
         {userName}
         <br />
-        <button onClick={changeUserNameOnClick}>change UserName</button>
+        <input type="text" onChange={inputOnChange} />
+        <br />
+        <button onClick={toggleSideBarOnClick}>{showSideBar ? 'hide' : 'show'} SideBar</button>
         <br />
       </ThemeProvider>
     </>
