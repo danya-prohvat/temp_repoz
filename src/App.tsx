@@ -7,8 +7,8 @@ import { changeUserName, getUserName } from 'store/UserSlice';
 import { toggleSideBar, getVisibilitySideBar } from 'store/UiSlice';
 
 const App: React.FC = () => {
-  const userName = getUserName(useSelector((state) => state));
-  const showSideBar = getVisibilitySideBar(useSelector((state) => state));
+  const userName = useSelector(getUserName);
+  const showSideBar = useSelector(getVisibilitySideBar);
   const dispatch = useDispatch();
 
   const toggleSideBarOnClick = () => {
