@@ -1,12 +1,13 @@
-import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { apiUrls } from './urls';
-import { config } from 'config/index';
+import { config } from 'config';
+import { instance } from './apiClient';
+import { version } from './mocks';
 
 export const enableMock = (): void => {
-  const mock = new MockAdapter(axios, { delayResponse: config.env.apiDelay });
+  const mock = new MockAdapter(instance, { delayResponse: config.env.apiDelay });
 
   mock.onGet(apiUrls.getVersion.url).reply(() => {
-    return [200, 'from .json'];
+    return [200, version];
   });
 };

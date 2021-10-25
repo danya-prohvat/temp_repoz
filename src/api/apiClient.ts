@@ -1,14 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { config } from 'config/index';
+import { config } from 'config';
 
-interface RequestData {
-  user: string;
-}
-
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: config.env.apiBaseUrl,
-  // timeout: config.env.axiosDelay,
-  timeout: 400,
+  timeout: config.env.axiosTimeout,
+  // timeout: 7000,
+  responseType: 'json',
 });
 
 export const getRequest = (url: string, config?: AxiosRequestConfig<any> | undefined): Promise<any> =>
@@ -19,18 +16,18 @@ export const deleteRequest = (url: string, config?: AxiosRequestConfig<any> | un
 
 export const postRequest = (
   url: string,
-  data?: RequestData,
+  data: Record<string, unknown>,
   config?: AxiosRequestConfig<any> | undefined,
 ): Promise<any> => instance.post(url, data, config);
 
 export const putRequest = (
   url: string,
-  data?: RequestData,
+  data?: Record<string, unknown>,
   config?: AxiosRequestConfig<any> | undefined,
 ): Promise<any> => instance.put(url, data, config);
 
 export const patchRequest = (
   url: string,
-  data?: RequestData,
+  data?: Record<string, unknown>,
   config?: AxiosRequestConfig<any> | undefined,
 ): Promise<any> => instance.patch(url, data, config);

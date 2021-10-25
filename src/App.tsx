@@ -8,7 +8,7 @@ import { changeUserName, getUserName } from 'store/UserSlice';
 import { toggleSideBar, getVisibilitySideBar } from 'store/UiSlice';
 import { enableMock } from 'api/enableMock';
 import { apiUrls } from 'api/urls';
-import { config } from 'config/index';
+import { config } from 'config';
 import { getRequest } from 'api/apiClient';
 
 const App: React.FC = () => {
