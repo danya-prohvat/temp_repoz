@@ -1,20 +1,20 @@
-import { S } from './Main.styles';
+import { S } from './MainPage.styles';
 import { Logo } from 'components/common/logo';
-import { Avatar } from 'components/common/avatar';
+import { User } from 'components/common/user';
 import { Sidebar } from 'components/layout/sidebar';
 
 const Main: React.FC = ({ children }) => {
   return (
-    <S.Container>
+    <>
       <S.Header>
         <Logo />
-        <Avatar />
+        <User />
       </S.Header>
       <S.MainContent>
         <Sidebar />
         {children}
       </S.MainContent>
-    </S.Container>
+    </>
   );
 };
 

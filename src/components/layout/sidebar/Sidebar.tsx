@@ -15,31 +15,31 @@ const Sidebar: React.FC = () => {
     <S.Sidebar width={showSidebar ? '300px' : '60px'}>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && <Typography> {t('Main')}</Typography>}
+        {showSidebar && <Typography type="body1"> {t('Main')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && <Typography> {t('Explore')}</Typography>}
+        {showSidebar && <Typography type="body1"> {t('Explore')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && <Typography> {t('Subscribers')}</Typography>}
+        {showSidebar && <Typography type="body1"> {t('Subscribers')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && <Typography> {t('Subscriptions')}</Typography>}
+        {showSidebar && <Typography type="body1"> {t('Subscriptions')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && <Typography> {t('Messages')}</Typography>}
+        {showSidebar && <Typography type="body1"> {t('Messages')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && <Typography> {t('Saved')}</Typography>}
+        {showSidebar && <Typography type="body1"> {t('Saved')}</Typography>}
       </RouteLink>
       <RouteLink>
         <Icon type="I" />
-        {showSidebar && <Typography> {t('Settings')}</Typography>}
+        {showSidebar && <Typography type="body1"> {t('Settings')}</Typography>}
       </RouteLink>
       <S.SidebarButton onClick={toggleSidebar}>
         <Icon type={showSidebar ? '<' : '>'} />

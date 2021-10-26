@@ -7,7 +7,6 @@ const S = {
   `,
   H1: styled.h1`
     font-weight: bold;
-    font-size: 32px;
     line-height: 42px;
     text-transform: uppercase;
   `,

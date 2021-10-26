@@ -9,7 +9,7 @@ const Logo: React.FC = () => {
         <Icon type="M" />
       </S.Logo>
       <S.H1>
-        <Typography> Media</Typography>
+        <Typography type="heading1Bold">Media</Typography>
       </S.H1>
     </S.Container>
   );

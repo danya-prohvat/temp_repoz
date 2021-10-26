@@ -1,4 +1,4 @@
-const typography = {
+export const typography = {
   body1: {
     fontSize: '18px',
     fontWeight: 'normal',

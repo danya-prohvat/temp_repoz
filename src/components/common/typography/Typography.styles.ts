@@ -1,15 +1,11 @@
 import styled from '@emotion/styled';
-import { Theme } from 'styles/themes';
-
-// interface ComponentProps {
-//   fontType: string | undefined;
-// }
+import { TypographyProps } from './Typography';
 
 const S = {
-  Span: styled.span`
-    font-weight: ${(props) => props.theme.typography.body1.fontSize};
-    font-size: ${(props) => props.theme.typography.body1.fontWeight};
-    line-height: ${(props) => props.theme.typography.body1.lineHeight};
+  Span: styled.span<TypographyProps>`
+    font-weight: ${(props) => props.theme.typography[props.type].fontWeight};
+    font-size: ${(props) => props.theme.typography[props.type].fontSize};
+    line-height: ${(props) => props.theme.typography[props.type].lineHeight};
   `,
 };
 
