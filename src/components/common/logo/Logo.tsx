@@ -6,7 +6,7 @@ const Logo: React.FC = () => {
   return (
     <S.Container>
       <S.Logo>
-        <Icon type="M" />
+        <Icon type="logo" />
       </S.Logo>
       <S.H1>
         <Typography type="heading1Bold">Media</Typography>

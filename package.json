@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -12,11 +13,17 @@
     "@types/node": "^12.20.33",
     "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.3.2",
+    "axios": "^0.23.0",
     "i18next": "^21.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.12.0",
+    "react-redux": "^7.2.5",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "react-tooltip": "^4.2.21",
+    "redux-persist": "^6.0.0",
     "typescript": "^4.4.4",
     "web-vitals": "^1.1.2"
   },
@@ -25,8 +32,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "check:typescript": "tsc --noEmit --composite false"
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix --max-warnings=0",
+    "check:typescript": "tsc --noEmit --composite false",
+    "check:all": "npm run lint && npm run check:typescript"
   },
   "eslintConfig": {
     "extends": [
@@ -47,9 +55,12 @@
     ]
   },
   "devDependencies": {
+    "@types/redux-persist": "^4.3.1",
+    "axios-mock-adapter": "^1.20.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
+    "husky": "^7.0.0",
     "prettier": "^2.4.1"
   }
 }

@@ -5,7 +5,6 @@ const S = {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: ${(props: { width: string }) => props.width};
     padding: 35px 25px;
     height: 100%;
     background-color: ${(props) => props.theme.colors.backgroundColor.lightGray};
@@ -16,11 +15,15 @@ const S = {
     right: 0;
     transform: translateX(50%);
     bottom: 150px;
-    font-size: 40px;
+    font-size: 20px;
     border: none;
     cursor: pointer;
     background-color: ${(props) => props.theme.colors.backgroundColor.transparent};
     outline: none;
+  `,
+  Link: styled.span`
+    font-size: 12px;
+    margin-left: 10px;
   `,
 };
 

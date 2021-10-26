@@ -6,7 +6,7 @@ export const typography = {
   },
   heading1Bold: {
     fontSize: '32px',
-    fontWeight: 'normal',
+    fontWeight: 'bold',
     lineHeight: '42px',
   },
   body1Bold: {

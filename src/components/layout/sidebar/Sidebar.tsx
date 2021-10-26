@@ -1,48 +1,82 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'hooks/useTypedSelector';
 import { S } from './Sidebar.styles';
 import { useTranslation } from 'react-i18next';
 import { RouteLink } from 'components/common/routeLink';
 import { Icon } from 'components/common/icon';
 import { Typography } from 'components/common/typography';
+import { toggleSideBar, getVisibilitySideBar } from 'store/UiSlice';
 
 const Sidebar: React.FC = () => {
   const { t } = useTranslation();
-  const [showSidebar, setShowSidebar] = useState(true);
 
-  const toggleSidebar = () => setShowSidebar(!showSidebar);
+  const showSideBar = useSelector(getVisibilitySideBar);
+  const dispatch = useDispatch();
+
+  const toggleSideBarOnClick = () => {
+    dispatch(toggleSideBar());
+  };
 
   return (
-    <S.Sidebar width={showSidebar ? '300px' : '60px'}>
+    <S.Sidebar>
       <RouteLink>
-        <Icon type="I" />
-        {showSidebar && <Typography type="body1"> {t('Main')}</Typography>}
+        <Icon type="home" />
+        {showSideBar && (
+          <S.Link>
+            <Typography type="body1">{t('Main')}</Typography>
+          </S.Link>
+        )}
       </RouteLink>
       <RouteLink>
-        <Icon type="I" />
-        {showSidebar && <Typography type="body1"> {t('Explore')}</Typography>}
+        <Icon type="compass" />
+        {showSideBar && (
+          <S.Link>
+            <Typography type="body1"> {t('Explore')}</Typography>
+          </S.Link>
+        )}
       </RouteLink>
       <RouteLink>
-        <Icon type="I" />
-        {showSidebar && <Typography type="body1"> {t('Subscribers')}</Typography>}
+        <Icon type="user" />
+        {showSideBar && (
+          <S.Link>
+            <Typography type="body1"> {t('Subscribers')}</Typography>
+          </S.Link>
+        )}
       </RouteLink>
       <RouteLink>
-        <Icon type="I" />
-        {showSidebar && <Typography type="body1"> {t('Subscriptions')}</Typography>}
+        <Icon type="user" />
+        {showSideBar && (
+          <S.Link>
+            <Typography type="body1"> {t('Subscriptions')}</Typography>
+          </S.Link>
+        )}
       </RouteLink>
       <RouteLink>
-        <Icon type="I" />
-        {showSidebar && <Typography type="body1"> {t('Messages')}</Typography>}
+        <Icon type="message" />
+        {showSideBar && (
+          <S.Link>
+            <Typography type="body1"> {t('Messages')}</Typography>
+          </S.Link>
+        )}
       </RouteLink>
       <RouteLink>
-        <Icon type="I" />
-        {showSidebar && <Typography type="body1"> {t('Saved')}</Typography>}
+        <Icon type="saved" />
+        {showSideBar && (
+          <S.Link>
+            <Typography type="body1"> {t('Saved')}</Typography>
+          </S.Link>
+        )}
       </RouteLink>
       <RouteLink>
-        <Icon type="I" />
-        {showSidebar && <Typography type="body1"> {t('Settings')}</Typography>}
+        <Icon type="settings" />
+        {showSideBar && (
+          <S.Link>
+            <Typography type="body1"> {t('Settings')}</Typography>
+          </S.Link>
+        )}
       </RouteLink>
-      <S.SidebarButton onClick={toggleSidebar}>
-        <Icon type={showSidebar ? '<' : '>'} />
+      <S.SidebarButton onClick={toggleSideBarOnClick}>
+        <Icon type={showSideBar ? 'arrow-left' : 'arrow-right'} />
       </S.SidebarButton>
     </S.Sidebar>
   );

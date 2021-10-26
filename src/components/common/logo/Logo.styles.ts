@@ -4,13 +4,13 @@ const S = {
   Container: styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
   `,
   H1: styled.h1`
-    font-weight: bold;
-    line-height: 42px;
     text-transform: uppercase;
   `,
   Logo: styled.span`
+    display: flex;
     margin-right: 16px;
     font-size: 50px;
   `,
