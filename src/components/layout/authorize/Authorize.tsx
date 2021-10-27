@@ -19,7 +19,7 @@ const Authorize: React.FC<AuthorizeProps> = ({ authorizeType }) => {
       </S.Header>
       <S.Main>signIn or sigUp</S.Main>
       <S.Footer>
-        <ExternalLink src={config.env.externalLink} />
+        <ExternalLink text="externalLink" src={config.env.externalLink} />
       </S.Footer>
     </>
   );
