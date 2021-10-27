@@ -1,9 +1,9 @@
 export const links = [
-  { iconType: 'home', text: 'main' },
-  { iconType: 'compass', text: 'explore' },
-  { iconType: 'user', text: 'subscribers' },
-  { iconType: 'user', text: 'subscriptions' },
-  { iconType: 'message', text: 'messages' },
-  { iconType: 'saved', text: 'saved' },
-  { iconType: 'settings', text: 'settings' },
+  { iconType: 'home', text: 'Main', link: 'main' },
+  { iconType: 'compass', text: 'Explore', link: 'explore' },
+  { iconType: 'user', text: 'Subscribers', link: 'subscribers' },
+  { iconType: 'user', text: 'Subscriptions', link: 'subscriptions' },
+  { iconType: 'message', text: 'Messages', link: 'messages' },
+  { iconType: 'saved', text: 'Saved', link: 'saved' },
+  { iconType: 'settings', text: 'Settings', link: 'settings' },
 ];

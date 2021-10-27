@@ -1,11 +1,16 @@
 import { S } from './RouteLink.styles';
 
-interface RouteLinkProps {
+export interface RouteLinkProps {
   to: string;
+  isActive?: boolean;
 }
 
-const RouteLink: React.FC<RouteLinkProps> = ({ children, to }) => {
-  return <S.A to={to}>{children}</S.A>;
+const RouteLink: React.FC<RouteLinkProps> = ({ children, to, isActive }) => {
+  return (
+    <S.A isActive={isActive} to={to}>
+      {children}
+    </S.A>
+  );
 };
 
 export { RouteLink };

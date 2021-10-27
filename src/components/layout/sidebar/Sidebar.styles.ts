@@ -4,9 +4,9 @@ const S = {
   Sidebar: styled.div`
     position: relative;
     display: flex;
+    padding-top: 30px;
+    padding-bottom: 30px;
     flex-direction: column;
-    padding: 35px 25px;
-    height: 100%;
     background-color: ${(props) => props.theme.colors.backgroundColor.lightGray};
     border-right: 2px solid ${(props) => props.theme.colors.borderColor.gray};
   `,
