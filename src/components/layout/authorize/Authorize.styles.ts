@@ -23,7 +23,19 @@ const S = {
     text-align: center;
     background-color: ${(props) => props.theme.colors.backgroundColor.lightPink};
   `,
-  HeaderTitle: styled.span``,
+  HeaderTitle: styled.span`
+    position: relative;
+    margin-left: 15px;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -15px;
+      background-color: red;
+      width: 6px;
+      height: 100%;
+    }
+  `,
 };
 
 export { S };
