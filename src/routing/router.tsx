@@ -3,6 +3,7 @@ import { CommonLayout } from 'components/layout/commonLayout';
 import { Authorize } from 'components/layout/authorize';
 import { PrivateRoute } from './privateRouter';
 import { Main } from 'components/layout/main';
+import { Page404 } from 'components/layout/page404';
 import { links } from './locations';
 
 export const Router: React.FC = () => (
@@ -27,7 +28,7 @@ export const Router: React.FC = () => (
       </Route>
       <Route path="*">
         <CommonLayout>
-          <div>404 - page not found</div>
+          <Page404 />
         </CommonLayout>
       </Route>
     </Switch>
