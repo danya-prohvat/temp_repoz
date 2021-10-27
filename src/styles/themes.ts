@@ -14,6 +14,11 @@ export const typography = {
     fontWeight: 'bold',
     lineHeight: '22px',
   },
+  heading2: {
+    fontSize: '28px',
+    fontWeight: 'bold',
+    lineHeight: '42px',
+  },
 };
 
 const darkTheme = {
@@ -23,6 +28,7 @@ const darkTheme = {
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
+      lightPink: '#F8D3D3',
       transparent: 'rgba(0, 0, 0, 0)',
     },
     borderColor: {
@@ -39,6 +45,7 @@ const whiteTheme: Theme = {
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
+      lightPink: '#F8D3D3',
       transparent: 'rgba(0, 0, 0, 0)',
     },
     borderColor: {

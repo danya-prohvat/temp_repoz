@@ -1,5 +1,8 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { CommonLayout } from 'components/layout/commonLayout';
+import { Authorize } from 'components/layout/authorize';
 import { PrivateRoute } from './privateRouter';
+import { Main } from 'components/layout/main';
 import { links } from './locations';
 
 export const Router: React.FC = () => (
@@ -7,25 +10,25 @@ export const Router: React.FC = () => (
     <Switch>
       <Route path={links.home} exact>
         <PrivateRoute>
-          <div className="wrapper">
-            <div>HOME</div>
-          </div>
+          <CommonLayout>
+            <Main>some content</Main>
+          </CommonLayout>
         </PrivateRoute>
       </Route>
       <Route path={links.signIn}>
-        <div className="wrapper">
-          <div>signIn</div>
-        </div>
+        <CommonLayout>
+          <Authorize authorizeType="Sign In"></Authorize>
+        </CommonLayout>
       </Route>
       <Route path={links.signUp}>
-        <div className="wrapper">
-          <div>signUp</div>
-        </div>
+        <CommonLayout>
+          <Authorize authorizeType="Sign Up"></Authorize>
+        </CommonLayout>
       </Route>
       <Route path="*">
-        <div className="wrapper">
-          <div>404</div>
-        </div>
+        <CommonLayout>
+          <div>404 - page not found</div>
+        </CommonLayout>
       </Route>
     </Switch>
   </BrowserRouter>

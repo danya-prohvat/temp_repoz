@@ -1,10 +1,12 @@
 import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'hooks/useTypedSelector';
+import { checkAuthorization } from 'store/UserSlice';
 import { links } from './locations';
 
-const isSignedIn = false;
-
 export const PrivateRoute: React.FC = (props) => {
-  if (!isSignedIn) {
+  const isAuthorized = useSelector(checkAuthorization);
+
+  if (!isAuthorized) {
     return <Redirect to={links.signIn} />;
   }
   return <Route {...props} />;
