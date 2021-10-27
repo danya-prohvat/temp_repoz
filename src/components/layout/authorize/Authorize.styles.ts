@@ -31,7 +31,7 @@ const S = {
       position: absolute;
       top: 0;
       left: -15px;
-      background-color: red;
+      background-color: ${(props) => props.theme.colors.backgroundColor.red};
       width: 6px;
       height: 100%;
     }

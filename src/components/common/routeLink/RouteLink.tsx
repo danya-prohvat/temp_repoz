@@ -1,7 +1,11 @@
 import { S } from './RouteLink.styles';
 
-const RouteLink: React.FC = (props) => {
-  return <S.A>{props.children}</S.A>;
+interface RouteLinkProps {
+  to: string;
+}
+
+const RouteLink: React.FC<RouteLinkProps> = ({ children, to }) => {
+  return <S.A to={to}>{children}</S.A>;
 };
 
 export { RouteLink };

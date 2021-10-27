@@ -28,6 +28,7 @@ const darkTheme = {
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
+      red: '#F34E4E',
       lightPink: '#F8D3D3',
       transparent: 'rgba(0, 0, 0, 0)',
     },
@@ -45,6 +46,7 @@ const whiteTheme: Theme = {
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
+      red: '#F34E4E',
       lightPink: '#F8D3D3',
       transparent: 'rgba(0, 0, 0, 0)',
     },

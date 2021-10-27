@@ -6,7 +6,9 @@ interface AvatarProps {
 
 const Avatar: React.FC<AvatarProps> = ({ src }) => {
   return (
-    <S.Container>{src ? <S.Img src={src} alt="userImg"></S.Img> : <span className="icon-user"></span>}</S.Container>
+    <S.Container>
+      {src ? <S.Img src={src} alt="user's photo"></S.Img> : <span className="icon-user"></span>}
+    </S.Container>
   );
 };
 
