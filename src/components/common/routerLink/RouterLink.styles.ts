@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { RouteLinkProps } from './RouteLink';
+import { RouterLinkProps } from './RouterLink';
 
 const S = {
-  A: styled(Link)<RouteLinkProps>`
+  A: styled(Link)<RouterLinkProps>`
     display: flex;
     align-items: center;
     cursor: ${(props) => (props.isActive ? 'default' : 'cursor')};

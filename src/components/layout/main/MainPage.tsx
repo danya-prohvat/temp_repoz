@@ -1,7 +1,7 @@
 import { S } from './MainPage.styles';
 import { Logo } from 'components/common/logo';
 import { User } from 'components/common/user';
-import { Sidebar } from 'components/layout/sidebar';
+import { Sidebar } from 'components/core/sidebar';
 
 const Main: React.FC = ({ children }) => {
   return (

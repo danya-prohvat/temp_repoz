@@ -7,7 +7,7 @@ interface UserStore {
 }
 
 const initialState: UserStore = {
-  isAuthorized: !true,
+  isAuthorized: true,
   userName: 'dasfdsafasfasfasf 645654',
 };
 

@@ -1,41 +1,37 @@
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { CommonLayout } from 'components/layout/commonLayout';
-import { useSelector } from 'hooks/useTypedSelector';
-import { checkAuthorization } from 'store/UserSlice';
 import { Authorize } from 'components/layout/authorize';
 import { Main } from 'components/layout/main';
-import { Page404 } from 'components/layout/page404';
+import { Page404 } from 'components/pages/page404';
 import { links } from './locations';
+import { PrivateRoute } from './privateRoute';
 
 export const Router: React.FC = () => {
-  const isAuthorized = useSelector(checkAuthorization);
-
   return (
     <BrowserRouter>
       <Switch>
-        <Route path={links.signIn}>
-          {isAuthorized && <Redirect to={links.home} />}
+        <PrivateRoute path={links.signIn}>
           <CommonLayout>
             <Authorize authorizeType="Sign In"></Authorize>
           </CommonLayout>
-        </Route>
-        <Route path={links.signUp}>
-          {isAuthorized && <Redirect to={links.home} />}
+        </PrivateRoute>
+        <PrivateRoute path={links.signUp}>
           <CommonLayout>
             <Authorize authorizeType="Sign Up"></Authorize>
           </CommonLayout>
-        </Route>
-        <Route path={links.home}>
-          {!isAuthorized && <Redirect to={links.signIn} />}
+        </PrivateRoute>
+        <PrivateRoute path={links.home} exact>
           <CommonLayout>
             <Main>some content</Main>
           </CommonLayout>
-        </Route>
-        <Route path="*">
+        </PrivateRoute>
+        <PrivateRoute path="*">
           <CommonLayout>
-            <Page404 />
+            <Main>
+              <Page404 />
+            </Main>
           </CommonLayout>
-        </Route>
+        </PrivateRoute>
       </Switch>
     </BrowserRouter>
   );

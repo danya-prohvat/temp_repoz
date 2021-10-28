@@ -4,7 +4,7 @@ import ReactTooltip from 'react-tooltip';
 import { useLocation } from 'react-router-dom';
 import { S } from './Sidebar.styles';
 import { useTranslation } from 'react-i18next';
-import { RouteLink } from 'components/common/routeLink';
+import { RouterLink } from 'components/common/routerLink';
 import { Icon } from 'components/common/icon';
 import { Typography } from 'components/common/typography';
 import { toggleSideBar, getVisibilitySideBar } from 'store/UiSlice';
@@ -25,7 +25,7 @@ const Sidebar: React.FC = () => {
     <S.Sidebar>
       {links.map((link) => {
         return (
-          <RouteLink isActive={location.pathname.slice(1) === link.link} to={`/${link.link}`} key={link.text}>
+          <RouterLink isActive={location.pathname.slice(1) === link.link} to={`/${link.link}`} key={link.text}>
             <div data-type="light" data-border={true} data-tip data-for={link.text}>
               <Icon type={link.iconType} />
             </div>
@@ -38,7 +38,7 @@ const Sidebar: React.FC = () => {
                 {t(`Sidebar.${link.text}`)}
               </ReactTooltip>
             )}
-          </RouteLink>
+          </RouterLink>
         );
       })}
       <S.SidebarButton onClick={toggleSideBarOnClick}>
