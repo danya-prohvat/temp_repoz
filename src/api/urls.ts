@@ -14,4 +14,7 @@ export const apiUrls = {
     url: '/user/:userId',
     regexp: /user\/d+$/,
   },
+  signIn: {
+    url: '/user/sign-in',
+  },
 };

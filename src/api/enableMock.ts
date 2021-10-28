@@ -10,4 +10,8 @@ export const enableMock = (): void => {
   mock.onGet(apiUrls.getVersion.url).reply(() => {
     return [200, version];
   });
+  mock.onPost(apiUrls.signIn.url).reply((config) => {
+    console.log(config.data);
+    return [200, 'post'];
+  });
 };

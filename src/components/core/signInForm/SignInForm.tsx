@@ -1,15 +1,18 @@
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import { Typography } from 'components/common/typography';
 import { S } from './SignInForm.styles';
+import { signInThunk } from 'store/UserSlice';
 
-interface SingInFormProps {
+export interface SingInFormProps {
   email: string;
   password: string;
 }
 
 const SignInForm: React.FC = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const initialValues: SingInFormProps = {
     email: '',
@@ -17,7 +20,7 @@ const SignInForm: React.FC = () => {
   };
 
   const formSubmit = (value: SingInFormProps): void => {
-    console.log(value);
+    dispatch(signInThunk(value));
   };
 
   return (
