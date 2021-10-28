@@ -2,12 +2,12 @@ import { LinkProps } from 'react-router-dom';
 import { S } from './RouterLink.styles';
 
 export interface RouterLinkProps extends LinkProps {
-  isActive?: boolean;
+  isactive?: boolean;
 }
 
-const RouterLink: React.FC<RouterLinkProps> = ({ children, to, isActive }) => {
+const RouterLink: React.FC<RouterLinkProps> = ({ children, to, isactive, ...rest }) => {
   return (
-    <S.A isActive={isActive} to={to}>
+    <S.A isactive={isactive} to={to} {...rest}>
       {children}
     </S.A>
   );

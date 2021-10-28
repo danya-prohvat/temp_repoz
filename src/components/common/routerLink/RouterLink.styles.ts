@@ -6,7 +6,7 @@ const S = {
   A: styled(Link)<RouterLinkProps>`
     display: flex;
     align-items: center;
-    cursor: ${(props) => (props.isActive ? 'default' : 'cursor')};
+    cursor: ${(props) => (props.isactive ? 'default' : 'cursor')};
     position: relative;
     font-size: 22px;
     padding-top: 5px;
@@ -16,12 +16,12 @@ const S = {
     margin-bottom: 20px;
     text-decoration: none;
     color: ${(props) => props.theme.colors.textColor.black};
-    background-color: ${(props) => (props.isActive ? props.theme.colors.backgroundColor.whiteGray : '')};
+    background-color: ${(props) => (props.isactive ? props.theme.colors.backgroundColor.whiteGray : '')};
     &:after {
       content: '';
       position: absolute;
       height: 100%;
-      width: ${(props) => (props.isActive ? '6px' : '')};
+      width: ${(props) => (props.isactive ? '6px' : '')};
       background-color: ${(props) => props.theme.colors.backgroundColor.red};
       top: 0;
       left: 0;
