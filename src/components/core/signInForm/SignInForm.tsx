@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik';
+import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Typography } from 'components/common/typography';
 import { S } from './SignInForm.styles';
