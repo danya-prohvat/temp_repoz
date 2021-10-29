@@ -2,21 +2,20 @@ import { ThemeProvider } from '@emotion/react';
 import { Global } from 'styles/Styles';
 import { whiteTheme } from 'styles/themes';
 import { Router } from 'routing/router';
-import 'assets/fonts/icons/style.css';
 import { useEffect } from 'react';
 import { enableMock } from 'api/enableMock';
-import { getRequest } from 'api/apiClient';
-import { apiUrls } from 'api/urls';
+import { ToastContainer } from 'react-toastify';
+import 'assets/fonts/icons/style.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = () => {
   useEffect(() => {
     enableMock();
-
-    getRequest(apiUrls.getVersion.url).then((res) => console.log(res));
   }, []);
 
   return (
     <>
+      <ToastContainer autoClose={2000} />
       <Global />
       <ThemeProvider theme={whiteTheme}>
         <Router />

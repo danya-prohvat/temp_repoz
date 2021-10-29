@@ -30,9 +30,3 @@ export const patchRequest = (
   data?: Record<string, unknown>,
   config?: AxiosRequestConfig<any> | undefined,
 ): Promise<any> => instance.patch(url, data, config);
-
-export const signIn = (
-  url: string,
-  data?: Record<string, unknown>,
-  config?: AxiosRequestConfig<any> | undefined,
-): Promise<any> => instance.post(url, data, config);
