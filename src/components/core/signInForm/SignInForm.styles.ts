@@ -14,8 +14,10 @@ const S = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
-    padding-bottom: 170px;
+    padding-top: 70px;
+    padding-bottom: 150px;
+    padding-left: 250px;
+    padding-right: 250px;
     height: 100%;
   `,
   Button: styled.button`
@@ -28,6 +30,7 @@ const S = {
     margin-top: 50px;
   `,
   FieldWrapper: styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
@@ -42,6 +45,12 @@ const S = {
   `,
   FieldLabel: styled.label`
     margin-bottom: 6px;
+  `,
+  IconWrapper: styled.div`
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    cursor: pointer;
   `,
 };
 

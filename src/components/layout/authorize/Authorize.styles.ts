@@ -18,8 +18,9 @@ const S = {
   Form: styled.main`
     background-color: ${(props) => props.theme.colors.backgroundColor.white};
     margin: 0 auto;
-    width: 900px;
-    height: 600px;
+
+    /* width: 900px; */
+    /* height: 80%; */
   `,
   Footer: styled.footer`
     position: sticky;

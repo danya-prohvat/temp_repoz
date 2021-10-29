@@ -1,9 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+import ReactTooltip from 'react-tooltip';
 import { Typography } from 'components/common/typography';
+import { Icon } from 'components/common/icon';
 import { S } from './SignInForm.styles';
 import { signInThunk } from 'store/UserSlice';
+import * as Yup from 'yup';
 
 export interface SingInFormProps {
   email: string;
@@ -13,6 +16,11 @@ export interface SingInFormProps {
 const SignInForm: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  const validationSchema = Yup.object({
+    email: Yup.string().email(t(`FormValidErrors.InvalidEmail`)).required(t(`FormValidErrors.Required`)),
+    password: Yup.string().required(t(`FormValidErrors.Required`)),
+  });
 
   const initialValuess: SingInFormProps = {
     email: '',
@@ -24,6 +32,7 @@ const SignInForm: React.FC = () => {
     onSubmit: (value: SingInFormProps) => {
       dispatch(signInThunk(value));
     },
+    validationSchema,
   });
 
   return (
@@ -47,6 +56,16 @@ const SignInForm: React.FC = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
+        {formik.errors.email && (
+          <>
+            <S.IconWrapper data-type="light" data-border={true} data-tip data-for="emailError">
+              <Icon type="warning" />
+            </S.IconWrapper>
+            <ReactTooltip borderColor="red" textColor="red" id="emailError" place="bottom" effect="solid">
+              {formik.errors.email}
+            </ReactTooltip>
+          </>
+        )}
       </S.FieldWrapper>
 
       <S.FieldWrapper>
@@ -61,10 +80,20 @@ const SignInForm: React.FC = () => {
           onChange={formik.handleChange}
           value={formik.values.password}
         />
+        {formik.errors.password && (
+          <>
+            <S.IconWrapper data-type="light" data-border={true} data-tip data-for="passwordError">
+              <Icon type="warning" />
+            </S.IconWrapper>
+            <ReactTooltip borderColor="red" textColor="red" id="passwordError" place="bottom" effect="solid">
+              {formik.errors.password}
+            </ReactTooltip>
+          </>
+        )}
       </S.FieldWrapper>
 
       <S.Button type="submit">
-        <Typography type="button1">{t(`SignIn.SignIn`)}</Typography>{' '}
+        <Typography type="button1">{t(`SignIn.SignIn`)}</Typography>
       </S.Button>
     </S.Form>
   );
