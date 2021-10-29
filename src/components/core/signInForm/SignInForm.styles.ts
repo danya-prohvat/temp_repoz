@@ -8,7 +8,7 @@ const S = {
   FormDescription: styled.p`
     margin-bottom: 50px;
   `,
-  Form: styled(Form)`
+  Form: styled.form`
     outline: none;
     border-radius: 2px;
     border: 1px solid ${(props) => props.theme.colors.borderColor.gray};
@@ -33,7 +33,7 @@ const S = {
     flex-direction: column;
     margin-bottom: 30px;
   `,
-  Field: styled(Field)`
+  Field: styled.input`
     outline: none;
     border-radius: 2px;
     height: 40px;
