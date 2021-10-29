@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import ReactTooltip from 'react-tooltip';
@@ -7,6 +7,7 @@ import { Icon } from 'components/common/icon';
 import { S } from './SignInForm.styles';
 import { signInThunk } from 'store/UserSlice';
 import * as Yup from 'yup';
+import { locations } from 'routing/locations';
 
 export interface SingInFormProps {
   email: string;
@@ -38,21 +39,26 @@ const SignInForm: React.FC = () => {
   return (
     <S.Form onSubmit={formik.handleSubmit}>
       <S.FormTitle>
-        <Typography type="heading2">{t(`SignIn.SignIn`)}</Typography>
+        <Typography type="heading2">{t(`Sign-in/up.SignIn`)}</Typography>
       </S.FormTitle>
       <S.FormDescription>
-        <Typography type="body2">{t(`SignIn.YouCanSignUpHere`)}</Typography>
+        <Typography type="body2">
+          <Trans
+            defaults={t(`Sign-in/up.YouCan`)}
+            values={{ link: t(`Sign-in/up.SignUpHere`) }}
+            components={[<S.Link to={locations.signUp} key="link"></S.Link>]}
+          />
+        </Typography>
       </S.FormDescription>
-
       <S.FieldWrapper>
         <S.FieldLabel htmlFor="email">
-          <Typography type="label1">{t(`SignIn.Email*`)}</Typography>
+          <Typography type="label1">{t(`Sign-in/up.Email*`)}</Typography>
         </S.FieldLabel>
         <S.Field
           id="email"
           name="email"
           type="email"
-          placeholder={t(`SignIn.Email`)}
+          placeholder={t(`Sign-in/up.Email`)}
           onChange={formik.handleChange}
           value={formik.values.email}
         />
@@ -67,16 +73,15 @@ const SignInForm: React.FC = () => {
           </>
         )}
       </S.FieldWrapper>
-
       <S.FieldWrapper>
         <S.FieldLabel htmlFor="password">
-          <Typography type="label1">{t(`SignIn.Password*`)}</Typography>
+          <Typography type="label1">{t(`Sign-in/up.Password*`)}</Typography>
         </S.FieldLabel>
         <S.Field
           id="password"
           name="password"
           type="password"
-          placeholder={t(`SignIn.Password`)}
+          placeholder={t(`Sign-in/up.Password`)}
           onChange={formik.handleChange}
           value={formik.values.password}
         />
@@ -91,9 +96,8 @@ const SignInForm: React.FC = () => {
           </>
         )}
       </S.FieldWrapper>
-
       <S.Button type="submit">
-        <Typography type="button1">{t(`SignIn.SignIn`)}</Typography>
+        <Typography type="button1">{t(`Sign-in/up.SignIn`)}</Typography>
       </S.Button>
     </S.Form>
   );

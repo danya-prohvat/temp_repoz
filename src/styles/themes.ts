@@ -41,6 +41,7 @@ const darkTheme = {
     textColor: {
       black: '#282828',
       white: '#FFFFFF',
+      blue: '#6E71F8',
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
@@ -63,6 +64,7 @@ const whiteTheme: Theme = {
     textColor: {
       black: '#282828',
       white: '#FFFFFF',
+      blue: '#6E71F8',
     },
     backgroundColor: {
       lightGray: '#F3F3F3',

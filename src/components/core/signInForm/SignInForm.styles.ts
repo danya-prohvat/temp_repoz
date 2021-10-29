@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const S = {
@@ -51,6 +52,10 @@ const S = {
     right: 10px;
     top: 40px;
     cursor: pointer;
+  `,
+  Link: styled(Link)`
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.textColor.blue};
   `,
 };
 

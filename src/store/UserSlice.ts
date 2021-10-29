@@ -23,17 +23,17 @@ const UserSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    changeUserName(state, action: PayloadAction<{ userName: string }>) {
-      state.userName = action.payload.userName;
-    }, // question
     changeAuthorization(state) {
       state.isAuthorized = true;
     },
+    changeUserName(state, action: PayloadAction<{ userName: string }>) {
+      state.userName = action.payload.userName;
+    }, // question
   },
   extraReducers: (builder) => {
     builder.addCase(signInThunk.fulfilled, (state, action) => {
-      UserSlice.caseReducers.changeUserName(state, action);
       UserSlice.caseReducers.changeAuthorization(state);
+      UserSlice.caseReducers.changeUserName(state, action);
       toast.success('You authorized');
     });
     builder.addCase(signInThunk.rejected, () => {
