@@ -7,6 +7,28 @@ export const instance = axios.create({
   responseType: 'json',
 });
 
+instance.interceptors.request.use(
+  function (config) {
+    console.log(config);
+
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  },
+);
+
+instance.interceptors.response.use(
+  function (response) {
+    console.log(config);
+
+    return response;
+  },
+  function (error) {
+    return Promise.reject(error);
+  },
+);
+
 export const getRequest = (url: string, config?: AxiosRequestConfig<any> | undefined): Promise<any> =>
   instance.get(url, config);
 
