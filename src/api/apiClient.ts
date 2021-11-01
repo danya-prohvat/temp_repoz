@@ -1,15 +1,15 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { config } from 'config';
+import { config as envConfig } from 'config';
 
 export const instance = axios.create({
-  baseURL: config.env.apiBaseUrl,
-  timeout: config.env.axiosTimeout,
+  baseURL: envConfig.env.apiBaseUrl,
+  timeout: envConfig.env.axiosTimeout,
   responseType: 'json',
 });
 
 instance.interceptors.request.use(
   function (config) {
-    console.log(config);
+    envConfig.env.interceptors && console.log('REQUEST: ', config);
 
     return config;
   },
@@ -20,7 +20,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   function (response) {
-    console.log(config);
+    envConfig.env.interceptors && console.log('RESPONSE: ', response);
 
     return response;
   },
