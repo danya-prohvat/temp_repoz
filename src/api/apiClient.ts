@@ -7,7 +7,7 @@ export const instance = axios.create({
   responseType: 'json',
 });
 
-envConfig.env.interceptors &&
+envConfig.env.useLogger &&
   instance.interceptors.request.use(
     function (config) {
       console.log('REQUEST: ', config);
@@ -21,7 +21,7 @@ envConfig.env.interceptors &&
     },
   );
 
-envConfig.env.interceptors &&
+envConfig.env.useLogger &&
   instance.interceptors.response.use(
     function (response) {
       console.log('RESPONSE: ', response);
