@@ -11,6 +11,13 @@ const S = {
   `,
   Main: styled.main`
     height: 100%;
+    background-color: ${(props) => props.theme.colors.backgroundColor.darkWhite};
+    display: flex;
+    align-items: center;
+  `,
+  Form: styled.main`
+    background-color: ${(props) => props.theme.colors.backgroundColor.white};
+    margin: 0 auto;
   `,
   Footer: styled.footer`
     position: sticky;

@@ -4,6 +4,11 @@ export const typography = {
     fontWeight: 'normal',
     lineHeight: '22px',
   },
+  body2: {
+    fontSize: '18px',
+    fontWeight: 'normal',
+    lineHeight: '24px',
+  },
   heading1Bold: {
     fontSize: '32px',
     fontWeight: 'bold',
@@ -19,17 +24,31 @@ export const typography = {
     fontWeight: 'bold',
     lineHeight: '42px',
   },
+  button1: {
+    fontSize: '14px',
+    fontWeight: 'bold',
+    lineHeight: '18px',
+  },
+  label1: {
+    fontSize: '16px',
+    fontWeight: 'normal',
+    lineHeight: '22px',
+  },
 };
 
 const darkTheme = {
   colors: {
     textColor: {
       black: '#282828',
+      white: '#FFFFFF',
+      blue: '#6E71F8',
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
       whiteGray: '#E8E8E8',
+      darkWhite: '#F9F9F9',
       red: '#F34E4E',
+      white: '#FFFFFF',
       lightPink: '#F8D3D3',
       transparent: 'rgba(0, 0, 0, 0)',
     },
@@ -44,11 +63,15 @@ const whiteTheme: Theme = {
   colors: {
     textColor: {
       black: '#282828',
+      white: '#FFFFFF',
+      blue: '#6E71F8',
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
       whiteGray: '#E8E8E8',
+      darkWhite: '#F9F9F9',
       red: '#F34E4E',
+      white: '#FFFFFF',
       lightPink: '#F8D3D3',
       transparent: 'rgba(0, 0, 0, 0)',
     },

@@ -1,2 +1,28 @@
-{"Sidebar":{"Main": "Main", "Explore": "Explore", "Subscribers": "Subscribers", "Subscriptions": "Subscriptions", "Messages": "Messages", "Saved": "Saved", "Settings": "Settings"}, "Media": "Media", "404message": "404 - Page not found", "NeedHelp": "Need help?"}
-
+{
+  "Sidebar": {
+    "Main": "Main",
+    "Explore": "Explore",
+    "Subscribers": "Subscribers",
+    "Subscriptions": "Subscriptions",
+    "Messages": "Messages",
+    "Saved": "Saved",
+    "Settings": "Settings"
+  },
+  "Media": "Media",
+  "404message": "404 - Page not found",
+  "NeedHelp": "Need help?",
+  "Sign-in/up": {
+    "YouCan": "You can <0>{{link}}</0>",
+    "SignUpHere": "sign up here",
+    "SignInHere": "sign in here",
+    "SignIn": "Sign In",
+    "Password*": "Password*",
+    "Email*": "Email*",
+    "Password": "Password",
+    "Email": "Email"
+  },
+  "FormValidErrors": {
+    "Required": "Required",
+    "InvalidEmail": "Invalid Email"
+  }
+}
