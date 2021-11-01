@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -18,10 +19,12 @@ const SignInForm: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const validationSchema = Yup.object({
-    email: Yup.string().email(t(`FormValidErrors.InvalidEmail`)).required(t(`FormValidErrors.Required`)),
-    password: Yup.string().required(t(`FormValidErrors.Required`)),
-  });
+  const validationSchema = useMemo(() => {
+    return Yup.object({
+      email: Yup.string().email(t(`FormValidErrors.InvalidEmail`)).required(t(`FormValidErrors.Required`)),
+      password: Yup.string().required(t(`FormValidErrors.Required`)),
+    });
+  }, [t]);
 
   const initialValuess: SingInFormProps = {
     email: '',

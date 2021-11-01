@@ -3,20 +3,25 @@ import { postRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { RootState } from './store';
+import { User } from 'types/types';
 import { toast } from 'react-toastify';
 
 interface UserStore {
   isAuthorized: boolean;
-  userName: string;
+  user: User;
 }
 
 const initialState: UserStore = {
   isAuthorized: false,
-  userName: 'dasfdsafasfasfasf 645654',
+  user: {
+    userName: '',
+    email: '',
+  },
 };
 
 export const signInThunk = createAsyncThunk('user/signIn', async ({ email, password }: SingInFormProps) => {
-  return postRequest(apiUrls.signIn.url, { email: email, password: password }).then((response) => response.data);
+  const response = await postRequest(apiUrls.signIn.url, { email: email, password: password });
+  return response.data;
 });
 
 const UserSlice = createSlice({
@@ -26,14 +31,14 @@ const UserSlice = createSlice({
     changeAuthorization(state) {
       state.isAuthorized = true;
     },
-    changeUserName(state, action: PayloadAction<{ userName: string }>) {
-      state.userName = action.payload.userName;
-    }, // question
+    signInUser(state, action: PayloadAction<User>) {
+      state.user = { ...action.payload };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(signInThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
-      UserSlice.caseReducers.changeUserName(state, action);
+      UserSlice.caseReducers.signInUser(state, action);
       toast.success('You authorized');
     });
     builder.addCase(signInThunk.rejected, () => {
@@ -42,8 +47,8 @@ const UserSlice = createSlice({
   },
 });
 
-export const getUserName = (state: RootState): string => state.user.userName;
+export const getUserName = (state: RootState): string => state.user.user.userName;
 export const checkAuthorization = (state: RootState): boolean => state.user.isAuthorized;
 
-export const { changeUserName, changeAuthorization } = UserSlice.actions;
+export const { signInUser, changeAuthorization } = UserSlice.actions;
 export { UserSlice };
