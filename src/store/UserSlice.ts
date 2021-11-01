@@ -6,9 +6,14 @@ import { RootState } from './store';
 import { User } from 'types/types';
 import { toast } from 'react-toastify';
 
+interface SignUping {
+  userNameIsExists: boolean;
+  errorMessage: string;
+}
 interface UserStore {
   isAuthorized: boolean;
   user: User;
+  signUping: SignUping;
 }
 
 const initialState: UserStore = {
@@ -17,10 +22,19 @@ const initialState: UserStore = {
     userName: '',
     email: '',
   },
+  signUping: {
+    userNameIsExists: false,
+    errorMessage: '',
+  },
 };
 
 export const signInThunk = createAsyncThunk('user/signIn', async ({ email, password }: SingInFormProps) => {
   const response = await postRequest(apiUrls.signIn.url, { email: email, password: password });
+  return response.data;
+});
+
+export const checkNewUserNameThunk = createAsyncThunk('user/checkNewUserName', async (userName: string) => {
+  const response = await postRequest(apiUrls.checkNewUserName.url, { userName });
   return response.data;
 });
 
@@ -44,11 +58,22 @@ const UserSlice = createSlice({
     builder.addCase(signInThunk.rejected, () => {
       toast.error('Email or password is incorrect');
     });
+    builder.addCase(checkNewUserNameThunk.fulfilled, (state) => {
+      state.signUping.userNameIsExists = true;
+      state.signUping.errorMessage = '';
+    });
+    builder.addCase(checkNewUserNameThunk.rejected, (state) => {
+      state.signUping.userNameIsExists = false;
+      state.signUping.errorMessage = 'such user name is exist';
+    });
   },
 });
 
 export const getUserName = (state: RootState): string => state.user.user.userName;
 export const checkAuthorization = (state: RootState): boolean => state.user.isAuthorized;
+export const checkNewUserName = (state: RootState): SignUping => {
+  return { userNameIsExists: state.user.signUping.userNameIsExists, errorMessage: state.user.signUping.errorMessage };
+};
 
 export const { signInUser, changeAuthorization } = UserSlice.actions;
 export { UserSlice };

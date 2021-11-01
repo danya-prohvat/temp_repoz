@@ -13,12 +13,21 @@
   "NeedHelp": "Need help?",
   "Sign-in/up": {
     "YouCan": "You can <0>{{link}}</0>",
+    "IfYouAlreadyHaveAProfileYouCan": "If you already have a profile, you can <0>{{link}}</0>",
     "SignUpHere": "sign up here",
     "SignInHere": "sign in here",
     "SignIn": "Sign In",
+    "SignUp": "Sign Up",
+    "WelcomeToMEDIA": "Welcome to MEDIA!",
+    "Nickname": "Nickname",
+    "Information": "Information",
+    "userName*": "userName*",
+    "userName": "userName",
     "Password*": "Password*",
-    "Email*": "Email*",
     "Password": "Password",
+    "RepeatPassword*": "Repeat password*",
+    "RepeatPassword": "Repeat password",
+    "Email*": "Email*",
     "Email": "Email"
   },
   "FormValidErrors": {

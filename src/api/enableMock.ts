@@ -20,4 +20,12 @@ export const enableMock = (): void => {
 
     return [401, 'email or password is incorrect'];
   });
+
+  mock.onPost(apiUrls.checkNewUserName.url).reply((config) => {
+    const data = JSON.parse(config.data);
+
+    if (!users.find((user) => user.userName === data.userName)) return [200, `such user name isn't exist`];
+
+    return [400, 'such user name is exist'];
+  });
 };
