@@ -26,13 +26,13 @@ const SignInForm: React.FC = () => {
     });
   }, [t]);
 
-  const initialValuess: SingInFormProps = {
+  const initialValues: SingInFormProps = {
     email: '',
     password: '',
   };
 
   const formik = useFormik({
-    initialValues: initialValuess,
+    initialValues: initialValues,
     onSubmit: (value: SingInFormProps) => {
       dispatch(signInThunk(value));
     },
