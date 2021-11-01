@@ -7,27 +7,33 @@ export const instance = axios.create({
   responseType: 'json',
 });
 
-instance.interceptors.request.use(
-  function (config) {
-    envConfig.env.interceptors && console.log('REQUEST: ', config);
+envConfig.env.interceptors &&
+  instance.interceptors.request.use(
+    function (config) {
+      console.log('REQUEST: ', config);
 
-    return config;
-  },
-  function (error) {
-    return Promise.reject(error);
-  },
-);
+      return config;
+    },
+    function (error) {
+      console.log('REQUEST ERROR: ', error);
 
-instance.interceptors.response.use(
-  function (response) {
-    envConfig.env.interceptors && console.log('RESPONSE: ', response);
+      return Promise.reject(error);
+    },
+  );
 
-    return response;
-  },
-  function (error) {
-    return Promise.reject(error);
-  },
-);
+envConfig.env.interceptors &&
+  instance.interceptors.response.use(
+    function (response) {
+      console.log('RESPONSE: ', response);
+
+      return response;
+    },
+    function (error) {
+      console.log('RESPONSE ERROR: ', error);
+
+      return Promise.reject(error);
+    },
+  );
 
 export const getRequest = (url: string, config?: AxiosRequestConfig<any> | undefined): Promise<any> =>
   instance.get(url, config);
