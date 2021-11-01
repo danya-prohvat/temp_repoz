@@ -13,9 +13,10 @@ export const enableMock = (): void => {
     return [200, version];
   });
   mock.onPost(apiUrls.signIn.url).reply((config) => {
-    for (const user of users)
-      if (user.email === JSON.parse(config.data).email && user.password === JSON.parse(config.data).password)
-        return [200, omit(user, ['password'])];
+    const data = JSON.parse(config.data);
+
+    const user = users.find((user) => user.email === data.email && user.password === data.password);
+    if (user) return [200, omit(user, ['password'])];
 
     return [401, 'email or password is incorrect'];
   });
