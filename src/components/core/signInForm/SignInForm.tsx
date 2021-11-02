@@ -2,10 +2,10 @@ import { useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import ReactTooltip from 'react-tooltip';
 import { Typography } from 'components/common/typography';
-import { Icon } from 'components/common/icon';
 import { S } from './SignInForm.styles';
+import { Input } from 'components/common/input';
+import { Button } from 'components/common/button';
 import { signInThunk } from 'store/UserSlice';
 import * as Yup from 'yup';
 import { locations } from 'routing/locations';
@@ -53,55 +53,27 @@ const SignInForm: React.FC = () => {
           />
         </Typography>
       </S.FormDescription>
-      <S.FieldWrapper>
-        <S.FieldLabel htmlFor="email">
-          <Typography type="label1">{t(`Sign-in/up.Email*`)}</Typography>
-        </S.FieldLabel>
-        <S.Field
-          id="email"
-          name="email"
-          type="email"
-          placeholder={t(`Sign-in/up.Email`)}
-          onChange={formik.handleChange}
-          value={formik.values.email}
-        />
-        {formik.errors.email && (
-          <>
-            <S.IconWrapper data-type="light" data-border={true} data-tip data-for="emailError">
-              <Icon type="warning" />
-            </S.IconWrapper>
-            <ReactTooltip borderColor="red" textColor="red" id="emailError" place="bottom" effect="solid">
-              {formik.errors.email}
-            </ReactTooltip>
-          </>
-        )}
-      </S.FieldWrapper>
-      <S.FieldWrapper>
-        <S.FieldLabel htmlFor="password">
-          <Typography type="label1">{t(`Sign-in/up.Password*`)}</Typography>
-        </S.FieldLabel>
-        <S.Field
-          id="password"
-          name="password"
-          type="password"
-          placeholder={t(`Sign-in/up.Password`)}
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
-        {formik.errors.password && (
-          <>
-            <S.IconWrapper data-type="light" data-border={true} data-tip data-for="passwordError">
-              <Icon type="warning" />
-            </S.IconWrapper>
-            <ReactTooltip borderColor="red" textColor="red" id="passwordError" place="bottom" effect="solid">
-              {formik.errors.password}
-            </ReactTooltip>
-          </>
-        )}
-      </S.FieldWrapper>
-      <S.Button type="submit">
-        <Typography type="button1">{t(`Sign-in/up.SignIn`)}</Typography>
-      </S.Button>
+
+      <Input
+        label="Sign-in/up.Email"
+        input="email"
+        type="email"
+        handleChange={formik.handleChange}
+        errors={formik.errors}
+        values={formik.values}
+        required={true}
+      />
+      <Input
+        label="Sign-in/up.Password"
+        input="password"
+        type="password"
+        handleChange={formik.handleChange}
+        errors={formik.errors}
+        values={formik.values}
+        required={true}
+      />
+
+      <Button text="Sign-in/up.SignIn" color="primary" />
     </S.Form>
   );
 };
