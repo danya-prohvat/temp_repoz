@@ -12,6 +12,7 @@ export const enableMock = (): void => {
   mock.onGet(apiUrls.getVersion.url).reply(() => {
     return [200, version];
   });
+
   mock.onPost(apiUrls.signIn.url).reply((config) => {
     const data = JSON.parse(config.data);
 
@@ -19,6 +20,12 @@ export const enableMock = (): void => {
     if (user) return [200, omit(user, ['password'])];
 
     return [401, 'email or password is incorrect'];
+  });
+
+  mock.onPost(apiUrls.signUp.url).reply((config) => {
+    const data = JSON.parse(config.data);
+
+    return [200, omit(data, ['password'])];
   });
 
   mock.onPost(apiUrls.checkNewUserName.url).reply((config) => {

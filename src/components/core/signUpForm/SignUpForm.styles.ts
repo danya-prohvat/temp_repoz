@@ -10,7 +10,7 @@ const S = {
     margin-bottom: 15px;
   `,
   FormDescription: styled.p`
-    margin-top: 30px;
+    margin-top: 60px;
   `,
   Form: styled.form`
     outline: none;
@@ -19,10 +19,10 @@ const S = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 70px;
-    padding-bottom: 150px;
-    padding-left: 250px;
-    padding-right: 250px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    padding-left: 120px;
+    padding-right: 120px;
     height: 100%;
   `,
   Button: styled.button`
@@ -32,7 +32,7 @@ const S = {
     border-radius: 4px;
     cursor: pointer;
     padding: 10px 20px;
-    margin-top: 50px;
+    margin-top: 15px;
   `,
   FieldsContainer: styled.div`
     width: 600px;
@@ -70,6 +70,10 @@ const S = {
     text-decoration: none;
     color: ${(props) => props.theme.colors.textColor.blue};
   `,
+  ErrorMessage: styled.span`
+    margin-top: 4px;
+    color: ${(props) => props.theme.colors.textColor.red};
+  `,
   FormStatus: styled.div`
     width: 600px;
     display: flex;
@@ -82,7 +86,7 @@ const S = {
     width: 100%;
     height: 5px;
     margin-top: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     &:before {
       content: '';
       position: absolute;

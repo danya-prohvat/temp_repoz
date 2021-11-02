@@ -2,6 +2,7 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { postRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
+import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
 import { RootState } from './store';
 import { User } from 'types/types';
 import { toast } from 'react-toastify';
@@ -33,6 +34,11 @@ export const signInThunk = createAsyncThunk('user/signIn', async ({ email, passw
   return response.data;
 });
 
+export const signUpThunk = createAsyncThunk('user/signUp', async ({ userName, email, password }: SingUpFormProps) => {
+  const response = await postRequest(apiUrls.signUp.url, { userName: userName, email: email, password: password });
+  return response.data;
+});
+
 export const checkNewUserNameThunk = createAsyncThunk('user/checkNewUserName', async (userName: string) => {
   const response = await postRequest(apiUrls.checkNewUserName.url, { userName });
   return response.data;
@@ -58,13 +64,22 @@ const UserSlice = createSlice({
     builder.addCase(signInThunk.rejected, () => {
       toast.error('Email or password is incorrect');
     });
+    builder.addCase(signUpThunk.fulfilled, (state, action) => {
+      UserSlice.caseReducers.changeAuthorization(state);
+      UserSlice.caseReducers.signInUser(state, action);
+      toast.success('You authorized');
+    });
+    builder.addCase(signUpThunk.rejected, (state) => {
+      state.signUping.userNameIsExists = false;
+      state.signUping.errorMessage = 'Sorry, this username is taken';
+    });
     builder.addCase(checkNewUserNameThunk.fulfilled, (state) => {
       state.signUping.userNameIsExists = true;
       state.signUping.errorMessage = '';
     });
     builder.addCase(checkNewUserNameThunk.rejected, (state) => {
       state.signUping.userNameIsExists = false;
-      state.signUping.errorMessage = 'such user name is exist';
+      state.signUping.errorMessage = 'Sorry, this username is taken';
     });
   },
 });

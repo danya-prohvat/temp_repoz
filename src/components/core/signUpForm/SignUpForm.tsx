@@ -1,4 +1,4 @@
-// import { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'hooks/useTypedSelector';
@@ -7,15 +7,15 @@ import ReactTooltip from 'react-tooltip';
 import { Typography } from 'components/common/typography';
 import { Icon } from 'components/common/icon';
 import { S } from './SignUpForm.styles';
-import { checkNewUserNameThunk, checkNewUserName } from 'store/UserSlice';
-// import * as Yup from 'yup';
+import { checkNewUserNameThunk, signUpThunk, checkNewUserName } from 'store/UserSlice';
+import * as Yup from 'yup';
 import { locations } from 'routing/locations';
 
 export interface SingUpFormProps {
   userName: string;
-  email?: string;
-  password?: string;
-  repeatPassword?: string;
+  email: string;
+  password: string;
+  repeatPassword: string;
 }
 
 const SignUpForm: React.FC = () => {
@@ -24,12 +24,20 @@ const SignUpForm: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  // const validationSchema = useMemo(() => {
-  //   return Yup.object({
-  // email: Yup.string().email(t(`FormValidErrors.InvalidEmail`)).required(t(`FormValidErrors.Required`)),
-  // password: Yup.string().required(t(`FormValidErrors.Required`)),
-  //   });
-  // }, [t]);
+  const validationSchema = useMemo(() => {
+    return userNameIsExists
+      ? Yup.object({
+          userName: Yup.string().required(t(`FormValidErrors.Required`)),
+          email: Yup.string().email(t(`FormValidErrors.InvalidEmail`)).required(t(`FormValidErrors.Required`)),
+          password: Yup.string().required(t(`FormValidErrors.Required`)),
+          repeatPassword: Yup.string()
+            .oneOf([Yup.ref('password'), null], t(`FormValidErrors.PasswordsMustMatch`))
+            .required(t(`FormValidErrors.Required`)),
+        })
+      : Yup.object({
+          userName: Yup.string().required(t(`FormValidErrors.Required`)),
+        });
+  }, [userNameIsExists, t]);
 
   const initialValues: SingUpFormProps = {
     userName: '',
@@ -41,9 +49,9 @@ const SignUpForm: React.FC = () => {
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (value: SingUpFormProps) => {
-      dispatch(checkNewUserNameThunk(value.userName));
+      dispatch(userNameIsExists ? signUpThunk(value) : checkNewUserNameThunk(value.userName));
     },
-    // validationSchema,
+    validationSchema,
   });
 
   return (
@@ -54,10 +62,10 @@ const SignUpForm: React.FC = () => {
 
       <S.FormStatus>
         <S.FormStatusText>
-          <Typography type="body2">{t(`Sign-in/up.Nickname`)}</Typography>
+          <Typography type={userNameIsExists ? 'body2' : 'body2Bold'}>{t(`Sign-in/up.Nickname`)}</Typography>
         </S.FormStatusText>
         <S.FormStatusText>
-          <Typography type="body2">{t(`Sign-in/up.Information`)}</Typography>
+          <Typography type={!userNameIsExists ? 'body2' : 'body2Bold'}>{t(`Sign-in/up.Information`)}</Typography>
         </S.FormStatusText>
         <S.FormStatusProgressBar isFilled={userNameIsExists} />
       </S.FormStatus>
@@ -68,6 +76,7 @@ const SignUpForm: React.FC = () => {
             <Typography type="label1">{t(`Sign-in/up.userName*`)}</Typography>
           </S.FieldLabel>
           <S.Field
+            disabled={userNameIsExists}
             id="userName"
             name="userName"
             type="text"
@@ -75,7 +84,21 @@ const SignUpForm: React.FC = () => {
             onChange={formik.handleChange}
             value={formik.values.userName}
           />
-          {errorMessage.length > 0 && errorMessage}
+          {errorMessage.length > 0 && (
+            <S.ErrorMessage>
+              <Typography type="caption2">{errorMessage}</Typography>
+            </S.ErrorMessage>
+          )}
+          {formik.errors.userName && (
+            <>
+              <S.IconWrapper data-type="light" data-border={true} data-tip data-for="userNameError">
+                <Icon type="warning" />
+              </S.IconWrapper>
+              <ReactTooltip borderColor="red" textColor="red" id="userNameError" place="bottom" effect="solid">
+                {formik.errors.userName}
+              </ReactTooltip>
+            </>
+          )}
         </S.FieldWrapper>
 
         {userNameIsExists && (

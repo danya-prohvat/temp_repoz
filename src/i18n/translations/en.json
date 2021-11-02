@@ -21,8 +21,8 @@
     "WelcomeToMEDIA": "Welcome to MEDIA!",
     "Nickname": "Nickname",
     "Information": "Information",
-    "userName*": "userName*",
-    "userName": "userName",
+    "userName*": "Name*",
+    "userName": "Name",
     "Password*": "Password*",
     "Password": "Password",
     "RepeatPassword*": "Repeat password*",
@@ -32,6 +32,7 @@
   },
   "FormValidErrors": {
     "Required": "Required",
-    "InvalidEmail": "Invalid Email"
+    "InvalidEmail": "Invalid Email",
+    "PasswordsMustMatch": "Passwords must match"
   }
 }
