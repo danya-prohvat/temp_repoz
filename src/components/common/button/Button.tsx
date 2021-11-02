@@ -12,7 +12,7 @@ const Button: React.FC<ButtonProps> = ({ text, color }) => {
 
   return (
     <S.Button color={color} type="submit">
-      <Typography type="button1">{t(`Sign-in/up.${text}`)}</Typography>
+      <Typography type="button1">{t(text)}</Typography>
     </S.Button>
   );
 };

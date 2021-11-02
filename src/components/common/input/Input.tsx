@@ -3,16 +3,18 @@ import ReactTooltip from 'react-tooltip';
 import { S } from './Input.styles';
 import { Typography } from 'components/common/typography';
 import { Icon } from 'components/common/icon';
-import { FieldProps } from './Input.styles';
-import { FormikHandlers, FormikValues, FormikErrors } from 'formik';
+import { FormikValues, FormikErrors } from 'formik';
+import React from 'react';
 
-export interface InputProps extends FieldProps, Pick<FormikHandlers, 'handleChange'> {
+export interface InputProps
+  extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   errorMessage?: string;
-  errors: FormikErrors<FormikValues>;
-  values: FormikValues;
-  inputType: string;
-  input: string;
-  label: string;
+  errors?: FormikErrors<FormikValues>;
+  values?: FormikValues;
+  input?: string;
+  label?: string;
+  // TODO
+  handleChange?: (e: any) => void;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -22,9 +24,9 @@ const Input: React.FC<InputProps> = ({
   handleChange,
   errors,
   values,
-  inputType,
   input,
   label,
+  ...rest
 }) => {
   const { t } = useTranslation();
 
@@ -40,23 +42,23 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         id={input}
         name={input}
-        type={inputType}
         placeholder={t(`Sign-in/up.${label}`)}
         onChange={handleChange}
-        value={values[input]}
+        value={values && input && values[input]}
+        {...rest}
       />
       {String(errorMessage).length > 0 && (
         <S.ErrorMessage>
           <Typography type="caption2">{errorMessage}</Typography>
         </S.ErrorMessage>
       )}
-      {errors[input] && (
+      {errors && input && errors[input] && (
         <>
           <S.IconWrapper data-type="light" data-border={true} data-tip data-for={`${input}Error`}>
             <Icon type="warning" />
           </S.IconWrapper>
           <ReactTooltip borderColor="red" textColor="red" id={`${input}Error`} place="bottom" effect="solid">
-            {errors[input]}
+            {errors && input && errors[input]}
           </ReactTooltip>
         </>
       )}

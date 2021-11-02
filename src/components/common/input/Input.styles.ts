@@ -1,9 +1,5 @@
 import styled from '@emotion/styled';
-
-export interface FieldProps {
-  disabled?: boolean;
-  required?: boolean;
-}
+import { InputProps } from './Input';
 
 const S = {
   FieldWrapper: styled.div`
@@ -14,7 +10,7 @@ const S = {
     margin-left: 10px;
     margin-right: 10px;
   `,
-  Field: styled.input<FieldProps>`
+  Field: styled.input<InputProps>`
     outline: none;
     border-radius: 2px;
     height: 40px;
