@@ -34,5 +34,12 @@
     "Required": "Required",
     "InvalidEmail": "Invalid Email",
     "PasswordsMustMatch": "Passwords must match"
+  },
+  "MyAccount": {
+    "Saved": "Saved",
+    "Settings": "Settings",
+    "Posts": "posts",
+    "Subscribers": "subscribers",
+    "Subscriptions": "subscriptions"
   }
 }

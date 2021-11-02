@@ -34,6 +34,11 @@ export const typography = {
     fontWeight: 'bold',
     lineHeight: '42px',
   },
+  heading4: {
+    fontSize: '44px',
+    fontWeight: 'bold',
+    lineHeight: '56px',
+  },
   button1: {
     fontSize: '14px',
     fontWeight: 'bold',
