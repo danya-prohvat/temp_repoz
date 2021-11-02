@@ -7,7 +7,7 @@ import { SignUpForm } from 'components/core/signUpForm';
 import { config } from 'config';
 
 interface AuthorizeProps {
-  authorizeType: string;
+  authorizeType: 'Sign In' | 'Sign Up';
 }
 
 const Authorize: React.FC<AuthorizeProps> = ({ authorizeType }) => {
