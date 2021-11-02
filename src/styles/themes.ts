@@ -56,6 +56,7 @@ const darkTheme = {
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
+      darkGray: '#D0D0D0',
       whiteGray: '#E8E8E8',
       darkWhite: '#F9F9F9',
       red: '#F34E4E',
@@ -66,6 +67,7 @@ const darkTheme = {
     },
     borderColor: {
       gray: '#DEDEDE',
+      darkGray: '#979797',
     },
   },
   typography: typography,
@@ -81,6 +83,7 @@ const whiteTheme: Theme = {
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
+      darkGray: '#D0D0D0',
       whiteGray: '#E8E8E8',
       darkWhite: '#F9F9F9',
       red: '#F34E4E',
@@ -91,6 +94,7 @@ const whiteTheme: Theme = {
     },
     borderColor: {
       gray: '#DEDEDE',
+      darkGray: '#979797',
     },
   },
   typography: typography,
