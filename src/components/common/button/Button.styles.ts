@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export interface StyledButtonProps {
-  color: 'red' | 'blue';
+  color: 'primary' | 'secondary';
 }
 
 const S = {

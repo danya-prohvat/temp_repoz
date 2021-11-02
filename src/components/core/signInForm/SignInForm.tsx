@@ -54,10 +54,26 @@ const SignInForm: React.FC = () => {
         </Typography>
       </S.FormDescription>
 
-      <Input label="Email" input="email" inputType="email" formik={formik} isRequired={true} />
-      <Input label="Password" input="password" inputType="password" formik={formik} isRequired={true} />
+      <Input
+        label="Email"
+        input="email"
+        inputType="email"
+        handleChange={formik.handleChange}
+        errors={formik.errors}
+        values={formik.values}
+        required={true}
+      />
+      <Input
+        label="Password"
+        input="password"
+        inputType="password"
+        handleChange={formik.handleChange}
+        errors={formik.errors}
+        values={formik.values}
+        required={true}
+      />
 
-      <Button text="SignIn" color="red" />
+      <Button text="SignIn" color="primary" />
     </S.Form>
   );
 };

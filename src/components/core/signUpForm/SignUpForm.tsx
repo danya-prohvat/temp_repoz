@@ -75,21 +75,44 @@ const SignUpForm: React.FC = () => {
           label="UserName"
           input="userName"
           inputType="text"
-          formik={formik}
+          handleChange={formik.handleChange}
+          errors={formik.errors}
+          values={formik.values}
           errorMessage={errorMessage}
-          isDisabled={userNameIsExists}
+          disabled={userNameIsExists}
         />
 
         {userNameIsExists && (
           <>
-            <Input label="Email" input="email" inputType="email" formik={formik} />
-            <Input label="Password" input="password" inputType="password" formik={formik} />
-            <Input label="RepeatPassword" input="repeatPassword" inputType="password" formik={formik} />
+            <Input
+              label="Email"
+              input="email"
+              inputType="email"
+              handleChange={formik.handleChange}
+              errors={formik.errors}
+              values={formik.values}
+            />
+            <Input
+              label="Password"
+              input="password"
+              inputType="password"
+              handleChange={formik.handleChange}
+              errors={formik.errors}
+              values={formik.values}
+            />
+            <Input
+              label="RepeatPassword"
+              input="repeatPassword"
+              inputType="password"
+              handleChange={formik.handleChange}
+              errors={formik.errors}
+              values={formik.values}
+            />
           </>
         )}
       </S.FieldsContainer>
 
-      <Button text="SignUp" color="red" />
+      <Button text="SignUp" color="primary" />
 
       {!userNameIsExists && (
         <S.FormDescription>

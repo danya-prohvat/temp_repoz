@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
-interface FieldProps {
-  isDisabled?: boolean;
+export interface FieldProps {
+  disabled?: boolean;
+  required?: boolean;
 }
 
 const S = {
@@ -19,9 +20,9 @@ const S = {
     height: 40px;
     width: 280px;
     padding-left: 15px;
-    background-color: ${(props) => (props.isDisabled ? props.theme.colors.backgroundColor.darkGray : '')};
+    background-color: ${(props) => (props.disabled ? props.theme.colors.backgroundColor.darkGray : '')};
     border: 1px solid
-      ${(props) => (props.isDisabled ? props.theme.colors.borderColor.darkGray : props.theme.colors.borderColor.gray)};
+      ${(props) => (props.disabled ? props.theme.colors.borderColor.darkGray : props.theme.colors.borderColor.gray)};
   `,
   FieldLabel: styled.label`
     margin-bottom: 6px;
