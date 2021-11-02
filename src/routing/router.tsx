@@ -6,6 +6,7 @@ import { Page404 } from 'components/pages/page404';
 import { locations } from './locations';
 import { links } from 'components/core/sidebar/links';
 import { PrivateRoute } from './privateRoute';
+import { MyAccount } from 'components/pages/myAccount';
 
 export const Router: React.FC = () => {
   return (
@@ -25,7 +26,10 @@ export const Router: React.FC = () => {
           return (
             <PrivateRoute key={link.link} path={'/' + link.link} exact>
               <CommonLayout>
-                <Main>{link.text}</Main>
+                {/* <Main>{link.text}</Main> */}
+                <Main>
+                  <MyAccount />
+                </Main>
               </CommonLayout>
             </PrivateRoute>
           );

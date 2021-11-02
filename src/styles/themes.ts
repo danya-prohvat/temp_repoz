@@ -24,6 +24,11 @@ export const typography = {
     fontWeight: 'bold',
     lineHeight: '24px',
   },
+  body3Bold: {
+    fontSize: '22px',
+    fontWeight: 'bold',
+    lineHeight: '26px',
+  },
   heading2: {
     fontSize: '28px',
     fontWeight: 'bold',
