@@ -69,9 +69,8 @@ const UserSlice = createSlice({
       UserSlice.caseReducers.signInUser(state, action);
       toast.success('You authorized');
     });
-    builder.addCase(signUpThunk.rejected, (state) => {
-      state.signUping.userNameIsExists = false;
-      state.signUping.errorMessage = 'Sorry, this username is taken';
+    builder.addCase(signUpThunk.rejected, () => {
+      toast.error('Error');
     });
     builder.addCase(checkNewUserNameThunk.pending, (state) => {
       state.signUping.errorMessage = '';
