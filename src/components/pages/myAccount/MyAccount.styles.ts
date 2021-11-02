@@ -37,6 +37,9 @@ const S = {
     padding: 6px 12px;
     margin-left: 15px;
   `,
+  ButtonText: styled.span`
+    margin-left: 10px;
+  `,
   SubscribeBlock: styled.div`
     display: flex;
     justify-content: space-between;
@@ -50,6 +53,31 @@ const S = {
     margin-bottom: 10px;
   `,
   ProfileDescription: styled.span``,
+  Posts: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+  `,
+  Post: styled.div`
+    padding: 10px;
+    width: 33%;
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: content;
+    position: relative;
+    &:hover {
+      &:after {
+        content: '';
+        height: calc(100% - 20px);
+        width: calc(100% - 20px);
+        background-color: rgba(0, 0, 0, 0.6);
+        position: absolute;
+      }
+    }
+  `,
+  PostImg: styled.img`
+    max-width: 100%;
+  `,
 };
 
 export { S };

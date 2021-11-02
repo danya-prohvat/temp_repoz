@@ -1,5 +1,6 @@
 import { S } from './MyAccount.styles';
 import { Typography } from 'components/common/typography';
+import { Icon } from 'components/common/icon';
 import { useTranslation } from 'react-i18next';
 
 const MyAccount: React.FC = () => {
@@ -15,10 +16,16 @@ const MyAccount: React.FC = () => {
               <Typography type="heading4">username</Typography>
             </S.UserName>
             <S.Button>
-              <Typography type="body2">{t('MyAccount.Saved')}</Typography>
+              <Icon type="saved" />
+              <S.ButtonText>
+                <Typography type="body2">{t('MyAccount.Saved')}</Typography>
+              </S.ButtonText>
             </S.Button>
             <S.Button>
-              <Typography type="body2">{t('MyAccount.Settings')}</Typography>
+              <Icon type="settings" />
+              <S.ButtonText>
+                <Typography type="body2">{t('MyAccount.Settings')}</Typography>{' '}
+              </S.ButtonText>
             </S.Button>
           </S.UserNameBlock>
           <S.SubscribeBlock>
@@ -44,6 +51,26 @@ const MyAccount: React.FC = () => {
           </S.FullName>
         </S.ProfileInfo>
       </S.UserInfo>
+      <S.Posts>
+        <S.Post>
+          <S.PostImg src="https://wp.sitepen.com/wp-content/uploads/2016/09/improving-typescript-modules-featured-image.jpg"></S.PostImg>
+        </S.Post>
+        <S.Post>
+          <S.PostImg src="https://wp.sitepen.com/wp-content/uploads/2016/09/improving-typescript-modules-featured-image.jpg"></S.PostImg>
+        </S.Post>
+        <S.Post>
+          <S.PostImg src="https://wp.sitepen.com/wp-content/uploads/2016/09/improving-typescript-modules-featured-image.jpg"></S.PostImg>
+        </S.Post>
+        <S.Post>
+          <S.PostImg src="https://wp.sitepen.com/wp-content/uploads/2016/09/improving-typescript-modules-featured-image.jpg"></S.PostImg>
+        </S.Post>
+        <S.Post>
+          <S.PostImg src="https://wp.sitepen.com/wp-content/uploads/2016/09/improving-typescript-modules-featured-image.jpg"></S.PostImg>
+        </S.Post>
+        <S.Post>
+          <S.PostImg src="https://wp.sitepen.com/wp-content/uploads/2016/09/improving-typescript-modules-featured-image.jpg"></S.PostImg>
+        </S.Post>
+      </S.Posts>
     </S.Container>
   );
 };
