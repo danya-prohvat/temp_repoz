@@ -73,6 +73,9 @@ const UserSlice = createSlice({
       state.signUping.userNameIsExists = false;
       state.signUping.errorMessage = 'Sorry, this username is taken';
     });
+    builder.addCase(checkNewUserNameThunk.pending, (state) => {
+      state.signUping.errorMessage = '';
+    });
     builder.addCase(checkNewUserNameThunk.fulfilled, (state) => {
       state.signUping.userNameIsExists = true;
       state.signUping.errorMessage = '';

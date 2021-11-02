@@ -25,7 +25,9 @@ export const enableMock = (): void => {
   mock.onPost(apiUrls.signUp.url).reply((config) => {
     const data = JSON.parse(config.data);
 
-    return [200, omit(data, ['password'])];
+    if (data.email === 'test@gmail.com') return [400, 'bad request'];
+
+    return [201, omit(data, ['password'])];
   });
 
   mock.onPost(apiUrls.checkNewUserName.url).reply((config) => {
