@@ -34,7 +34,7 @@ const Input: React.FC<InputProps> = ({
     <S.FieldWrapper>
       <S.FieldLabel htmlFor={input}>
         <Typography type="label1">
-          {t(`Sign-in/up.${label}`)}
+          {t(String(label))}
           {required && '*'}
         </Typography>
       </S.FieldLabel>
@@ -42,7 +42,7 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         id={input}
         name={input}
-        placeholder={t(`Sign-in/up.${label}`)}
+        placeholder={t(String(label))}
         onChange={handleChange}
         value={values && input && values[input]}
         {...rest}

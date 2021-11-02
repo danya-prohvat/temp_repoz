@@ -55,7 +55,7 @@ const SignInForm: React.FC = () => {
       </S.FormDescription>
 
       <Input
-        label="Email"
+        label="Sign-in/up.Email"
         input="email"
         type="email"
         handleChange={formik.handleChange}
@@ -64,7 +64,7 @@ const SignInForm: React.FC = () => {
         required={true}
       />
       <Input
-        label="Password"
+        label="Sign-in/up.Password"
         input="password"
         type="password"
         handleChange={formik.handleChange}
