@@ -3,10 +3,11 @@ import { S } from './Authorize.styles';
 import { Logo } from 'components/common/logo';
 import { ExternalLink } from 'components/common/externalLink';
 import { SignInForm } from 'components/core/signInForm';
+import { SignUpForm } from 'components/core/signUpForm';
 import { config } from 'config';
 
 interface AuthorizeProps {
-  authorizeType: string;
+  authorizeType: 'Sign In' | 'Sign Up';
 }
 
 const Authorize: React.FC<AuthorizeProps> = ({ authorizeType }) => {
@@ -19,9 +20,7 @@ const Authorize: React.FC<AuthorizeProps> = ({ authorizeType }) => {
         <Logo />
       </S.Header>
       <S.Main>
-        <S.Form>
-          <SignInForm />
-        </S.Form>
+        <S.Form>{authorizeType === 'Sign In' ? <SignInForm /> : <SignUpForm />}</S.Form>
       </S.Main>
       <S.Footer>
         <ExternalLink text="NeedHelp" src={config.env.externalLink} />

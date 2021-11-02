@@ -17,4 +17,10 @@ export const apiUrls = {
   signIn: {
     url: '/user/sign-in',
   },
+  signUp: {
+    url: '/user/sign-up',
+  },
+  checkNewUserName: {
+    url: '/user/check-new-user-name',
+  },
 };
