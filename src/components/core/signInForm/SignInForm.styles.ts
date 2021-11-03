@@ -21,38 +21,6 @@ const S = {
     padding-right: 250px;
     height: 100%;
   `,
-  Button: styled.button`
-    color: ${(props) => props.theme.colors.textColor.white};
-    background-color: ${(props) => props.theme.colors.backgroundColor.red};
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 10px 20px;
-    margin-top: 50px;
-  `,
-  FieldWrapper: styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-  `,
-  Field: styled.input`
-    outline: none;
-    border-radius: 2px;
-    height: 40px;
-    width: 280px;
-    padding-left: 15px;
-    border: 1px solid ${(props) => props.theme.colors.borderColor.gray};
-  `,
-  FieldLabel: styled.label`
-    margin-bottom: 6px;
-  `,
-  IconWrapper: styled.div`
-    position: absolute;
-    right: 10px;
-    top: 40px;
-    cursor: pointer;
-  `,
   Link: styled(Link)`
     text-decoration: none;
     color: ${(props) => props.theme.colors.textColor.blue};

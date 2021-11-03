@@ -25,13 +25,9 @@
     "WelcomeToMEDIA": "Welcome to MEDIA!",
     "Nickname": "Nickname",
     "Information": "Information",
-    "userName*": "Name*",
-    "userName": "Name",
-    "Password*": "Password*",
+    "UserName": "Name",
     "Password": "Password",
-    "RepeatPassword*": "Repeat password*",
     "RepeatPassword": "Repeat password",
-    "Email*": "Email*",
     "Email": "Email"
   },
   "FormValidErrors": {
