@@ -1,9 +1,5 @@
 import styled from '@emotion/styled';
-
-export interface PagesSeparatorProps {
-  marginTop: string;
-  marginBottom: string;
-}
+import { PagesSeparatorProps } from './PagesSeparator';
 
 const S = {
   Hr: styled.hr<PagesSeparatorProps>`

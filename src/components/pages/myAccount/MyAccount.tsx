@@ -2,6 +2,7 @@ import { S } from './MyAccount.styles';
 import { Typography } from 'components/common/typography';
 import { Icon } from 'components/common/icon';
 import { PagesSeparator } from 'components/common/pagesSeparator';
+import { Post } from 'components/common/post';
 import { useTranslation } from 'react-i18next';
 
 const MyAccount: React.FC = () => {
@@ -54,108 +55,36 @@ const MyAccount: React.FC = () => {
       </S.UserInfo>
       <PagesSeparator marginTop="60px" marginBottom="50px" />
       <S.Posts>
-        <S.Post>
-          <S.PostImg src="https://wp.sitepen.com/wp-content/uploads/2016/09/improving-typescript-modules-featured-image.jpg" />
-          <S.PostOverlay>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="heart" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">10</Typography>
-            </S.PostOverlayElement>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="comment" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">0</Typography>
-            </S.PostOverlayElement>
-          </S.PostOverlay>
-        </S.Post>
-        <S.Post>
-          <S.PostImg src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"></S.PostImg>
-          <S.PostOverlay>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="heart" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">10</Typography>
-            </S.PostOverlayElement>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="comment" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">0</Typography>
-            </S.PostOverlayElement>
-          </S.PostOverlay>
-        </S.Post>
-        <S.Post>
-          <S.PostImg src="https://wp.sitepen.com/wp-content/uploads/2016/09/improving-typescript-modules-featured-image.jpg"></S.PostImg>
-          <S.PostOverlay>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="heart" />
-              </S.IconWrapper>
-              <Typography type="body3Bold">10</Typography>
-            </S.PostOverlayElement>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="comment" />
-              </S.IconWrapper>
-              <Typography type="body3Bold">0</Typography>
-            </S.PostOverlayElement>
-          </S.PostOverlay>
-        </S.Post>
-        <S.Post>
-          <S.PostImg src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"></S.PostImg>
-          <S.PostOverlay>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="heart" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">10</Typography>
-            </S.PostOverlayElement>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="comment" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">0</Typography>
-            </S.PostOverlayElement>
-          </S.PostOverlay>
-        </S.Post>
-        <S.Post>
-          <S.PostImg src="https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"></S.PostImg>
-          <S.PostOverlay>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="heart" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">10</Typography>
-            </S.PostOverlayElement>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="comment" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">0</Typography>
-            </S.PostOverlayElement>
-          </S.PostOverlay>
-        </S.Post>
-        <S.Post>
-          <S.PostImg src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"></S.PostImg>
-          <S.PostOverlay>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="heart" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">10</Typography>
-            </S.PostOverlayElement>
-            <S.PostOverlayElement>
-              <S.IconWrapper>
-                <Icon type="comment" />
-              </S.IconWrapper>{' '}
-              <Typography type="body3Bold">0</Typography>
-            </S.PostOverlayElement>
-          </S.PostOverlay>
-        </S.Post>
+        <Post
+          src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+          likes={67}
+          comments={1}
+        />
+        <Post
+          src="https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
+          likes={10}
+          comments={1}
+        />
+        <Post
+          src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+          likes={17}
+          comments={1}
+        />
+        <Post
+          src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+          likes={10}
+          comments={51}
+        />
+        <Post
+          src="https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
+          likes={54}
+          comments={1}
+        />
+        <Post
+          src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+          likes={1}
+          comments={2}
+        />
       </S.Posts>
     </S.Container>
   );
