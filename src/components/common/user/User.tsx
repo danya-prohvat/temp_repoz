@@ -14,15 +14,9 @@ const User: React.FC = () => {
       <Avatar src={'https://reactjs.org/logo-og.png'} />
       <Typography type="body1Bold">{userName}</Typography>
 
-      <ReactTooltip
-        id="tooltip"
-        clickable={true}
-        place="bottom"
-        effect="solid"
-        getContent={() => {
-          return <DropDownList />;
-        }}
-      />
+      <ReactTooltip id="tooltip" clickable={true} place="bottom" effect="solid">
+        <DropDownList />
+      </ReactTooltip>
     </S.Container>
   );
 };

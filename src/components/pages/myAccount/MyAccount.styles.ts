@@ -30,16 +30,8 @@ const S = {
   UserName: styled.span`
     flex: 1 1 auto;
   `,
-  Button: styled.button`
-    background-color: ${(props) => props.theme.colors.backgroundColor.white};
-    border: 1px solid ${(props) => props.theme.colors.backgroundColor.lightGray};
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 6px 12px;
+  ButtonWrapper: styled.div`
     margin-left: 15px;
-  `,
-  ButtonText: styled.span`
-    margin-left: 10px;
   `,
   SubscribeBlock: styled.div`
     display: flex;

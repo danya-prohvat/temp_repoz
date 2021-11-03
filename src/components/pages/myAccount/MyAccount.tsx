@@ -1,9 +1,9 @@
 import { S } from './MyAccount.styles';
 import { Typography } from 'components/common/typography';
-import { Icon } from 'components/common/icon';
 import { PagesSeparator } from 'components/common/pagesSeparator';
 import { Post } from 'components/common/post';
 import { useTranslation } from 'react-i18next';
+import { Button } from 'components/common/button';
 
 const MyAccount: React.FC = () => {
   const { t } = useTranslation();
@@ -17,29 +17,23 @@ const MyAccount: React.FC = () => {
             <S.UserName>
               <Typography type="heading4">username</Typography>
             </S.UserName>
-            <S.Button>
-              <Icon type="saved" />
-              <S.ButtonText>
-                <Typography type="body2">{t('MyAccount.Saved')}</Typography>
-              </S.ButtonText>
-            </S.Button>
-            <S.Button>
-              <Icon type="settings" />
-              <S.ButtonText>
-                <Typography type="body2">{t('MyAccount.Settings')}</Typography>{' '}
-              </S.ButtonText>
-            </S.Button>
+            <S.ButtonWrapper>
+              <Button text="MyAccount.Saved" icon="saved" variant="outlined" />
+            </S.ButtonWrapper>
+            <S.ButtonWrapper>
+              <Button text="MyAccount.Settings" icon="settings" variant="outlined" />
+            </S.ButtonWrapper>
           </S.UserNameBlock>
           <S.SubscribeBlock>
             <S.SubscribeElement>
               <Typography type="body3Bold">50</Typography> <Typography type="body2">{t('MyAccount.Posts')}</Typography>
             </S.SubscribeElement>
             <S.SubscribeElement>
-              <Typography type="body3Bold">708</Typography>{' '}
+              <Typography type="body3Bold">708</Typography>
               <Typography type="body2">{t('MyAccount.Subscribers')}</Typography>
             </S.SubscribeElement>
             <S.SubscribeElement>
-              <Typography type="body3Bold">708</Typography>{' '}
+              <Typography type="body3Bold">708</Typography>
               <Typography type="body2">{t('MyAccount.Subscriptions')}</Typography>
             </S.SubscribeElement>
           </S.SubscribeBlock>

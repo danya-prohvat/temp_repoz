@@ -73,7 +73,7 @@ const SignInForm: React.FC = () => {
         required={true}
       />
 
-      <Button text="Sign-in/up.SignIn" color="primary" />
+      <Button text="Sign-in/up.SignIn" variant="primary" />
     </S.Form>
   );
 };
