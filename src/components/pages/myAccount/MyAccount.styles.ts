@@ -1,4 +1,3 @@
-import { checkAuthorization } from './../../../store/UserSlice';
 import styled from '@emotion/styled';
 
 const S = {
