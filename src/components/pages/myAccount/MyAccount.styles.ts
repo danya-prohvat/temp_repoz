@@ -1,3 +1,4 @@
+import { checkAuthorization } from './../../../store/UserSlice';
 import styled from '@emotion/styled';
 
 const S = {
@@ -13,6 +14,7 @@ const S = {
     width: 250px;
     height: 250px;
     border-radius: 50%;
+    object-fit: cover;
   `,
   ProfileInfo: styled.div`
     margin-left: 150px;
@@ -60,20 +62,38 @@ const S = {
   Post: styled.div`
     padding: 10px;
     width: 33%;
-    height: 360px;
+    min-height: 360px;
     display: flex;
     align-items: center;
     justify-content: content;
     position: relative;
+    cursor: pointer;
+  `,
+  PostOverlay: styled.div`
+    position: absolute;
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
-      &:after {
-        content: '';
-        height: calc(100% - 20px);
-        width: calc(100% - 20px);
-        background-color: rgba(0, 0, 0, 0.6);
-        position: absolute;
-      }
+      background-color: rgba(0, 0, 0, 0.6);
     }
+    &:hover div {
+      display: flex;
+    }
+  `,
+  PostOverlayElement: styled.div`
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 32px;
+    color: ${(props) => props.theme.colors.backgroundColor.white};
+  `,
+  IconWrapper: styled.div`
+    margin-bottom: 10px;
   `,
   PostImg: styled.img`
     max-width: 100%;
