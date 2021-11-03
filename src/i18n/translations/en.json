@@ -11,6 +11,10 @@
   "Media": "Media",
   "404message": "404 - Page not found",
   "NeedHelp": "Need help?",
+  "MainPage": {
+    "MyAccount": "My account",
+    "SignOut": "Sign Out"
+  },
   "Sign-in/up": {
     "YouCan": "You can <0>{{link}}</0>",
     "IfYouAlreadyHaveAProfileYouCan": "If you already have a profile, you can <0>{{link}}</0>",
@@ -30,5 +34,12 @@
     "Required": "Required",
     "InvalidEmail": "Invalid Email",
     "PasswordsMustMatch": "Passwords must match"
+  },
+  "MyAccount": {
+    "Saved": "Saved",
+    "Settings": "Settings",
+    "Posts": "posts",
+    "Subscribers": "subscribers",
+    "Subscriptions": "subscriptions"
   }
 }

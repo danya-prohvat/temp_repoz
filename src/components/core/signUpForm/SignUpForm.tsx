@@ -112,7 +112,7 @@ const SignUpForm: React.FC = () => {
         )}
       </S.FieldsContainer>
 
-      <Button text="Sign-in/up.SignUp" color="primary" />
+      <Button text="Sign-in/up.SignUp" variant="primary" />
 
       {!userNameIsExists && (
         <S.FormDescription>

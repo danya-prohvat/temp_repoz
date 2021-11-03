@@ -2,9 +2,13 @@ import styled from '@emotion/styled';
 
 const S = {
   Container: styled.div`
-    cursor: pointer;
     display: flex;
-    align-items: center;
+    margin-right: 15px;
+  `,
+  Img: styled.img`
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
   `,
 };
 
