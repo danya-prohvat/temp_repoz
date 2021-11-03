@@ -26,14 +26,18 @@ export const Router: React.FC = () => {
           return (
             <PrivateRoute key={link.link} path={'/' + link.link} exact>
               <CommonLayout>
-                {/* <Main>{link.text}</Main> */}
-                <Main>
-                  <MyAccount />
-                </Main>
+                <Main>{link.text}</Main>
               </CommonLayout>
             </PrivateRoute>
           );
         })}
+        <PrivateRoute path={'/' + locations.user}>
+          <CommonLayout>
+            <Main>
+              <MyAccount />
+            </Main>
+          </CommonLayout>
+        </PrivateRoute>
         <PrivateRoute path="*">
           <CommonLayout>
             <Main>

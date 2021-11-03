@@ -18,7 +18,7 @@ interface UserStore {
 }
 
 const initialState: UserStore = {
-  isAuthorized: true,
+  isAuthorized: false,
   user: {
     userName: '',
     email: '',
