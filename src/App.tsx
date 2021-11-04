@@ -18,7 +18,7 @@ const App: React.FC = () => {
     if (config.env.useMock) enableMock();
 
     if (localStorage.getItem('token')) dispatch(verifyUserThunk());
-  }, []);
+  });
 
   return (
     <>
