@@ -5,6 +5,9 @@ export const instance = axios.create({
   baseURL: envConfig.env.apiBaseUrl,
   timeout: envConfig.env.axiosTimeout,
   responseType: 'json',
+  headers: {
+    token: String(localStorage.getItem('token')),
+  },
 });
 
 envConfig.env.useLogger &&

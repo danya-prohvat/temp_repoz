@@ -22,15 +22,6 @@ export const Router: React.FC = () => {
             <Authorize authorizeType="Sign Up"></Authorize>
           </CommonLayout>
         </PrivateRoute>
-        {links.map((link) => {
-          return (
-            <PrivateRoute key={link.link} path={'/' + link.link} exact>
-              <CommonLayout>
-                <Main>{link.text}</Main>
-              </CommonLayout>
-            </PrivateRoute>
-          );
-        })}
         <PrivateRoute path={'/' + locations.user}>
           <CommonLayout>
             <Main>
@@ -38,6 +29,15 @@ export const Router: React.FC = () => {
             </Main>
           </CommonLayout>
         </PrivateRoute>
+        {links.map((link) => {
+          return (
+            <PrivateRoute key={link.link} path={'/' + link.link}>
+              <CommonLayout>
+                <Main>{link.text}</Main>
+              </CommonLayout>
+            </PrivateRoute>
+          );
+        })}
         <PrivateRoute path="*">
           <CommonLayout>
             <Main>

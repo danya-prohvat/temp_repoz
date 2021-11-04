@@ -23,4 +23,10 @@ export const apiUrls = {
   checkNewUserName: {
     url: '/user/check-new-user-name',
   },
+  verifyUser: {
+    url: '/auth/verify',
+  },
+  getMe: {
+    url: '/auth/get-me',
+  },
 };

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { postRequest } from 'api/apiClient';
+import { postRequest, getRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
@@ -44,6 +44,20 @@ export const checkNewUserNameThunk = createAsyncThunk('user/checkNewUserName', a
   return response.data;
 });
 
+export const getMeThunk = createAsyncThunk('user/getMe', async () => {
+  const response = await getRequest(apiUrls.getMe.url);
+  return response.data;
+});
+
+export const verifyUserThunk = createAsyncThunk('user/verifyUser', async (_, { dispatch }) => {
+  try {
+    await getRequest(apiUrls.verifyUser.url);
+    dispatch(getMeThunk());
+  } catch (error) {
+    return error;
+  }
+});
+
 const UserSlice = createSlice({
   name: 'user',
   initialState,
@@ -56,10 +70,16 @@ const UserSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getMeThunk.fulfilled, (state, action) => {
+      UserSlice.caseReducers.changeAuthorization(state);
+      UserSlice.caseReducers.signInUser(state, action);
+      localStorage.setItem('token', action.payload.token);
+    });
     builder.addCase(signInThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
       UserSlice.caseReducers.signInUser(state, action);
       toast.success('You authorized');
+      localStorage.setItem('token', action.payload.token);
     });
     builder.addCase(signInThunk.rejected, () => {
       toast.error('Email or password is incorrect');
@@ -68,6 +88,7 @@ const UserSlice = createSlice({
       UserSlice.caseReducers.changeAuthorization(state);
       UserSlice.caseReducers.signInUser(state, action);
       toast.success('You authorized');
+      localStorage.setItem('token', action.payload.token);
     });
     builder.addCase(signUpThunk.rejected, () => {
       toast.error('Error');

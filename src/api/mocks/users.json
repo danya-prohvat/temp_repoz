@@ -3,17 +3,20 @@
     {
       "userName": "user1",
       "email": "email1@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "token": "token1"
     },
     {
       "userName": "user2",
       "email": "email2@gmail.com",
-      "password": "4321"
+      "password": "4321",
+      "token": "token2"
     },
     {
       "userName": "user3",
       "email": "email3@gmail.com",
-      "password": "0000"
+      "password": "0000",
+      "token": "token3"
     }
   ]
 }
