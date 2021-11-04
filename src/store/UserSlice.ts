@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { createSelector } from 'reselect';
+import { createSlice, PayloadAction, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import { postRequest, getRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
