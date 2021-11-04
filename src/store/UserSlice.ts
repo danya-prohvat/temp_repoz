@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSelector } from 'reselect';
 import { postRequest, getRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
@@ -25,9 +26,9 @@ const initialState: UserStore = {
     avatar: '',
     fullName: '',
     profileDescription: '',
-    postsCount: null,
-    subscribersCount: null,
-    subscriptionsCount: null,
+    postsCount: 0,
+    subscribersCount: 0,
+    subscriptionsCount: 0,
   },
   signUping: {
     userNameIsExists: false,
@@ -114,21 +115,23 @@ const UserSlice = createSlice({
   },
 });
 
-export const getUserInfo = (state: RootState): Omit<User, 'email'> => {
+export const getState = (state: RootState): UserStore => state.user;
+
+export const getUserInfo = createSelector(getState, (state) => {
   return {
-    userName: state.user.user.userName,
-    fullName: state.user.user.fullName,
-    avatar: state.user.user.avatar,
-    profileDescription: state.user.user.fullName,
-    postsCount: state.user.user.postsCount,
-    subscribersCount: state.user.user.subscribersCount,
-    subscriptionsCount: state.user.user.subscriptionsCount,
+    userName: state.user.userName,
+    fullName: state.user.fullName,
+    avatar: state.user.avatar,
+    profileDescription: state.user.profileDescription,
+    postsCount: state.user.postsCount,
+    subscribersCount: state.user.subscribersCount,
+    subscriptionsCount: state.user.subscriptionsCount,
   };
-};
-export const checkAuthorization = (state: RootState): boolean => state.user.isAuthorized;
-export const checkNewUserName = (state: RootState): SignUping => {
-  return { userNameIsExists: state.user.signUping.userNameIsExists, errorMessage: state.user.signUping.errorMessage };
-};
+});
+export const checkAuthorization = createSelector(getState, (state) => state.isAuthorized);
+export const checkNewUserName = createSelector(getState, (state) => {
+  return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
+});
 
 export const { signInUser, changeAuthorization } = UserSlice.actions;
 export { UserSlice };

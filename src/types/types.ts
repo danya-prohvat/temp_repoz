@@ -4,7 +4,7 @@ export interface User {
   avatar: string;
   fullName: string;
   profileDescription: string;
-  postsCount: number | null;
-  subscribersCount: number | null;
-  subscriptionsCount: number | null;
+  postsCount: number;
+  subscribersCount: number;
+  subscriptionsCount: number;
 }
