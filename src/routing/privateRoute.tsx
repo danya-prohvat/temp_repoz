@@ -6,9 +6,10 @@ import { unathorizedOnlyLinks } from './unathorizedOnlyLinks';
 
 export const PrivateRoute: React.FC<RouteProps> = ({ path, ...props }) => {
   const isAuthorized = useSelector(checkAuthorization);
+  const token = localStorage.getItem('token');
 
   if (unathorizedOnlyLinks.includes(String(path?.slice(1))) && isAuthorized) return <Redirect to={locations.home} />;
-  else if (!isAuthorized && !unathorizedOnlyLinks.includes(String(path?.slice(1))))
+  else if (!isAuthorized && !unathorizedOnlyLinks.includes(String(path?.slice(1))) && !token)
     return <Redirect to={locations.signIn} />;
 
   return <Route {...props} />;

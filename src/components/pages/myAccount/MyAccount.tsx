@@ -1,3 +1,5 @@
+import { useSelector } from 'hooks/useTypedSelector';
+import { getUserInfo } from 'store/UserSlice';
 import { S } from './MyAccount.styles';
 import { Typography } from 'components/common/typography';
 import { PagesSeparator } from 'components/common/pagesSeparator';
@@ -7,15 +9,17 @@ import { Button } from 'components/common/button';
 
 const MyAccount: React.FC = () => {
   const { t } = useTranslation();
+  const { userName, fullName, avatar, profileDescription, postsCount, subscribersCount, subscriptionsCount } =
+    useSelector(getUserInfo);
 
   return (
     <S.Container>
       <S.UserInfo>
-        <S.UserImg src="https://wp.sitepen.com/wp-content/uploads/2016/09/improving-typescript-modules-featured-image.jpg" />
+        <S.UserImg src={avatar} />
         <S.ProfileInfo>
           <S.UserNameBlock>
             <S.UserName>
-              <Typography type="heading4">username</Typography>
+              <Typography type="heading4">{userName}</Typography>
             </S.UserName>
             <S.ButtonWrapper>
               <Button text="MyAccount.Saved" icon="saved" variant="outlined" />
@@ -26,23 +30,24 @@ const MyAccount: React.FC = () => {
           </S.UserNameBlock>
           <S.SubscribeBlock>
             <S.SubscribeElement>
-              <Typography type="body3Bold">50</Typography> <Typography type="body2">{t('MyAccount.Posts')}</Typography>
+              <Typography type="body3Bold">{postsCount}</Typography>{' '}
+              <Typography type="body2">{t('MyAccount.Posts')}</Typography>
             </S.SubscribeElement>
             <S.SubscribeElement>
-              <Typography type="body3Bold">708</Typography>
+              <Typography type="body3Bold">{subscribersCount}</Typography>
               <Typography type="body2">{t('MyAccount.Subscribers')}</Typography>
             </S.SubscribeElement>
             <S.SubscribeElement>
-              <Typography type="body3Bold">708</Typography>
+              <Typography type="body3Bold">{subscriptionsCount}</Typography>
               <Typography type="body2">{t('MyAccount.Subscriptions')}</Typography>
             </S.SubscribeElement>
           </S.SubscribeBlock>
           <S.FullName>
             <S.Name>
-              <Typography type="body3Bold">Kelly Millington</Typography>
+              <Typography type="body3Bold">{fullName}</Typography>
             </S.Name>
             <S.ProfileDescription>
-              <Typography type="body2">Kelly Millington profile description</Typography>
+              <Typography type="body2">{profileDescription}</Typography>
             </S.ProfileDescription>
           </S.FullName>
         </S.ProfileInfo>

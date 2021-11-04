@@ -22,6 +22,12 @@ const initialState: UserStore = {
   user: {
     userName: '',
     email: '',
+    avatar: '',
+    fullName: '',
+    profileDescription: '',
+    postsCount: null,
+    subscribersCount: null,
+    subscriptionsCount: null,
   },
   signUping: {
     userNameIsExists: false,
@@ -108,7 +114,17 @@ const UserSlice = createSlice({
   },
 });
 
-export const getUserName = (state: RootState): string => state.user.user.userName;
+export const getUserInfo = (state: RootState): Omit<User, 'email'> => {
+  return {
+    userName: state.user.user.userName,
+    fullName: state.user.user.fullName,
+    avatar: state.user.user.avatar,
+    profileDescription: state.user.user.fullName,
+    postsCount: state.user.user.postsCount,
+    subscribersCount: state.user.user.subscribersCount,
+    subscriptionsCount: state.user.user.subscriptionsCount,
+  };
+};
 export const checkAuthorization = (state: RootState): boolean => state.user.isAuthorized;
 export const checkNewUserName = (state: RootState): SignUping => {
   return { userNameIsExists: state.user.signUping.userNameIsExists, errorMessage: state.user.signUping.errorMessage };
