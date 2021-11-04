@@ -6,7 +6,7 @@ export const instance = axios.create({
   timeout: envConfig.env.axiosTimeout,
   responseType: 'json',
   headers: {
-    token: String(localStorage.getItem('token')),
+    Authorization: String(localStorage.getItem('token')),
   },
 });
 

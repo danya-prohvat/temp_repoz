@@ -27,6 +27,6 @@ export const apiUrls = {
     url: '/auth/verify',
   },
   getMe: {
-    url: '/auth/get-me',
+    url: '/auth/me',
   },
 };

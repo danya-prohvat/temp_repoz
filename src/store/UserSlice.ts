@@ -53,8 +53,9 @@ export const verifyUserThunk = createAsyncThunk('user/verifyUser', async (_, { d
   try {
     await getRequest(apiUrls.verifyUser.url);
     dispatch(getMeThunk());
-  } catch (error) {
-    return error;
+  } catch (e) {
+    toast.error('token is mistaken');
+    throw e;
   }
 });
 

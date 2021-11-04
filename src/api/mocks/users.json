@@ -4,19 +4,19 @@
       "userName": "user1",
       "email": "email1@gmail.com",
       "password": "1234",
-      "token": "token1"
+      "token": "Bearer <token1>"
     },
     {
       "userName": "user2",
       "email": "email2@gmail.com",
       "password": "4321",
-      "token": "token2"
+      "token": "Bearer <token2>"
     },
     {
       "userName": "user3",
       "email": "email3@gmail.com",
       "password": "0000",
-      "token": "token3"
+      "token": "Bearer <token3>"
     }
   ]
 }

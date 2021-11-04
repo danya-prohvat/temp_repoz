@@ -14,17 +14,17 @@ export const enableMock = (): void => {
   });
 
   mock.onGet(apiUrls.verifyUser.url).reply((config) => {
-    const user = users.find((user) => user.token === config.headers?.token);
-    if (user) return [200, 'token is exist'];
+    const user = users.find((user) => user.token === config.headers?.Authorization);
+    if (user) return [200];
 
-    return [401, 'access forbidden'];
+    return [401];
   });
 
   mock.onGet(apiUrls.getMe.url).reply((config) => {
-    const user = users.find((user) => user.token === config.headers?.token);
+    const user = users.find((user) => user.token === config.headers?.Authorization);
     if (user) return [200, omit(user, ['password'])];
 
-    return [401, 'access forbidden'];
+    return [401];
   });
 
   mock.onPost(apiUrls.signIn.url).reply((config) => {
@@ -33,7 +33,7 @@ export const enableMock = (): void => {
     const user = users.find((user) => user.email === data.email && user.password === data.password);
     if (user) return [200, omit(user, ['password'])];
 
-    return [401, 'email or password is incorrect'];
+    return [401];
   });
 
   mock.onPost(apiUrls.signUp.url).reply((config) => {
@@ -41,7 +41,7 @@ export const enableMock = (): void => {
 
     if (data.email === 'test@gmail.com') return [400, 'bad request'];
 
-    return [201, { ...omit(data, ['password']), token: 'token423423' }];
+    return [201, { ...omit(data, ['password']), token: 'Bearer <token3534>' }];
   });
 
   mock.onPost(apiUrls.checkNewUserName.url).reply((config) => {
