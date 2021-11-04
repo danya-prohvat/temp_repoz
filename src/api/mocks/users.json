@@ -3,17 +3,38 @@
     {
       "userName": "user1",
       "email": "email1@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+      "token": "token1",
+      "fullName": "Kelly Millington",
+      "profileDescription": "Kelly Millington profile description",
+      "postsCount": 67,
+      "subscribersCount": 876,
+      "subscriptionsCount": 987
     },
     {
       "userName": "user2",
       "email": "email2@gmail.com",
-      "password": "4321"
+      "password": "4321",
+      "avatar": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png",
+      "token": "token2",
+      "fullName": "Kelly Millington2",
+      "profileDescription": "Kelly Millington profile description222",
+      "postsCount": 76,
+      "subscribersCount": 221,
+      "subscriptionsCount": 978
     },
     {
       "userName": "user3",
       "email": "email3@gmail.com",
-      "password": "0000"
+      "password": "0000",
+      "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+      "token": "token3",
+      "fullName": "Kelly Millington3",
+      "profileDescription": "Kelly Millington profile description333",
+      "postsCount": 34,
+      "subscribersCount": 123,
+      "subscriptionsCount": 432
     }
   ]
 }

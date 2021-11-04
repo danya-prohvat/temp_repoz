@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { postRequest } from 'api/apiClient';
+import { createSlice, PayloadAction, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import { postRequest, getRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
@@ -22,6 +22,12 @@ const initialState: UserStore = {
   user: {
     userName: '',
     email: '',
+    avatar: '',
+    fullName: '',
+    profileDescription: '',
+    postsCount: 0,
+    subscribersCount: 0,
+    subscriptionsCount: 0,
   },
   signUping: {
     userNameIsExists: false,
@@ -44,6 +50,21 @@ export const checkNewUserNameThunk = createAsyncThunk('user/checkNewUserName', a
   return response.data;
 });
 
+export const getMeThunk = createAsyncThunk('user/getMe', async () => {
+  const response = await getRequest(apiUrls.getMe.url);
+  return response.data;
+});
+
+export const verifyUserThunk = createAsyncThunk('user/verifyUser', async (_, { dispatch }) => {
+  try {
+    await getRequest(apiUrls.verifyUser.url);
+    dispatch(getMeThunk());
+  } catch (e) {
+    toast.error('token is mistaken');
+    throw e;
+  }
+});
+
 const UserSlice = createSlice({
   name: 'user',
   initialState,
@@ -56,10 +77,16 @@ const UserSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getMeThunk.fulfilled, (state, action) => {
+      UserSlice.caseReducers.changeAuthorization(state);
+      UserSlice.caseReducers.signInUser(state, action);
+      localStorage.setItem('token', action.payload.token);
+    });
     builder.addCase(signInThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
       UserSlice.caseReducers.signInUser(state, action);
       toast.success('You authorized');
+      localStorage.setItem('token', action.payload.token);
     });
     builder.addCase(signInThunk.rejected, () => {
       toast.error('Email or password is incorrect');
@@ -68,6 +95,7 @@ const UserSlice = createSlice({
       UserSlice.caseReducers.changeAuthorization(state);
       UserSlice.caseReducers.signInUser(state, action);
       toast.success('You authorized');
+      localStorage.setItem('token', action.payload.token);
     });
     builder.addCase(signUpThunk.rejected, () => {
       toast.error('Error');
@@ -86,11 +114,23 @@ const UserSlice = createSlice({
   },
 });
 
-export const getUserName = (state: RootState): string => state.user.user.userName;
-export const checkAuthorization = (state: RootState): boolean => state.user.isAuthorized;
-export const checkNewUserName = (state: RootState): SignUping => {
-  return { userNameIsExists: state.user.signUping.userNameIsExists, errorMessage: state.user.signUping.errorMessage };
-};
+export const getState = (state: RootState): UserStore => state.user;
+
+export const getUserInfo = createSelector(getState, (state) => {
+  return {
+    userName: state.user.userName,
+    fullName: state.user.fullName,
+    avatar: state.user.avatar,
+    profileDescription: state.user.profileDescription,
+    postsCount: state.user.postsCount,
+    subscribersCount: state.user.subscribersCount,
+    subscriptionsCount: state.user.subscriptionsCount,
+  };
+});
+export const checkAuthorization = createSelector(getState, (state) => state.isAuthorized);
+export const checkNewUserName = createSelector(getState, (state) => {
+  return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
+});
 
 export const { signInUser, changeAuthorization } = UserSlice.actions;
 export { UserSlice };

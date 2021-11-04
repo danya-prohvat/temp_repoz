@@ -3,11 +3,11 @@ import { useSelector } from 'hooks/useTypedSelector';
 import { Typography } from 'components/common/typography';
 import { Avatar } from 'components/common/avatar';
 import { S } from './User.styles';
-import { getUserName } from 'store/UserSlice';
+import { getUserInfo } from 'store/UserSlice';
 import { DropDownList } from 'components/core/dropDownList';
 
 const User: React.FC = () => {
-  const userName = useSelector(getUserName);
+  const { userName } = useSelector(getUserInfo);
 
   return (
     <S.Container data-type="light" data-border={true} data-tip data-for="tooltip">

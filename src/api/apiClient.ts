@@ -1,10 +1,17 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { config as envConfig } from 'config';
 
+const token = localStorage.getItem('token');
+
 export const instance = axios.create({
   baseURL: envConfig.env.apiBaseUrl,
   timeout: envConfig.env.axiosTimeout,
   responseType: 'json',
+  headers: token
+    ? {
+        Authorization: `Bearer ${token}`,
+      }
+    : undefined,
 });
 
 envConfig.env.useLogger &&
