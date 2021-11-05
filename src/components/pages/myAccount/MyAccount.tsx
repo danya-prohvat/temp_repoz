@@ -24,7 +24,6 @@ const MyAccount: React.FC = () => {
   }, [isAuthorized, dispatch]);
 
   useEffect(() => {
-    // isAuthorized && dispatch(getPostsThunk());
     const detectBottomScroll = () => {
       if (
         !postLoader &&
