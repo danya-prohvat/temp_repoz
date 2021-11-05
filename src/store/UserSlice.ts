@@ -21,8 +21,8 @@ interface UserStore {
   isAuthorized: boolean;
   user: User;
   signUping: SignUping;
-  postPageSize: number;
-  postPage: number;
+  limit: number;
+  offset: number;
   postLoader: boolean;
   posts: Post[];
 }
@@ -32,6 +32,7 @@ const initialState: UserStore = {
   user: {
     userName: '',
     email: '',
+    id: null,
     avatar: '',
     fullName: '',
     profileDescription: '',
@@ -43,18 +44,21 @@ const initialState: UserStore = {
     userNameIsExists: false,
     errorMessage: '',
   },
-  postPageSize: 6,
-  postPage: 1,
+  limit: 6,
+  offset: 1,
   postLoader: false,
   posts: [],
 };
 // TODO: TS
-export const getPostsThunk = createAsyncThunk('user/getPosts', async (_, { getState, dispatch }: any) => {
-  const { postPageSize, postPage, user } = getState().user;
+export const getPostsThunk = createAsyncThunk('user/getPosts', async (userId: number, { getState, dispatch }: any) => {
+  const { limit, offset, user } = getState().user;
 
-  if (postPage <= Math.ceil(user.postsCount / postPageSize)) {
+  if (offset <= Math.ceil(user.postsCount / limit)) {
     dispatch(incrementPageSize());
-    const response = await postRequest(apiUrls.getPosts.url, { postPageSize: postPageSize, postPage: postPage });
+    const response = await postRequest(apiUrls.getPosts.url.replace(':userId', String(userId)), {
+      limit: limit,
+      offset: offset,
+    });
 
     return response.data;
   }
@@ -101,7 +105,7 @@ const UserSlice = createSlice({
       state.user = { ...action.payload };
     },
     incrementPageSize(state) {
-      state.postPage = ++state.postPage;
+      state.offset = ++state.offset;
     },
     addPosts(state, action: PayloadAction<Post[]>) {
       if (action.payload) state.posts = [...state.posts, ...action.payload];
@@ -165,6 +169,7 @@ export const getUserInfo = createSelector(getState, (state) => {
   return {
     userName: state.user.userName,
     fullName: state.user.fullName,
+    id: state.user.id,
     avatar: state.user.avatar,
     profileDescription: state.user.profileDescription,
     postsCount: state.user.postsCount,

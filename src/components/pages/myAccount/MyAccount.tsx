@@ -1,4 +1,5 @@
 import { useSelector } from 'hooks/useTypedSelector';
+import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { getUserInfo, getPostsInfo, checkAuthorization, getPostsThunk } from 'store/UserSlice';
@@ -13,6 +14,7 @@ import { useEffect } from 'react';
 const MyAccount: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { userId } = useParams();
 
   const { userName, fullName, avatar, profileDescription, postsCount, subscribersCount, subscriptionsCount } =
     useSelector(getUserInfo);
@@ -20,8 +22,8 @@ const MyAccount: React.FC = () => {
   const { posts, postLoader } = useSelector(getPostsInfo);
 
   useEffect(() => {
-    isAuthorized && dispatch(getPostsThunk());
-  }, [isAuthorized, dispatch]);
+    isAuthorized && dispatch(getPostsThunk(Number(userId)));
+  }, [isAuthorized, dispatch, userId]);
 
   useEffect(() => {
     const detectBottomScroll = () => {
@@ -29,11 +31,11 @@ const MyAccount: React.FC = () => {
         !postLoader &&
         document.body.scrollHeight - 50 <= document.documentElement.scrollTop + document.documentElement.clientHeight
       )
-        dispatch(getPostsThunk());
+        dispatch(getPostsThunk(Number(userId)));
     };
     isAuthorized && document.addEventListener('scroll', detectBottomScroll);
     return () => document.removeEventListener('scroll', detectBottomScroll);
-  }, [dispatch, isAuthorized, postLoader]);
+  }, [dispatch, isAuthorized, postLoader, userId]);
 
   return (
     <S.Container>

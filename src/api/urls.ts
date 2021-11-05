@@ -30,6 +30,7 @@ export const apiUrls = {
     url: '/auth/me',
   },
   getPosts: {
-    url: '/user/w',
+    url: 'user/:userId/posts',
+    regexp: /user\/\d{1,}\/posts/,
   },
 };

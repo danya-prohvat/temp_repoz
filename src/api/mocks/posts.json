@@ -1,0 +1,148 @@
+{
+  "posts": [
+    {
+      "userId": 1,
+      "totalPosts": 13,
+      "posts": [
+        {
+          "id": 1,
+          "likes": 34,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 2,
+          "likes": 98,
+          "comments": 87,
+          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
+        },
+        {
+          "id": 3,
+          "likes": 12,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 4,
+          "likes": 34,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 5,
+          "likes": 98,
+          "comments": 87,
+          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
+        },
+        {
+          "id": 6,
+          "likes": 12,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 7,
+          "likes": 34,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 8,
+          "likes": 98,
+          "comments": 87,
+          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
+        },
+        {
+          "id": 9,
+          "likes": 12,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 10,
+          "likes": 34,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 11,
+          "likes": 98,
+          "comments": 87,
+          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
+        },
+        {
+          "id": 12,
+          "likes": 12,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 13,
+          "likes": 12,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        }
+      ]
+    },
+    {
+      "userId": 2,
+      "totalPosts": 3,
+      "posts": [
+        {
+          "id": 1,
+          "likes": 34,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 2,
+          "likes": 98,
+          "comments": 87,
+          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
+        },
+        {
+          "id": 3,
+          "likes": 12,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        }
+      ]
+    },
+    {
+      "userId": 3,
+      "totalPosts": 5,
+      "posts": [
+        {
+          "id": 1,
+          "likes": 34,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 2,
+          "likes": 98,
+          "comments": 87,
+          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
+        },
+        {
+          "id": 3,
+          "likes": 12,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 4,
+          "likes": 34,
+          "comments": 54,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 5,
+          "likes": 98,
+          "comments": 87,
+          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
+        }
+      ]
+    }
+  ]
+}

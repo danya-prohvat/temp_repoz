@@ -3,6 +3,7 @@
     {
       "userName": "user1",
       "email": "email1@gmail.com",
+      "id": 1,
       "password": "1234",
       "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
       "token": "token1",
@@ -10,109 +11,31 @@
       "profileDescription": "Kelly Millington profile description",
       "postsCount": 13,
       "subscribersCount": 876,
-      "subscriptionsCount": 987,
-      "posts": [
-        {
-          "id": 1,
-          "likes": 34,
-          "comments": 54,
-          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
-        },
-        {
-          "id": 2,
-          "likes": 98,
-          "comments": 87,
-          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
-        },
-        {
-          "id": 3,
-          "likes": 12,
-          "comments": 54,
-          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
-        },
-        {
-          "id": 4,
-          "likes": 34,
-          "comments": 54,
-          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
-        },
-        {
-          "id": 5,
-          "likes": 98,
-          "comments": 87,
-          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
-        },
-        {
-          "id": 6,
-          "likes": 12,
-          "comments": 54,
-          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
-        },
-        {
-          "id": 7,
-          "likes": 34,
-          "comments": 54,
-          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
-        },
-        {
-          "id": 8,
-          "likes": 98,
-          "comments": 87,
-          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
-        },
-        {
-          "id": 9,
-          "likes": 12,
-          "comments": 54,
-          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
-        },
-        {
-          "id": 10,
-          "likes": 34,
-          "comments": 54,
-          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
-        },
-        {
-          "id": 11,
-          "likes": 98,
-          "comments": 87,
-          "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
-        },
-        {
-          "id": 12,
-          "likes": 12,
-          "comments": 54,
-          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
-        },
-        {
-          "id": 13,
-          "likes": 12,
-          "comments": 54,
-          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
-        }
-      ]
+      "subscriptionsCount": 987
     },
     {
       "userName": "user2",
       "email": "email2@gmail.com",
+      "id": 2,
       "password": "4321",
       "avatar": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png",
       "token": "token2",
       "fullName": "Kelly Millington2",
       "profileDescription": "Kelly Millington profile description222",
-      "postsCount": 76,
+      "postsCount": 3,
       "subscribersCount": 221,
       "subscriptionsCount": 978
     },
     {
       "userName": "user3",
       "email": "email3@gmail.com",
+      "id": 3,
       "password": "0000",
       "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
       "token": "token3",
       "fullName": "Kelly Millington3",
       "profileDescription": "Kelly Millington profile description333",
-      "postsCount": 34,
+      "postsCount": 5,
       "subscribersCount": 123,
       "subscriptionsCount": 432
     }
