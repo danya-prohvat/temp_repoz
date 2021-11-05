@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'hooks/useTypedSelector';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -9,7 +10,7 @@ import { PagesSeparator } from 'components/common/pagesSeparator';
 import { Post } from 'components/common/post';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/common/button';
-import { useEffect } from 'react';
+import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 
 const MyAccount: React.FC = () => {
   const { t } = useTranslation();
@@ -25,17 +26,11 @@ const MyAccount: React.FC = () => {
     isAuthorized && dispatch(getPostsThunk(Number(userId)));
   }, [isAuthorized, dispatch, userId]);
 
-  useEffect(() => {
-    const detectBottomScroll = () => {
-      if (
-        !postLoader &&
-        document.body.scrollHeight - 50 <= document.documentElement.scrollTop + document.documentElement.clientHeight
-      )
-        dispatch(getPostsThunk(Number(userId)));
-    };
-    isAuthorized && document.addEventListener('scroll', detectBottomScroll);
-    return () => document.removeEventListener('scroll', detectBottomScroll);
-  }, [dispatch, isAuthorized, postLoader, userId]);
+  useInfiniteScroll({
+    loader: postLoader,
+    isAuthorized: isAuthorized,
+    callBack: () => getPostsThunk(Number(userId)),
+  });
 
   return (
     <S.Container>

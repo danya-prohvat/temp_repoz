@@ -4,6 +4,7 @@ import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
 import { RootState } from './store';
+import { config } from 'config';
 import { User } from 'types/types';
 import { toast } from 'react-toastify';
 
@@ -44,7 +45,7 @@ const initialState: UserStore = {
     userNameIsExists: false,
     errorMessage: '',
   },
-  limit: 6,
+  limit: config.constants.postsLimit,
   offset: 1,
   postLoader: false,
   posts: [],
@@ -52,12 +53,10 @@ const initialState: UserStore = {
 // TODO: TS
 export const getPostsThunk = createAsyncThunk('user/getPosts', async (userId: number, { getState, dispatch }: any) => {
   const { limit, offset, user } = getState().user;
-
   if (offset <= Math.ceil(user.postsCount / limit)) {
     dispatch(incrementPageSize());
-    const response = await postRequest(apiUrls.getPosts.url.replace(':userId', String(userId)), {
-      limit: limit,
-      offset: offset,
+    const response = await getRequest(apiUrls.getPosts.url.replace(':userId', String(userId)), {
+      params: { limit: limit, offset: offset },
     });
 
     return response.data;

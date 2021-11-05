@@ -2,7 +2,7 @@
   "posts": [
     {
       "userId": 1,
-      "totalPosts": 13,
+      "total": 13,
       "posts": [
         {
           "id": 1,
@@ -86,7 +86,7 @@
     },
     {
       "userId": 2,
-      "totalPosts": 3,
+      "total": 3,
       "posts": [
         {
           "id": 1,
@@ -110,7 +110,7 @@
     },
     {
       "userId": 3,
-      "totalPosts": 5,
+      "total": 5,
       "posts": [
         {
           "id": 1,
