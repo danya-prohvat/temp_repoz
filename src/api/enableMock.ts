@@ -22,7 +22,23 @@ export const enableMock = (): void => {
 
   mock.onGet(apiUrls.getMe.url).reply((config) => {
     const user = users.find((user) => user.token === config.headers?.Authorization.split(' ')[1]);
-    if (user) return [200, omit(user, ['password'])];
+    if (user) return [200, omit(user, ['password', 'posts'])];
+
+    return [401];
+  });
+
+  mock.onPost(apiUrls.getPosts.url).reply((config) => {
+    const { postPageSize, postPage } = JSON.parse(config.data);
+
+    const user = users.find((user) => user.token === config.headers?.Authorization.split(' ')[1]);
+
+    if (user && !(postPage > Math.ceil(user.postsCount / postPageSize)))
+      return [
+        200,
+        user.posts?.filter(
+          (post, index) => index >= postPageSize * postPage - postPageSize && index < postPageSize * postPage,
+        ),
+      ];
 
     return [401];
   });
@@ -31,7 +47,7 @@ export const enableMock = (): void => {
     const data = JSON.parse(config.data);
 
     const user = users.find((user) => user.email === data.email && user.password === data.password);
-    if (user) return [200, omit(user, ['password'])];
+    if (user) return [200, omit(user, ['password', 'posts'])];
 
     return [401];
   });
@@ -41,7 +57,7 @@ export const enableMock = (): void => {
 
     if (data.email === 'test@gmail.com') return [400, 'bad request'];
 
-    return [201, { ...omit(data, ['password']), token: 'token3534' }];
+    return [201, { ...omit(data, ['password', 'posts']), token: 'token3534' }];
   });
 
   mock.onPost(apiUrls.checkNewUserName.url).reply((config) => {

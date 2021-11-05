@@ -7,6 +7,12 @@ import { RootState } from './store';
 import { User } from 'types/types';
 import { toast } from 'react-toastify';
 
+interface Post {
+  id: number;
+  src: string;
+  comments: number;
+  likes: number;
+}
 interface SignUping {
   userNameIsExists: boolean;
   errorMessage: string;
@@ -15,6 +21,10 @@ interface UserStore {
   isAuthorized: boolean;
   user: User;
   signUping: SignUping;
+  postPageSize: number;
+  postPage: number;
+  postLoader: boolean;
+  posts: Post[];
 }
 
 const initialState: UserStore = {
@@ -33,7 +43,22 @@ const initialState: UserStore = {
     userNameIsExists: false,
     errorMessage: '',
   },
+  postPageSize: 6,
+  postPage: 1,
+  postLoader: false,
+  posts: [],
 };
+// TODO: TS
+export const getPostsThunk = createAsyncThunk('user/getPosts', async (_, { getState, dispatch }: any) => {
+  const { postPageSize, postPage, user } = getState().user;
+
+  if (postPage <= Math.ceil(user.postsCount / postPageSize)) {
+    dispatch(incrementPageSize());
+    const response = await postRequest(apiUrls.getPosts.url, { postPageSize: postPageSize, postPage: postPage });
+
+    return response.data;
+  }
+});
 
 export const signInThunk = createAsyncThunk('user/signIn', async ({ email, password }: SingInFormProps) => {
   const response = await postRequest(apiUrls.signIn.url, { email: email, password: password });
@@ -75,6 +100,15 @@ const UserSlice = createSlice({
     signInUser(state, action: PayloadAction<User>) {
       state.user = { ...action.payload };
     },
+    incrementPageSize(state) {
+      state.postPage = ++state.postPage;
+    },
+    addPosts(state, action: PayloadAction<Post[]>) {
+      if (action.payload) state.posts = [...state.posts, ...action.payload];
+    },
+    changePostLoader(state) {
+      state.postLoader = !state.postLoader;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getMeThunk.fulfilled, (state, action) => {
@@ -111,6 +145,17 @@ const UserSlice = createSlice({
       state.signUping.userNameIsExists = false;
       state.signUping.errorMessage = 'Sorry, this username is taken';
     });
+    builder.addCase(getPostsThunk.pending, (state) => {
+      UserSlice.caseReducers.changePostLoader(state);
+    });
+    builder.addCase(getPostsThunk.fulfilled, (state, action) => {
+      UserSlice.caseReducers.addPosts(state, action);
+      UserSlice.caseReducers.changePostLoader(state);
+    });
+    builder.addCase(getPostsThunk.rejected, (state) => {
+      UserSlice.caseReducers.changePostLoader(state);
+      toast.error('Error');
+    });
   },
 });
 
@@ -127,10 +172,16 @@ export const getUserInfo = createSelector(getState, (state) => {
     subscriptionsCount: state.user.subscriptionsCount,
   };
 });
+export const getPostsInfo = createSelector(getState, (state) => {
+  return {
+    posts: state.posts,
+    postLoader: state.postLoader,
+  };
+});
 export const checkAuthorization = createSelector(getState, (state) => state.isAuthorized);
 export const checkNewUserName = createSelector(getState, (state) => {
   return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
 });
 
-export const { signInUser, changeAuthorization } = UserSlice.actions;
+export const { signInUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader } = UserSlice.actions;
 export { UserSlice };

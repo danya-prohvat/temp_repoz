@@ -29,4 +29,7 @@ export const apiUrls = {
   getMe: {
     url: '/auth/me',
   },
+  getPosts: {
+    url: '/user/w',
+  },
 };
