@@ -1,5 +1,6 @@
 import { useSelector } from 'hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
+import Loader from 'react-loader-spinner';
 import { getUserInfo, getPostsInfo, checkAuthorization, getPostsThunk } from 'store/UserSlice';
 import { S } from './MyAccount.styles';
 import { Typography } from 'components/common/typography';
@@ -8,7 +9,6 @@ import { Post } from 'components/common/post';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/common/button';
 import { useEffect } from 'react';
-import Loader from 'react-loader-spinner';
 
 const MyAccount: React.FC = () => {
   const { t } = useTranslation();
