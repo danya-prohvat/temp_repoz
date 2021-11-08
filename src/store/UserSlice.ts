@@ -112,6 +112,23 @@ const UserSlice = createSlice({
     changePostLoader(state) {
       state.postLoader = !state.postLoader;
     },
+    resetUser(state) {
+      state.isAuthorized = false;
+      state.offset = 1;
+      state.posts = [];
+
+      state.user.userName = '';
+      state.user.email = '';
+      state.user.id = null;
+      state.user.avatar = '';
+      state.user.fullName = '';
+      state.user.profileDescription = '';
+      state.user.postsCount = 0;
+      state.user.subscribersCount = 0;
+      state.user.subscriptionsCount = 0;
+      state.user.token = '';
+      localStorage.removeItem('token');
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getMeThunk.fulfilled, (state, action) => {
@@ -187,5 +204,6 @@ export const checkNewUserName = createSelector(getState, (state) => {
   return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
 });
 
-export const { signInUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader } = UserSlice.actions;
+export const { signInUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader, resetUser } =
+  UserSlice.actions;
 export { UserSlice };
