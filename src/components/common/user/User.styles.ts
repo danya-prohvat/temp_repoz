@@ -5,6 +5,10 @@ const S = {
     cursor: pointer;
     display: flex;
     align-items: center;
+    font-size: 10px;
+  `,
+  IconWrapper: styled.div`
+    margin-left: 15px;
   `,
 };
 
