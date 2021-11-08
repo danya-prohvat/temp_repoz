@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useSelector } from 'hooks/useTypedSelector';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import Loader from 'react-loader-spinner';
 import { getUserInfo, getPostsInfo, checkAuthorization, getPostsThunk } from 'store/UserSlice';
 import { S } from './MyAccount.styles';
 import { Typography } from 'components/common/typography';
@@ -10,6 +9,7 @@ import { PagesSeparator } from 'components/common/pagesSeparator';
 import { Post } from 'components/common/post';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/common/button';
+import { Loader } from 'components/common/loader';
 import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 
 const MyAccount: React.FC = () => {
@@ -78,11 +78,7 @@ const MyAccount: React.FC = () => {
           <Post key={post.id} src={post.src} likes={post.likes} comments={post.comments} />
         ))}
 
-        {postLoader && (
-          <S.LoaderWrapper>
-            <Loader type="Puff" color="#00BFFF" height={200} width={200} />
-          </S.LoaderWrapper>
-        )}
+        {postLoader && <Loader />}
       </S.Posts>
     </S.Container>
   );

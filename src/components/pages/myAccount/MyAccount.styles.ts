@@ -45,12 +45,6 @@ const S = {
   Name: styled.span`
     margin-bottom: 10px;
   `,
-  LoaderWrapper: styled.span`
-    text-align: center;
-    margin-top: 60px;
-    margin-bottom: 40px;
-    width: 100%;
-  `,
   ProfileDescription: styled.span``,
   Posts: styled.div`
     display: flex;

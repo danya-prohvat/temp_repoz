@@ -31,6 +31,6 @@ export const apiUrls = {
   },
   getPosts: {
     url: 'user/:userId/posts',
-    regexp: /user\/\d+\/posts+$/,
+    regexp: /user\/\d+\/posts$/,
   },
 };
