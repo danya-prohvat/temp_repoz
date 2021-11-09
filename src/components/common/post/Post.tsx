@@ -1,17 +1,22 @@
+import { useParams } from 'react-router-dom';
+import { locations } from 'routing/locations';
 import { Icon } from 'components/common/icon';
 import { Typography } from 'components/common/typography';
 import { S } from './Post.styles';
 
 interface PostProps {
   src: string;
+  id: number;
   likes: number;
   comments: number;
 }
 
-const Post: React.FC<PostProps> = ({ src, likes, comments }) => {
+const Post: React.FC<PostProps> = ({ src, id, likes, comments }) => {
+  const { userId } = useParams();
+
   return (
-    <S.Post>
-      <S.PostImg src={src} />
+    <S.Post to={locations.post.replace(':userId', String(userId)).replace(':postId', String(id))}>
+      <S.PostImg src={src} alt="post img" />
       <S.PostOverlay>
         <S.PostOverlayElement>
           <S.IconWrapper>
