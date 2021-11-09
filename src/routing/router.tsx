@@ -22,7 +22,7 @@ export const Router: React.FC = () => {
             <Authorize authorizeType="Sign Up"></Authorize>
           </CommonLayout>
         </PrivateRoute>
-        <PrivateRoute path={'/' + locations.user}>
+        <PrivateRoute path={'/' + locations.user + ':userId'}>
           <CommonLayout>
             <Main>
               <MyAccount />

@@ -3,8 +3,7 @@ import { omit } from 'lodash';
 import { config } from 'config';
 import { apiUrls } from './urls';
 import { instance } from './apiClient';
-import { version } from './mocks';
-import { users } from './mocks';
+import { version, users, posts } from './mocks';
 
 export const enableMock = (): void => {
   const mock = new MockAdapter(instance, { delayResponse: config.env.apiDelay });
@@ -23,6 +22,18 @@ export const enableMock = (): void => {
   mock.onGet(apiUrls.getMe.url).reply((config) => {
     const user = users.find((user) => user.token === config.headers?.Authorization.split(' ')[1]);
     if (user) return [200, omit(user, ['password'])];
+
+    return [401];
+  });
+
+  mock.onGet(apiUrls.getPosts.regexp).reply((config) => {
+    const { limit, offset } = config.params;
+    const userId = config.url?.split('/')[1];
+
+    const post = posts.find((post) => post.userId === Number(userId));
+
+    if (post && !(offset > Math.ceil(post.total / limit)))
+      return [200, post.posts.slice(limit * offset - limit, limit * offset)];
 
     return [401];
   });

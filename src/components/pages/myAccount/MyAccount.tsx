@@ -1,16 +1,36 @@
+import { useEffect } from 'react';
 import { useSelector } from 'hooks/useTypedSelector';
-import { getUserInfo } from 'store/UserSlice';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getUserInfo, getPostsInfo, checkAuthorization, getPostsThunk } from 'store/UserSlice';
 import { S } from './MyAccount.styles';
 import { Typography } from 'components/common/typography';
 import { PagesSeparator } from 'components/common/pagesSeparator';
 import { Post } from 'components/common/post';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/common/button';
+import { Loader } from 'components/common/loader';
+import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 
 const MyAccount: React.FC = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const { userId } = useParams();
+
   const { userName, fullName, avatar, profileDescription, postsCount, subscribersCount, subscriptionsCount } =
     useSelector(getUserInfo);
+  const isAuthorized = useSelector(checkAuthorization);
+  const { posts, postLoader } = useSelector(getPostsInfo);
+
+  useEffect(() => {
+    isAuthorized && dispatch(getPostsThunk(Number(userId)));
+  }, [isAuthorized, dispatch, userId]);
+
+  useInfiniteScroll({
+    loader: postLoader,
+    isAuthorized: isAuthorized,
+    callBack: () => getPostsThunk(Number(userId)),
+  });
 
   return (
     <S.Container>
@@ -54,36 +74,11 @@ const MyAccount: React.FC = () => {
       </S.UserInfo>
       <PagesSeparator marginTop="60px" marginBottom="50px" />
       <S.Posts>
-        <Post
-          src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
-          likes={67}
-          comments={1}
-        />
-        <Post
-          src="https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
-          likes={10}
-          comments={1}
-        />
-        <Post
-          src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
-          likes={17}
-          comments={1}
-        />
-        <Post
-          src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
-          likes={10}
-          comments={51}
-        />
-        <Post
-          src="https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
-          likes={54}
-          comments={1}
-        />
-        <Post
-          src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
-          likes={1}
-          comments={2}
-        />
+        {posts.map((post) => (
+          <Post key={post.id} src={post.src} likes={post.likes} comments={post.comments} />
+        ))}
+
+        {postLoader && <Loader />}
       </S.Posts>
     </S.Container>
   );

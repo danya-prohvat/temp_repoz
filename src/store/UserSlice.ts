@@ -4,9 +4,16 @@ import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
 import { RootState } from './store';
+import { config } from 'config';
 import { User } from 'types/types';
 import { toast } from 'react-toastify';
 
+interface Post {
+  id: number;
+  src: string;
+  comments: number;
+  likes: number;
+}
 interface SignUping {
   userNameIsExists: boolean;
   errorMessage: string;
@@ -15,6 +22,10 @@ interface UserStore {
   isAuthorized: boolean;
   user: User;
   signUping: SignUping;
+  limit: number;
+  offset: number;
+  postLoader: boolean;
+  posts: Post[];
 }
 
 const initialState: UserStore = {
@@ -22,6 +33,7 @@ const initialState: UserStore = {
   user: {
     userName: '',
     email: '',
+    id: null,
     avatar: '',
     fullName: '',
     profileDescription: '',
@@ -33,7 +45,23 @@ const initialState: UserStore = {
     userNameIsExists: false,
     errorMessage: '',
   },
+  limit: config.constants.postsLimit,
+  offset: 1,
+  postLoader: false,
+  posts: [],
 };
+// TODO: TS
+export const getPostsThunk = createAsyncThunk('user/getPosts', async (userId: number, { getState, dispatch }: any) => {
+  const { limit, offset, user } = getState().user;
+  if (offset <= Math.ceil(user.postsCount / limit)) {
+    dispatch(incrementPageSize());
+    const response = await getRequest(apiUrls.getPosts.url.replace(':userId', String(userId)), {
+      params: { limit: limit, offset: offset },
+    });
+
+    return response.data;
+  }
+});
 
 export const signInThunk = createAsyncThunk('user/signIn', async ({ email, password }: SingInFormProps) => {
   const response = await postRequest(apiUrls.signIn.url, { email: email, password: password });
@@ -75,6 +103,15 @@ const UserSlice = createSlice({
     signInUser(state, action: PayloadAction<User>) {
       state.user = { ...action.payload };
     },
+    incrementPageSize(state) {
+      state.offset = ++state.offset;
+    },
+    addPosts(state, action: PayloadAction<Post[]>) {
+      if (action.payload) state.posts = [...state.posts, ...action.payload];
+    },
+    changePostLoader(state) {
+      state.postLoader = !state.postLoader;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getMeThunk.fulfilled, (state, action) => {
@@ -111,6 +148,17 @@ const UserSlice = createSlice({
       state.signUping.userNameIsExists = false;
       state.signUping.errorMessage = 'Sorry, this username is taken';
     });
+    builder.addCase(getPostsThunk.pending, (state) => {
+      UserSlice.caseReducers.changePostLoader(state);
+    });
+    builder.addCase(getPostsThunk.fulfilled, (state, action) => {
+      UserSlice.caseReducers.addPosts(state, action);
+      UserSlice.caseReducers.changePostLoader(state);
+    });
+    builder.addCase(getPostsThunk.rejected, (state) => {
+      UserSlice.caseReducers.changePostLoader(state);
+      toast.error('Error');
+    });
   },
 });
 
@@ -120,6 +168,7 @@ export const getUserInfo = createSelector(getState, (state) => {
   return {
     userName: state.user.userName,
     fullName: state.user.fullName,
+    id: state.user.id,
     avatar: state.user.avatar,
     profileDescription: state.user.profileDescription,
     postsCount: state.user.postsCount,
@@ -127,10 +176,16 @@ export const getUserInfo = createSelector(getState, (state) => {
     subscriptionsCount: state.user.subscriptionsCount,
   };
 });
+export const getPostsInfo = createSelector(getState, (state) => {
+  return {
+    posts: state.posts,
+    postLoader: state.postLoader,
+  };
+});
 export const checkAuthorization = createSelector(getState, (state) => state.isAuthorized);
 export const checkNewUserName = createSelector(getState, (state) => {
   return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
 });
 
-export const { signInUser, changeAuthorization } = UserSlice.actions;
+export const { signInUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader } = UserSlice.actions;
 export { UserSlice };

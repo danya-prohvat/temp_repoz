@@ -8,5 +8,5 @@ export const locations = {
   messages: 'messages',
   saved: 'saved',
   settings: 'settings',
-  user: 'user',
+  user: 'user/',
 };
