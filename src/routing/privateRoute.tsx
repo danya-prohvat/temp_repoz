@@ -4,7 +4,7 @@ import { checkAuthorization } from 'store/UserSlice';
 import { locations } from './locations';
 import { unathorizedOnlyLinks } from './unathorizedOnlyLinks';
 
-export const PrivateRoute: React.FC<RouteProps> = ({ path, ...props }) => {
+export const PrivateRoute: React.FC<RouteProps & { exact?: true }> = ({ path, ...props }) => {
   const isAuthorized = useSelector(checkAuthorization);
   const token = localStorage.getItem('token');
 

@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const S = {
-  Post: styled.div`
+  Post: styled(Link)`
     padding: 10px;
     width: 33%;
     min-height: 360px;

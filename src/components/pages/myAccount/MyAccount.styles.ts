@@ -38,6 +38,9 @@ const S = {
     justify-content: space-between;
   `,
   SubscribeElement: styled.span``,
+  SubscribeSubElement: styled.span`
+    margin-right: 6px;
+  `,
   FullName: styled.div`
     display: flex;
     flex-direction: column;

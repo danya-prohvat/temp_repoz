@@ -50,15 +50,21 @@ const MyAccount: React.FC = () => {
           </S.UserNameBlock>
           <S.SubscribeBlock>
             <S.SubscribeElement>
-              <Typography type="body3Bold">{postsCount}</Typography>{' '}
+              <S.SubscribeSubElement>
+                <Typography type="body3Bold">{postsCount}</Typography>
+              </S.SubscribeSubElement>
               <Typography type="body2">{t('MyAccount.Posts')}</Typography>
             </S.SubscribeElement>
             <S.SubscribeElement>
-              <Typography type="body3Bold">{subscribersCount}</Typography>
+              <S.SubscribeSubElement>
+                <Typography type="body3Bold">{subscribersCount}</Typography>
+              </S.SubscribeSubElement>
               <Typography type="body2">{t('MyAccount.Subscribers')}</Typography>
             </S.SubscribeElement>
             <S.SubscribeElement>
-              <Typography type="body3Bold">{subscriptionsCount}</Typography>
+              <S.SubscribeSubElement>
+                <Typography type="body3Bold">{subscriptionsCount}</Typography>
+              </S.SubscribeSubElement>
               <Typography type="body2">{t('MyAccount.Subscriptions')}</Typography>
             </S.SubscribeElement>
           </S.SubscribeBlock>
@@ -75,7 +81,7 @@ const MyAccount: React.FC = () => {
       <PagesSeparator marginTop="60px" marginBottom="50px" />
       <S.Posts>
         {posts.map((post) => (
-          <Post key={post.id} src={post.src} likes={post.likes} comments={post.comments} />
+          <Post key={post.id} id={post.id} src={post.src} likes={post.likes} comments={post.comments} />
         ))}
 
         {postLoader && <Loader />}

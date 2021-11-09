@@ -12,7 +12,7 @@ const DropDownList: React.FC = () => {
 
   return (
     <S.Container>
-      <S.Link to={'/' + locations.user + id}>
+      <S.Link to={locations.user.replace(':userId', String(id))}>
         <S.IconWrapper>
           <Icon type="user" />
         </S.IconWrapper>

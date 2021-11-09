@@ -25,7 +25,7 @@ const Sidebar: React.FC = () => {
     <S.Sidebar>
       {links.map((link) => {
         return (
-          <RouterLink isactive={location.pathname.slice(1) === link.link} to={`/${link.link}`} key={link.text}>
+          <RouterLink isactive={location.pathname === link.link} to={link.link} key={link.text}>
             <div data-type="light" data-border={true} data-tip data-for={link.text}>
               <Icon type={link.iconType} />
             </div>

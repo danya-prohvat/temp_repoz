@@ -1,4 +1,5 @@
 import { locations } from 'routing/locations';
+
 export const links = [
   { iconType: 'home', text: 'Main', link: locations.home },
   { iconType: 'compass', text: 'Explore', link: locations.explore },

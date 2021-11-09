@@ -7,38 +7,46 @@ import { locations } from './locations';
 import { links } from 'components/core/sidebar/links';
 import { PrivateRoute } from './privateRoute';
 import { MyAccount } from 'components/pages/myAccount';
+import { PostPage } from 'components/pages/post';
 
 export const Router: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <PrivateRoute path={'/' + locations.signIn}>
+        <PrivateRoute path={locations.signIn}>
           <CommonLayout>
             <Authorize authorizeType="Sign In"></Authorize>
           </CommonLayout>
         </PrivateRoute>
-        <PrivateRoute path={'/' + locations.signUp}>
+        <PrivateRoute path={locations.signUp}>
           <CommonLayout>
             <Authorize authorizeType="Sign Up"></Authorize>
           </CommonLayout>
         </PrivateRoute>
-        <PrivateRoute path={'/' + locations.user + ':userId'}>
+        <PrivateRoute path={locations.user} exact>
           <CommonLayout>
             <Main>
               <MyAccount />
             </Main>
           </CommonLayout>
         </PrivateRoute>
+        <PrivateRoute path={locations.post} exact>
+          <CommonLayout>
+            <Main>
+              <PostPage />
+            </Main>
+          </CommonLayout>
+        </PrivateRoute>
         {links.map((link) => {
           return (
-            <PrivateRoute key={link.link} path={'/' + link.link}>
+            <PrivateRoute key={link.link} path={link.link} exact>
               <CommonLayout>
                 <Main>{link.text}</Main>
               </CommonLayout>
             </PrivateRoute>
           );
         })}
-        <PrivateRoute path="*">
+        <PrivateRoute path={'*'}>
           <CommonLayout>
             <Main>
               <Page404 />
