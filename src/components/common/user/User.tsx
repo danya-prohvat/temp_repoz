@@ -11,7 +11,14 @@ const User: React.FC = () => {
   const { userName } = useSelector(getUserInfo);
 
   return (
-    <S.Container data-type="light" data-event="click" data-border={true} data-tip data-for="tooltip">
+    <S.Container
+      data-type="light"
+      data-iscapture={true}
+      data-event={'click'}
+      data-border={true}
+      data-tip
+      data-for="tooltip"
+    >
       <Avatar src={'https://reactjs.org/logo-og.png'} />
       <Typography type="body1Bold">{userName}</Typography>
       <S.IconWrapper>

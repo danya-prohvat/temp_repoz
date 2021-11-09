@@ -113,20 +113,11 @@ const UserSlice = createSlice({
       state.postLoader = !state.postLoader;
     },
     resetUser(state) {
-      state.isAuthorized = false;
-      state.offset = 1;
-      state.posts = [];
+      state.isAuthorized = initialState.isAuthorized;
+      state.offset = initialState.offset;
+      state.posts = initialState.posts;
+      state.user = initialState.user;
 
-      state.user.userName = '';
-      state.user.email = '';
-      state.user.id = null;
-      state.user.avatar = '';
-      state.user.fullName = '';
-      state.user.profileDescription = '';
-      state.user.postsCount = 0;
-      state.user.subscribersCount = 0;
-      state.user.subscriptionsCount = 0;
-      state.user.token = '';
       localStorage.removeItem('token');
     },
   },

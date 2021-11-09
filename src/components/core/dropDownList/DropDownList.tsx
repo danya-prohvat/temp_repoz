@@ -25,7 +25,7 @@ const DropDownList: React.FC = () => {
         </S.IconWrapper>
         <Typography type="body1">{t(`MainPage.MyAccount`)}</Typography>
       </S.Link>
-      <S.Link onClick={signOut} to={'/' + locations.signIn}>
+      <S.Link to={locations.signIn} onClick={signOut}>
         <S.IconWrapper>
           <Icon type="settings" />
         </S.IconWrapper>
