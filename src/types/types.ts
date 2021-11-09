@@ -8,5 +8,4 @@ export interface User {
   postsCount: number;
   subscribersCount: number;
   subscriptionsCount: number;
-  token?: '';
 }
