@@ -56,7 +56,7 @@ const SignInForm: React.FC = () => {
       <S.InputWrapper>
         <Input
           label="Sign-in/up.Email"
-          isLabel={true}
+          hasLabel={true}
           input="email"
           type="email"
           handleChange={formik.handleChange}
@@ -68,7 +68,7 @@ const SignInForm: React.FC = () => {
       <S.InputWrapper>
         <Input
           label="Sign-in/up.Password"
-          isLabel={true}
+          hasLabel={true}
           input="password"
           type="password"
           handleChange={formik.handleChange}

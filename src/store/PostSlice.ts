@@ -61,19 +61,12 @@ export const getPost = createAsyncThunk(
       apiUrls.getPost.url.replace(':userId', String(userId)).replace(':postId', String(postId)),
     );
     dispatch(getPostAuthor(response.data.authorId));
-    response.data.comments.forEach((comment: Comment) => dispatch(getCommentAuthor(comment.authorId)));
 
     return response.data;
   },
 );
 
 export const getPostAuthor = createAsyncThunk('post/getPostAuthor', async (userId: number) => {
-  const response = await getRequest(apiUrls.getUser.url.replace(':userId', String(userId)));
-
-  return response.data;
-});
-
-export const getCommentAuthor = createAsyncThunk('post/getCommentAuthor', async (userId: number) => {
   const response = await getRequest(apiUrls.getUser.url.replace(':userId', String(userId)));
 
   return response.data;
@@ -124,12 +117,6 @@ const PostSlice = createSlice({
       PostSlice.caseReducers.setAuthor(state, action);
     });
     builder.addCase(getPostAuthor.rejected, () => {
-      toast.error('Such post not found');
-    });
-    builder.addCase(getCommentAuthor.fulfilled, (state, action) => {
-      PostSlice.caseReducers.setCommentAuthor(state, action);
-    });
-    builder.addCase(getCommentAuthor.rejected, () => {
       toast.error('Such post not found');
     });
   },

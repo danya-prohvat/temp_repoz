@@ -74,7 +74,7 @@ const SignUpForm: React.FC = () => {
         <S.InputWrapper>
           <Input
             label="Sign-in/up.UserName"
-            isLabel={true}
+            hasLabel={true}
             input="userName"
             type="text"
             handleChange={formik.handleChange}
@@ -90,7 +90,7 @@ const SignUpForm: React.FC = () => {
             <S.InputWrapper>
               <Input
                 label="Sign-in/up.Email"
-                isLabel={true}
+                hasLabel={true}
                 input="email"
                 type="email"
                 handleChange={formik.handleChange}
@@ -101,7 +101,7 @@ const SignUpForm: React.FC = () => {
             <S.InputWrapper>
               <Input
                 label="Sign-in/up.Password"
-                isLabel={true}
+                hasLabel={true}
                 input="password"
                 type="password"
                 handleChange={formik.handleChange}
@@ -112,7 +112,7 @@ const SignUpForm: React.FC = () => {
             <S.InputWrapper>
               <Input
                 label="Sign-in/up.RepeatPassword"
-                isLabel={true}
+                hasLabel={true}
                 input="repeatPassword"
                 type="password"
                 handleChange={formik.handleChange}

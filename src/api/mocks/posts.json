@@ -9,8 +9,18 @@
           "likesCount": 34,
           "commentsCount": 54,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
         },
@@ -26,8 +36,18 @@
           "likesCount": 12,
           "commentsCount": 54,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
         },
@@ -36,8 +56,18 @@
           "likesCount": 34,
           "commentsCount": 54,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
         },
@@ -46,8 +76,18 @@
           "likesCount": 98,
           "commentsCount": 87,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
         },
@@ -56,8 +96,18 @@
           "likesCount": 12,
           "commentsCount": 54,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
         },
@@ -66,8 +116,18 @@
           "likesCount": 34,
           "commentsCount": 54,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
         },
@@ -76,8 +136,18 @@
           "likesCount": 98,
           "commentsCount": 87,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
         },
@@ -86,8 +156,18 @@
           "likesCount": 12,
           "commentsCount": 54,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
         },
@@ -96,8 +176,18 @@
           "likesCount": 34,
           "commentsCount": 54,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
         },
@@ -106,8 +196,18 @@
           "likesCount": 98,
           "commentsCount": 87,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2018/08/typescriptfeature.png"
         },
@@ -116,8 +216,18 @@
           "likesCount": 12,
           "commentsCount": 54,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
         },
@@ -126,8 +236,18 @@
           "likesCount": 12,
           "commentsCount": 54,
           "comments": [
-            { "authorId": 2, "comment": "Great!" },
-            { "authorId": 3, "comment": "I like it" }
+            {
+              "authorId": 2,
+              "comment": "Great!",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png",
+              "userName": "user1"
+            },
+            {
+              "authorId": 3,
+              "comment": "I like it",
+              "avatar": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png",
+              "userName": "user3"
+            }
           ],
           "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
         }
