@@ -25,6 +25,9 @@ const S = {
     text-decoration: none;
     color: ${(props) => props.theme.colors.textColor.blue};
   `,
+  InputWrapper: styled.div`
+    margin-bottom: 30px;
+  `,
 };
 
 export { S };

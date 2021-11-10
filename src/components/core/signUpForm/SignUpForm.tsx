@@ -71,43 +71,55 @@ const SignUpForm: React.FC = () => {
       </S.FormStatus>
 
       <S.FieldsContainer>
-        <Input
-          label="Sign-in/up.UserName"
-          input="userName"
-          type="text"
-          handleChange={formik.handleChange}
-          errors={formik.errors}
-          values={formik.values}
-          errorMessage={errorMessage}
-          disabled={userNameIsExists}
-        />
+        <S.InputWrapper>
+          <Input
+            label="Sign-in/up.UserName"
+            isLabel={true}
+            input="userName"
+            type="text"
+            handleChange={formik.handleChange}
+            errors={formik.errors}
+            values={formik.values}
+            errorMessage={errorMessage}
+            disabled={userNameIsExists}
+          />
+        </S.InputWrapper>
 
         {userNameIsExists && (
           <>
-            <Input
-              label="Sign-in/up.Email"
-              input="email"
-              type="email"
-              handleChange={formik.handleChange}
-              errors={formik.errors}
-              values={formik.values}
-            />
-            <Input
-              label="Sign-in/up.Password"
-              input="password"
-              type="password"
-              handleChange={formik.handleChange}
-              errors={formik.errors}
-              values={formik.values}
-            />
-            <Input
-              label="Sign-in/up.RepeatPassword"
-              input="repeatPassword"
-              type="password"
-              handleChange={formik.handleChange}
-              errors={formik.errors}
-              values={formik.values}
-            />
+            <S.InputWrapper>
+              <Input
+                label="Sign-in/up.Email"
+                isLabel={true}
+                input="email"
+                type="email"
+                handleChange={formik.handleChange}
+                errors={formik.errors}
+                values={formik.values}
+              />
+            </S.InputWrapper>
+            <S.InputWrapper>
+              <Input
+                label="Sign-in/up.Password"
+                isLabel={true}
+                input="password"
+                type="password"
+                handleChange={formik.handleChange}
+                errors={formik.errors}
+                values={formik.values}
+              />
+            </S.InputWrapper>
+            <S.InputWrapper>
+              <Input
+                label="Sign-in/up.RepeatPassword"
+                isLabel={true}
+                input="repeatPassword"
+                type="password"
+                handleChange={formik.handleChange}
+                errors={formik.errors}
+                values={formik.values}
+              />
+            </S.InputWrapper>
           </>
         )}
       </S.FieldsContainer>

@@ -9,7 +9,7 @@ interface GetPostThunkParams {
   userId: number;
 }
 
-interface AuthorStore {
+interface Author {
   authorId: number | null;
   userName: string;
   avatar: string;
@@ -23,7 +23,7 @@ interface AuthorPayload {
   subscribers: number[];
 }
 
-interface CommentStore {
+interface Comment {
   authorId: number;
   comment: string;
   avatar: string;
@@ -35,8 +35,8 @@ interface PostStore {
   likesCount: number;
   commentsCount: number;
   src: string;
-  author: AuthorStore;
-  comments: CommentStore[];
+  author: Author;
+  comments: Comment[];
 }
 
 const initialState: PostStore = {
@@ -57,28 +57,24 @@ export const getPost = createAsyncThunk(
   'post/getPost',
   // TODO: TS
   async ({ postId, userId }: GetPostThunkParams, { dispatch }: any) => {
-    const response = await getRequest(apiUrls.getPost.url, {
-      params: { postId: postId, userId: userId },
-    });
+    const response = await getRequest(
+      apiUrls.getPost.url.replace(':userId', String(userId)).replace(':postId', String(postId)),
+    );
     dispatch(getPostAuthor(response.data.authorId));
-    response.data.comments.forEach((comment: CommentStore) => dispatch(getCommentAuthor(comment.authorId)));
+    response.data.comments.forEach((comment: Comment) => dispatch(getCommentAuthor(comment.authorId)));
 
     return response.data;
   },
 );
 
 export const getPostAuthor = createAsyncThunk('post/getPostAuthor', async (userId: number) => {
-  const response = await getRequest(apiUrls.getUser.url, {
-    params: { userId: userId },
-  });
+  const response = await getRequest(apiUrls.getUser.url.replace(':userId', String(userId)));
 
   return response.data;
 });
 
 export const getCommentAuthor = createAsyncThunk('post/getCommentAuthor', async (userId: number) => {
-  const response = await getRequest(apiUrls.getUser.url, {
-    params: { userId: userId },
-  });
+  const response = await getRequest(apiUrls.getUser.url.replace(':userId', String(userId)));
 
   return response.data;
 });
@@ -102,16 +98,19 @@ const PostSlice = createSlice({
     },
     setCommentAuthor(state, action: PayloadAction<AuthorPayload>) {
       // TODO: TS
-      const updatedComment: any = {
-        ...state.comments.find((comment) => action.payload.id === comment.authorId),
-        userName: action.payload.userName,
-        avatar: action.payload.avatar,
-      };
+      const author = state.comments.find((comment) => action.payload.id === comment.authorId);
+      if (author) {
+        const updatedComment: Comment = {
+          ...author,
+          userName: action.payload.userName,
+          avatar: action.payload.avatar,
+        };
 
-      state.comments = [
-        ...state.comments.filter((comment) => action.payload.id !== comment.authorId),
-        { ...updatedComment },
-      ];
+        state.comments = [
+          ...state.comments.filter((comment) => action.payload.id !== comment.authorId),
+          { ...updatedComment },
+        ];
+      }
     },
   },
   extraReducers: (builder) => {

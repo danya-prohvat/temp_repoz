@@ -26,10 +26,10 @@ export const enableMock = (): void => {
     return [401];
   });
 
-  mock.onGet(apiUrls.getUser.url).reply((config) => {
-    const { userId } = config.params;
+  mock.onGet(apiUrls.getUser.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
 
-    const user = users.find((user) => user.id === userId);
+    const user = users.find((user) => user.id === Number(userId));
     if (user) return [200, pick(user, ['userName', 'avatar', 'id', 'subscribers'])];
 
     return [401];
@@ -47,10 +47,10 @@ export const enableMock = (): void => {
     return [401];
   });
 
-  mock.onGet(apiUrls.getPost.url).reply((config) => {
-    const { postId, userId } = config.params;
-
-    //TODO: TS
+  mock.onGet(apiUrls.getPost.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    const postId = config.url?.split('/')[2];
+    // TODO: TS
     const allPost: any = posts.find((post) => post.userId === Number(userId));
     if (allPost) {
       const post = allPost.posts.find((post: { id: number }) => post.id === Number(postId));

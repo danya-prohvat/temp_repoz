@@ -6,16 +6,17 @@ const S = {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 100%;
+    flex: 1 1 auto;
   `,
   Field: styled.input<InputProps>`
     outline: none;
     border-radius: 2px;
     height: 40px;
-    width: 280px;
-    padding-left: 15px;
+    min-width: 300px;
+    width: 100%;
+    padding-left: 35px;
+    display: flex;
     background-color: ${(props) => (props.disabled ? props.theme.colors.backgroundColor.darkGray : '')};
     border: 1px solid
       ${(props) => (props.disabled ? props.theme.colors.borderColor.darkGray : props.theme.colors.borderColor.gray)};
@@ -30,7 +31,6 @@ const S = {
     cursor: pointer;
   `,
   ErrorMessage: styled.span`
-    margin-top: 4px;
     color: ${(props) => props.theme.colors.textColor.red};
   `,
 };

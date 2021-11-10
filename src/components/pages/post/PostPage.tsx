@@ -12,6 +12,7 @@ import { getUserInfo } from 'store/UserSlice';
 import { Icon } from 'components/common/icon';
 import { Button } from 'components/common/button';
 import { S } from './PostPage.styles';
+import { Input } from 'components/common/input';
 import { Comment } from 'components/common/comment';
 
 const PostPage: React.FC = () => {
@@ -92,11 +93,12 @@ const PostPage: React.FC = () => {
             <S.InputIcon>
               <Icon type="comment" />
             </S.InputIcon>
-            <S.Input
-              placeholder={t('PostPage.InputPlaceholder')}
-              id="comment"
-              name="comment"
-              onChange={formik.handleChange}
+            <Input
+              label="PostPage.InputPlaceholder"
+              input="comment"
+              handleChange={formik.handleChange}
+              errors={formik.errors}
+              values={formik.values}
             />
             <Button icon="pencil" variant="primary" />
           </S.InputBlock>

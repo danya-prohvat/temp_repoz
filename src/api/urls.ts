@@ -3,12 +3,12 @@ export const apiUrls = {
     url: '/version',
   },
   getUser: {
-    url: '/user/:userId',
-    regexp: /user\/d+$/,
+    url: 'user/:userId',
+    regexp: /user\/\d+$/,
   },
   patchUser: {
     url: '/user/:userId',
-    regexp: /user\/d+$/,
+    regexp: /user\/\d+$/,
   },
   deleteUser: {
     url: '/user/:userId',
@@ -34,6 +34,7 @@ export const apiUrls = {
     regexp: /user\/\d+\/posts$/,
   },
   getPost: {
-    url: '/post',
+    url: 'posts/:userId/:postId',
+    regexp: /posts\/\d+\/\d+$/,
   },
 };

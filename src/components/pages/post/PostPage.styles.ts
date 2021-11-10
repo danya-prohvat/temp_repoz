@@ -83,15 +83,10 @@ const S = {
     height: 100%;
     max-height: 300px;
     margin-bottom: 30px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
     display: flex;
     flex-direction: column;
     padding-top: 20px;
     text-align: center;
-    &::-webkit-scrollbar {
-      display: none;
-    }
   `,
   InputBlock: styled.form`
     display: flex;
@@ -117,6 +112,7 @@ const S = {
     transform: translateY(-50%);
     left: 10px;
     display: flex;
+    z-index: 99;
   `,
 };
 
