@@ -11,7 +11,8 @@
       "profileDescription": "Kelly Millington profile description",
       "postsCount": 13,
       "subscribersCount": 876,
-      "subscriptionsCount": 987
+      "subscriptionsCount": 987,
+      "subscribers": [1, 3]
     },
     {
       "userName": "user2",
@@ -24,7 +25,8 @@
       "profileDescription": "Kelly Millington profile description222",
       "postsCount": 3,
       "subscribersCount": 221,
-      "subscriptionsCount": 978
+      "subscriptionsCount": 978,
+      "subscribers": [1, 3]
     },
     {
       "userName": "user3",
@@ -37,7 +39,8 @@
       "profileDescription": "Kelly Millington profile description333",
       "postsCount": 5,
       "subscribersCount": 123,
-      "subscriptionsCount": 432
+      "subscriptionsCount": 432,
+      "subscribers": [1, 2]
     }
   ]
 }

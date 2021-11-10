@@ -1,19 +1,108 @@
-import { useSelector } from 'hooks/useTypedSelector';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getPostsInfo } from 'store/UserSlice';
+import { useFormik } from 'formik';
+import { useSelector } from 'hooks/useTypedSelector';
+import { useTranslation } from 'react-i18next';
+import { locations } from 'routing/locations';
+import { Typography } from 'components/common/typography';
+import { getPost } from 'store/PostSlice';
+import { getPosts, getAuthorInfo, getComments } from 'store/PostSlice';
+import { getUserInfo } from 'store/UserSlice';
+import { Icon } from 'components/common/icon';
+import { Button } from 'components/common/button';
 import { S } from './PostPage.styles';
+import { Comment } from 'components/common/comment';
 
 const PostPage: React.FC = () => {
-  const { postId } = useParams();
-  const { posts } = useSelector(getPostsInfo);
-  const post = posts.find((post) => post.id === Number(postId));
+  const { t } = useTranslation();
+  const { postId, userId } = useParams();
+  const dispatch = useDispatch();
+  const { likesCount, commentsCount, src } = useSelector(getPosts);
+  const { authorId, userName, avatar, subscribers } = useSelector(getAuthorInfo);
+  const { id } = useSelector(getUserInfo);
+  const comments = useSelector(getComments);
+
+  useEffect(() => {
+    dispatch(getPost({ postId: Number(postId), userId: Number(userId) }));
+  }, [dispatch, postId, userId]);
+
+  const formik = useFormik({
+    initialValues: { comment: '' },
+    onSubmit: (value: { comment: string }) => {
+      console.log(value);
+    },
+  });
 
   return (
-    <S.Post>
-      Likes: {post?.likes} <br />
-      Comments: {post?.comments} <br />
-      img: <img src={post?.src} alt="post img" />
-    </S.Post>
+    <S.Container>
+      <S.ImgWrapper>
+        <S.PostImg src={src} alt="post img" />
+      </S.ImgWrapper>
+      <S.Info>
+        <S.AuthorBlock>
+          <S.AvatarImg src={avatar} alt="user's photo" />
+          <S.Username to={locations.user.replace(':userId', String(authorId))}>
+            <Typography type="heading3">{userName}</Typography>
+          </S.Username>
+          {subscribers.length > 0 && subscribers.includes(Number(id)) ? (
+            <Button text="PostPage.Subscription" variant="secondary" />
+          ) : (
+            <Button text="PostPage.Subscribe" variant="primary" />
+          )}
+        </S.AuthorBlock>
+        <S.PostInfoBlock>
+          <S.PostInfoElement>
+            <S.IconWrapper>
+              <Icon type="heart" />
+            </S.IconWrapper>
+            <Typography type="body3Bold">{likesCount}</Typography>
+          </S.PostInfoElement>
+          <S.PostInfoElement>
+            <S.IconWrapper>
+              <Icon type="comment" />
+            </S.IconWrapper>
+            <Typography type="body3Bold">{commentsCount}</Typography>
+          </S.PostInfoElement>
+          <S.SaveMark onClick={() => console.log('Save was clicked')}>
+            <S.SaveMarkText>
+              <Typography type="body3Bold">{t('PostPage.Save')}</Typography>
+            </S.SaveMarkText>
+            <Icon type="saved" />
+          </S.SaveMark>
+        </S.PostInfoBlock>
+        <S.CommentsBlock>
+          <S.CommentsWrapper>
+            {comments.length > 0 ? (
+              comments.map((comment) => (
+                <Comment
+                  key={comment.authorId}
+                  authorId={comment.authorId}
+                  avatar={comment.avatar}
+                  userName={comment.userName}
+                  comment={comment.comment}
+                />
+              ))
+            ) : (
+              <Typography type="body1">{t('PostPage.NoCommentsYet')}</Typography>
+            )}
+          </S.CommentsWrapper>
+
+          <S.InputBlock onSubmit={formik.handleSubmit}>
+            <S.InputIcon>
+              <Icon type="comment" />
+            </S.InputIcon>
+            <S.Input
+              placeholder={t('PostPage.InputPlaceholder')}
+              id="comment"
+              name="comment"
+              onChange={formik.handleChange}
+            />
+            <Button icon="pencil" variant="primary" />
+          </S.InputBlock>
+        </S.CommentsBlock>
+      </S.Info>
+    </S.Container>
   );
 };
 
