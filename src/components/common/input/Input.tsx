@@ -12,6 +12,7 @@ export interface InputProps
   errors?: FormikErrors<FormikValues>;
   values?: FormikValues;
   input?: string;
+  hasLabel?: boolean;
   label?: string;
   // TODO
   handleChange?: (e: any) => void;
@@ -26,18 +27,21 @@ const Input: React.FC<InputProps> = ({
   values,
   input,
   label,
+  hasLabel,
   ...rest
 }) => {
   const { t } = useTranslation();
 
   return (
     <S.FieldWrapper>
-      <S.FieldLabel htmlFor={input}>
-        <Typography type="label1">
-          {t(String(label))}
-          {required && '*'}
-        </Typography>
-      </S.FieldLabel>
+      {hasLabel && (
+        <S.FieldLabel htmlFor={input}>
+          <Typography type="label1">
+            {t(String(label))}
+            {required && '*'}
+          </Typography>
+        </S.FieldLabel>
+      )}
       <S.Field
         disabled={disabled}
         id={input}

@@ -1,5 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
-import { omit } from 'lodash';
+import { omit, pick } from 'lodash';
 import { config } from 'config';
 import { apiUrls } from './urls';
 import { instance } from './apiClient';
@@ -26,6 +26,15 @@ export const enableMock = (): void => {
     return [401];
   });
 
+  mock.onGet(apiUrls.getUser.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+
+    const user = users.find((user) => user.id === Number(userId));
+    if (user) return [200, pick(user, ['userName', 'avatar', 'id', 'subscribers'])];
+
+    return [401];
+  });
+
   mock.onGet(apiUrls.getPosts.regexp).reply((config) => {
     const { limit, offset } = config.params;
     const userId = config.url?.split('/')[1];
@@ -34,6 +43,19 @@ export const enableMock = (): void => {
 
     if (post && !(offset > Math.ceil(post.total / limit)))
       return [200, post.posts.slice(limit * offset - limit, limit * offset)];
+
+    return [401];
+  });
+
+  mock.onGet(apiUrls.getPost.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    const postId = config.url?.split('/')[2];
+    // TODO: TS
+    const allPost: any = posts.find((post) => post.userId === Number(userId));
+    if (allPost) {
+      const post = allPost.posts.find((post: { id: number }) => post.id === Number(postId));
+      return [200, { ...post, authorId: allPost.userId }];
+    }
 
     return [401];
   });

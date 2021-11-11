@@ -9,6 +9,8 @@ const S: Record<Required<ButtonProps>['variant'] | 'IconWrapper', any> = {
     border-radius: 4px;
     cursor: pointer;
     padding: 10px 20px;
+    display: flex;
+    align-items: center;
   `,
   secondary: styled.button`
     color: ${(props) => props.theme.colors.textColor.white};
@@ -17,6 +19,8 @@ const S: Record<Required<ButtonProps>['variant'] | 'IconWrapper', any> = {
     border-radius: 4px;
     cursor: pointer;
     padding: 10px 20px;
+    display: flex;
+    align-items: center;
   `,
   outlined: styled.button`
     color: ${(props) => props.theme.colors.textColor.black};
@@ -25,10 +29,13 @@ const S: Record<Required<ButtonProps>['variant'] | 'IconWrapper', any> = {
     border-radius: 4px;
     cursor: pointer;
     padding: 10px 20px;
+    display: flex;
+    align-items: center;
   `,
   IconWrapper: styled.div`
     display: inline;
     margin-right: 5px;
+    font-size: 16px;
   `,
 };
 

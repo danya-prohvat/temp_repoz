@@ -81,7 +81,7 @@ const MyAccount: React.FC = () => {
       <PagesSeparator marginTop="60px" marginBottom="50px" />
       <S.Posts>
         {posts.map((post) => (
-          <Post key={post.id} id={post.id} src={post.src} likes={post.likes} comments={post.comments} />
+          <Post key={post.id} id={post.id} src={post.src} likes={post.likesCount} comments={post.commentsCount} />
         ))}
 
         {postLoader && <Loader />}

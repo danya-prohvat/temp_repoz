@@ -57,6 +57,9 @@ const S = {
       background-color: ${(props) => props.theme.colors.backgroundColor.blue};
     }
   `,
+  InputWrapper: styled.div`
+    margin-bottom: 30px;
+  `,
 };
 
 export { S };

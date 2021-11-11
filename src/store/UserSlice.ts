@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import { config } from 'config';
 import { postRequest, getRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
 import { RootState } from './store';
-import { config } from 'config';
 import { User } from 'types/types';
-import { toast } from 'react-toastify';
 
 interface Post {
   id: number;
   src: string;
-  comments: number;
-  likes: number;
+  commentsCount: number;
+  likesCount: number;
 }
 interface SignUping {
   userNameIsExists: boolean;

@@ -34,6 +34,11 @@ export const typography = {
     fontWeight: 'bold',
     lineHeight: '42px',
   },
+  heading3: {
+    fontSize: '24px',
+    fontWeight: 'bold',
+    lineHeight: '42px',
+  },
   heading4: {
     fontSize: '44px',
     fontWeight: 'bold',
@@ -77,6 +82,8 @@ const darkTheme = {
       light: '#FFFFFF',
       white: '#FFFFFF',
       lightPink: '#F8D3D3',
+      beige: '#FEEFDA',
+      lightBeige: '#FFF6EA',
       transparent: 'rgba(0, 0, 0, 0)',
     },
     borderColor: {
@@ -108,6 +115,8 @@ const whiteTheme: Theme = {
       light: '#FFFFFF',
       white: '#FFFFFF',
       lightPink: '#F8D3D3',
+      beige: '#FEEFDA',
+      lightBeige: '#FFF6EA',
       transparent: 'rgba(0, 0, 0, 0)',
     },
     borderColor: {
