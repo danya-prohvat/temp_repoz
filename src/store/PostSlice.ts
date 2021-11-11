@@ -30,6 +30,12 @@ interface Comment {
   userName: string;
 }
 
+interface Likes {
+  id: number;
+  avatar: string;
+  userName: string;
+}
+
 interface PostStore {
   id: number | null;
   likesCount: number;
@@ -37,6 +43,7 @@ interface PostStore {
   src: string;
   author: Author;
   comments: Comment[];
+  likes: Likes[];
 }
 
 const initialState: PostStore = {
@@ -51,6 +58,7 @@ const initialState: PostStore = {
     subscribers: [],
   },
   comments: [],
+  likes: [],
 };
 
 export const getPost = createAsyncThunk(
@@ -68,6 +76,14 @@ export const getPost = createAsyncThunk(
 
 export const getPostAuthor = createAsyncThunk('post/getPostAuthor', async (userId: number) => {
   const response = await getRequest(apiUrls.getUser.url.replace(':userId', String(userId)));
+
+  return response.data;
+});
+
+export const getLikesThunk = createAsyncThunk('post/getLikesThunk', async ({ postId, userId }: GetPostThunkParams) => {
+  const response = await getRequest(
+    apiUrls.getLikes.url.replace(':userId', String(userId)).replace(':postId', String(postId)),
+  );
 
   return response.data;
 });
@@ -105,6 +121,9 @@ const PostSlice = createSlice({
         ];
       }
     },
+    setLikes(state, action: PayloadAction<Likes[]>) {
+      state.likes = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getPost.fulfilled, (state, action) => {
@@ -118,6 +137,12 @@ const PostSlice = createSlice({
     });
     builder.addCase(getPostAuthor.rejected, () => {
       toast.error('Such post not found');
+    });
+    builder.addCase(getLikesThunk.fulfilled, (state, action) => {
+      PostSlice.caseReducers.setLikes(state, action);
+    });
+    builder.addCase(getLikesThunk.rejected, () => {
+      toast.error('Such likes not found');
     });
   },
 });
@@ -143,6 +168,8 @@ export const getAuthorInfo = createSelector(getState, (state) => {
 });
 
 export const getComments = createSelector(getState, (state) => state.comments);
+
+export const getLikes = createSelector(getState, (state) => state.likes);
 
 export const { setPost, setAuthor, setCommentAuthor } = PostSlice.actions;
 export { PostSlice };

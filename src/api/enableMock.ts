@@ -47,6 +47,19 @@ export const enableMock = (): void => {
     return [401];
   });
 
+  mock.onGet(apiUrls.getLikes.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    const postId = config.url?.split('/')[3];
+
+    const allPost: any = posts.find((post) => post.userId === Number(userId));
+    if (allPost) {
+      const post = allPost.posts.find((post: { id: number }) => post.id === Number(postId));
+      return [200, post.likes];
+    }
+
+    return [401];
+  });
+
   mock.onGet(apiUrls.getPost.regexp).reply((config) => {
     const userId = config.url?.split('/')[1];
     const postId = config.url?.split('/')[2];

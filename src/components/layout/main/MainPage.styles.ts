@@ -9,11 +9,11 @@ const S = {
     background-color: ${(props) => props.theme.colors.backgroundColor.lightGray};
     border-bottom: 2px solid ${(props) => props.theme.colors.borderColor.gray};
     padding: 20px 40px;
-    z-index: 99;
+    z-index: 0;
   `,
   MainContent: styled.main`
     display: flex;
-    padding-top: 80px;
+    padding-top: 92px;
     padding-bottom: 60px;
   `,
   ChangeableContent: styled.div`
