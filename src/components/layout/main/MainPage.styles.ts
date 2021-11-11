@@ -16,6 +16,11 @@ const S = {
     padding-top: 80px;
     padding-bottom: 60px;
   `,
+  ChangeableContent: styled.div`
+    width: 100%;
+    padding-top: 70px;
+    display: flex;
+  `,
 };
 
 export { S };

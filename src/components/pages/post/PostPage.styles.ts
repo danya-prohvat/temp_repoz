@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 const S = {
   Container: styled.div`
-    padding-top: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
     width: 70%;
     margin: 0 auto;
     background-color: ${(props) => props.theme.colors.backgroundColor.beige};

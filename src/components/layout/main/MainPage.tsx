@@ -12,7 +12,7 @@ const Main: React.FC = ({ children }) => {
       </S.Header>
       <S.MainContent>
         <Sidebar />
-        {children}
+        <S.ChangeableContent>{children}</S.ChangeableContent>
       </S.MainContent>
     </>
   );
