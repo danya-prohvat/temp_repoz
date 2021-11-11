@@ -93,16 +93,6 @@ const S = {
     display: flex;
     position: relative;
   `,
-  Input: styled.input`
-    flex: 1 1 auto;
-    outline: none;
-    height: 40px;
-    background-color: ${(props) => props.theme.colors.backgroundColor.white};
-    border: 1px solid ${(props) => props.theme.colors.backgroundColor.darkGray};
-    border-radius: 2px;
-    font-size: 14px;
-    padding-left: 35px;
-  `,
   InputButton: styled.button`
     outline: none;
   `,
