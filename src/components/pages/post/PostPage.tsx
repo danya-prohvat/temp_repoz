@@ -21,7 +21,7 @@ const PostPage: React.FC = () => {
   const { t } = useTranslation();
   const { postId, userId } = useParams();
   const dispatch = useDispatch();
-  const [modalStatus, setModalStatus] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const { likesCount, commentsCount, src } = useSelector(getPosts);
   const { authorId, userName, avatar, subscribers } = useSelector(getAuthorInfo);
   const { id } = useSelector(getUserInfo);
@@ -39,16 +39,16 @@ const PostPage: React.FC = () => {
   });
 
   const openPopupOnClick = () => {
-    setModalStatus(true);
+    setOpenModal(true);
   };
 
   const onClose = () => {
-    setModalStatus(false);
+    setOpenModal(false);
   };
 
   return (
     <S.Container>
-      <Modal modalStatus={modalStatus} onClose={onClose}>
+      <Modal open={openModal} onClose={onClose}>
         <LikesModal />
       </Modal>
       <S.ImgWrapper>
