@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Typography } from 'components/common/typography';
 import { useSelector } from 'hooks/useTypedSelector';
 import { getLikesThunk, getLikes } from 'store/PostSlice';
-import { ModalLikesItem } from 'components/common/modalLikesItem';
+import { ModalLikesItem } from './modalLikesItem';
 import { S } from './LikesModal.styles';
 
 const LikesModal: React.FC = () => {

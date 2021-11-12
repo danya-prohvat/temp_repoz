@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -21,7 +21,7 @@ const PostPage: React.FC = () => {
   const { t } = useTranslation();
   const { postId, userId } = useParams();
   const dispatch = useDispatch();
-  const [openPopup, setOpenPopup] = React.useState(false);
+  const [modalStatus, setModalStatus] = useState(false);
   const { likesCount, commentsCount, src } = useSelector(getPosts);
   const { authorId, userName, avatar, subscribers } = useSelector(getAuthorInfo);
   const { id } = useSelector(getUserInfo);
@@ -39,20 +39,18 @@ const PostPage: React.FC = () => {
   });
 
   const openPopupOnClick = () => {
-    setOpenPopup(true);
+    setModalStatus(true);
   };
 
-  const closePopupOnClick = () => {
-    setOpenPopup(false);
+  const onClose = () => {
+    setModalStatus(false);
   };
 
   return (
     <S.Container>
-      {openPopup && (
-        <Modal open={openPopup} closePopupOnClick={closePopupOnClick}>
-          <LikesModal />
-        </Modal>
-      )}
+      <Modal modalStatus={modalStatus} onClose={onClose}>
+        <LikesModal />
+      </Modal>
       <S.ImgWrapper>
         <S.PostImg src={src} alt="post img" />
       </S.ImgWrapper>
