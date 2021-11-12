@@ -49,5 +49,8 @@
     "Saved": "Saved",
     "InputPlaceholder": "Leave a comment",
     "NoCommentsYet": "No comments yet"
+  },
+  "Popup": {
+    "NoLikesYet": "No likes yet"
   }
 }

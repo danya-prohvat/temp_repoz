@@ -1,0 +1,1 @@
+export { ModalLikesItem } from './ModalLikesItem';

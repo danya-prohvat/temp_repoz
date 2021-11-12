@@ -85,6 +85,7 @@ const darkTheme = {
       beige: '#FEEFDA',
       lightBeige: '#FFF6EA',
       transparent: 'rgba(0, 0, 0, 0)',
+      modalTransparent: 'rgba(78, 78, 78, 0.85)',
     },
     borderColor: {
       gray: '#DEDEDE',
@@ -118,6 +119,7 @@ const whiteTheme: Theme = {
       beige: '#FEEFDA',
       lightBeige: '#FFF6EA',
       transparent: 'rgba(0, 0, 0, 0)',
+      modalTransparent: 'rgba(78, 78, 78, 0.85)',
     },
     borderColor: {
       gray: '#DEDEDE',

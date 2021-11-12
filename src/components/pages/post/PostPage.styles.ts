@@ -60,6 +60,12 @@ const S = {
     align-items: center;
     font-size: 26px;
   `,
+  LikesButton: styled.button`
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: ${(props) => props.theme.colors.backgroundColor.transparent};
+  `,
   SaveMark: styled.div`
     text-align: right;
     flex: 1 1 auto;
@@ -103,7 +109,7 @@ const S = {
     transform: translateY(-50%);
     left: 10px;
     display: flex;
-    z-index: 99;
+    z-index: 0;
   `,
 };
 

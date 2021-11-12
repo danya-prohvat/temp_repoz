@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -14,11 +14,14 @@ import { Button } from 'components/common/button';
 import { S } from './PostPage.styles';
 import { Input } from 'components/common/input';
 import { Comment } from 'components/common/comment';
+import { Modal } from 'components/common/modal';
+import { LikesModal } from 'components/pages/likesModal';
 
 const PostPage: React.FC = () => {
   const { t } = useTranslation();
   const { postId, userId } = useParams();
   const dispatch = useDispatch();
+  const [openModal, setOpenModal] = useState(false);
   const { likesCount, commentsCount, src } = useSelector(getPosts);
   const { authorId, userName, avatar, subscribers } = useSelector(getAuthorInfo);
   const { id } = useSelector(getUserInfo);
@@ -35,8 +38,19 @@ const PostPage: React.FC = () => {
     },
   });
 
+  const openPopupOnClick = () => {
+    setOpenModal(true);
+  };
+
+  const onClose = () => {
+    setOpenModal(false);
+  };
+
   return (
     <S.Container>
+      <Modal open={openModal} onClose={onClose}>
+        <LikesModal />
+      </Modal>
       <S.ImgWrapper>
         <S.PostImg src={src} alt="post img" />
       </S.ImgWrapper>
@@ -53,12 +67,14 @@ const PostPage: React.FC = () => {
           )}
         </S.AuthorBlock>
         <S.PostInfoBlock>
-          <S.PostInfoElement>
-            <S.IconWrapper>
-              <Icon type="heart" />
-            </S.IconWrapper>
-            <Typography type="body3Bold">{likesCount}</Typography>
-          </S.PostInfoElement>
+          <S.LikesButton onClick={openPopupOnClick}>
+            <S.PostInfoElement>
+              <S.IconWrapper>
+                <Icon type="heart" />
+              </S.IconWrapper>
+              <Typography type="body3Bold">{likesCount}</Typography>
+            </S.PostInfoElement>
+          </S.LikesButton>
           <S.PostInfoElement>
             <S.IconWrapper>
               <Icon type="comment" />
@@ -90,9 +106,6 @@ const PostPage: React.FC = () => {
           </S.CommentsWrapper>
 
           <S.InputBlock onSubmit={formik.handleSubmit}>
-            <S.InputIcon>
-              <Icon type="comment" />
-            </S.InputIcon>
             <Input
               label="PostPage.InputPlaceholder"
               input="comment"
@@ -101,6 +114,9 @@ const PostPage: React.FC = () => {
               values={formik.values}
             />
             <Button icon="pencil" variant="primary" />
+            <S.InputIcon>
+              <Icon type="comment" />
+            </S.InputIcon>
           </S.InputBlock>
         </S.CommentsBlock>
       </S.Info>
