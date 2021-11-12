@@ -17,9 +17,8 @@ const S = {
     position: absolute;
     padding-top: 60px;
     width: 400px;
-    text-align: center;
     border-radius: 4px;
-    padding-bottom: 30px;
+    padding-bottom: 25px;
     background-color: ${(props) => props.theme.colors.backgroundColor.white};
   `,
   Button: styled.button`

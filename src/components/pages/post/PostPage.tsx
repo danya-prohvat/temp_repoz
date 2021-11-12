@@ -14,7 +14,8 @@ import { Button } from 'components/common/button';
 import { S } from './PostPage.styles';
 import { Input } from 'components/common/input';
 import { Comment } from 'components/common/comment';
-import { Popup } from 'components/common/popup';
+import { Modal } from 'components/common/modal';
+import { LikesModal } from 'components/pages/likesModal';
 
 const PostPage: React.FC = () => {
   const { t } = useTranslation();
@@ -47,7 +48,11 @@ const PostPage: React.FC = () => {
 
   return (
     <S.Container>
-      {openPopup && <Popup open={openPopup} closePopupOnClick={closePopupOnClick} />}
+      {openPopup && (
+        <Modal open={openPopup} closePopupOnClick={closePopupOnClick}>
+          <LikesModal />
+        </Modal>
+      )}
       <S.ImgWrapper>
         <S.PostImg src={src} alt="post img" />
       </S.ImgWrapper>

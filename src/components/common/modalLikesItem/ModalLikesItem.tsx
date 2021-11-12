@@ -1,14 +1,14 @@
 import { locations } from 'routing/locations';
 import { Typography } from 'components/common/typography';
-import { S } from './PopupItem.styles';
+import { S } from './ModalLikesItem.styles';
 
-interface PopupItemProps {
+interface ModalLikesItemProps {
   id: number;
   avatar: string;
   userName: string;
 }
 
-const PopupItem: React.FC<PopupItemProps> = ({ id, avatar, userName }) => {
+const ModalLikesItem: React.FC<ModalLikesItemProps> = ({ id, avatar, userName }) => {
   return (
     <S.PopupItem to={locations.user.replace(':userId', String(id))}>
       <S.Avatar src={avatar} />
@@ -19,4 +19,4 @@ const PopupItem: React.FC<PopupItemProps> = ({ id, avatar, userName }) => {
   );
 };
 
-export { PopupItem };
+export { ModalLikesItem };
