@@ -19,7 +19,7 @@ const User: React.FC = () => {
       data-tip
       data-for="tooltip"
     >
-      <Avatar src={'https://reactjs.org/logo-og.png'} />
+      <Avatar size="50px" src={'https://reactjs.org/logo-og.png'} />
       <Typography type="body1Bold">{userName}</Typography>
       <S.IconWrapper>
         <Icon type={'arrow-down'} />

@@ -5,4 +5,5 @@ export const env = {
   axiosTimeout: Number(process.env.REACT_APP_API_AXIOS_TIMEOUT) || 4000,
   externalLink: String(process.env.REACT_APP_API_EXTERNAL_LINK) || '#',
   useLogger: Boolean(process.env.REACT_APP_USE_LOGGER) || false,
+  maxImageSize: String(process.env.REACT_APP_USE_MAX_IMAGE_SIZE) || '5MB',
 };

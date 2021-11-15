@@ -12,7 +12,9 @@
       "postsCount": 13,
       "subscribersCount": 876,
       "subscriptionsCount": 987,
-      "subscribers": [1, 3]
+      "subscribers": [1, 3],
+      "privateProfile": false,
+      "allowComments": true
     },
     {
       "userName": "user2",
@@ -26,7 +28,9 @@
       "postsCount": 3,
       "subscribersCount": 221,
       "subscriptionsCount": 978,
-      "subscribers": [1, 3]
+      "subscribers": [1, 3],
+      "privateProfile": true,
+      "allowComments": false
     },
     {
       "userName": "user3",
@@ -40,7 +44,9 @@
       "postsCount": 5,
       "subscribersCount": 123,
       "subscriptionsCount": 432,
-      "subscribers": [1, 2]
+      "subscribers": [1, 2],
+      "privateProfile": false,
+      "allowComments": true
     }
   ]
 }

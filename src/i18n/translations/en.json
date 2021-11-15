@@ -52,5 +52,12 @@
   },
   "Popup": {
     "NoLikesYet": "No likes yet"
+  },
+  "Settings": {
+    "MySettings": "My Settings",
+    "EditAvatar": "Edit avatar",
+    "RemoveAvatar": "Remove avatar",
+    "PrivateProfile": "Private profile",
+    "AllowComments": "Allow comments"
   }
 }

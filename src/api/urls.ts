@@ -7,7 +7,7 @@ export const apiUrls = {
     regexp: /user\/\d+$/,
   },
   patchUser: {
-    url: '/user/:userId',
+    url: 'user/:userId',
     regexp: /user\/\d+$/,
   },
   deleteUser: {

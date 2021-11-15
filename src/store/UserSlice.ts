@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { config } from 'config';
-import { postRequest, getRequest } from 'api/apiClient';
+import { postRequest, getRequest, patchRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
@@ -40,6 +40,8 @@ const initialState: UserStore = {
     postsCount: 0,
     subscribersCount: 0,
     subscriptionsCount: 0,
+    privateProfile: false,
+    allowComments: false,
   },
   signUping: {
     userNameIsExists: false,
@@ -83,6 +85,14 @@ export const getMeThunk = createAsyncThunk('user/getMe', async () => {
   return response.data;
 });
 
+export const patchUser = createAsyncThunk('user/patchUser', async (data: any, { getState }: any) => {
+  const { user } = getState().user;
+  const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data;
+});
+
 export const verifyUserThunk = createAsyncThunk('user/verifyUser', async (_, { dispatch }) => {
   try {
     await getRequest(apiUrls.verifyUser.url);
@@ -100,7 +110,7 @@ const UserSlice = createSlice({
     changeAuthorization(state) {
       state.isAuthorized = true;
     },
-    signInUser(state, action: PayloadAction<User>) {
+    setUser(state, action: PayloadAction<User>) {
       state.user = { ...action.payload };
     },
     incrementPageSize(state) {
@@ -124,12 +134,12 @@ const UserSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getMeThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
-      UserSlice.caseReducers.signInUser(state, action);
+      UserSlice.caseReducers.setUser(state, action);
       localStorage.setItem('token', action.payload.token);
     });
     builder.addCase(signInThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
-      UserSlice.caseReducers.signInUser(state, action);
+      UserSlice.caseReducers.setUser(state, action);
       toast.success('You authorized');
       localStorage.setItem('token', action.payload.token);
     });
@@ -138,7 +148,7 @@ const UserSlice = createSlice({
     });
     builder.addCase(signUpThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
-      UserSlice.caseReducers.signInUser(state, action);
+      UserSlice.caseReducers.setUser(state, action);
       toast.success('You authorized');
       localStorage.setItem('token', action.payload.token);
     });
@@ -167,6 +177,12 @@ const UserSlice = createSlice({
       UserSlice.caseReducers.changePostLoader(state);
       toast.error('Error');
     });
+    builder.addCase(patchUser.fulfilled, (state, action) => {
+      UserSlice.caseReducers.setUser(state, action);
+    });
+    builder.addCase(patchUser.rejected, () => {
+      toast.error('Error');
+    });
   },
 });
 
@@ -182,6 +198,8 @@ export const getUserInfo = createSelector(getState, (state) => {
     postsCount: state.user.postsCount,
     subscribersCount: state.user.subscribersCount,
     subscriptionsCount: state.user.subscriptionsCount,
+    privateProfile: state.user.privateProfile,
+    allowComments: state.user.allowComments,
   };
 });
 export const getPostsInfo = createSelector(getState, (state) => {
@@ -195,6 +213,6 @@ export const checkNewUserName = createSelector(getState, (state) => {
   return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
 });
 
-export const { signInUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader, resetUser } =
+export const { setUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader, resetUser } =
   UserSlice.actions;
 export { UserSlice };

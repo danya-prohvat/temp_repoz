@@ -62,6 +62,6 @@ export const putRequest = (
 
 export const patchRequest = (
   url: string,
-  data?: Record<string, unknown>,
+  data?: Record<string, unknown> | FormData,
   config?: AxiosRequestConfig<any> | undefined,
 ): Promise<any> => instance.patch(url, data, config);
