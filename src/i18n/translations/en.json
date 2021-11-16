@@ -62,6 +62,9 @@
     "CurrentPassword": "Current Password",
     "NewPassword": "New Password",
     "RepeatNewPassword": "Repeat New Password",
-    "Update": "Update "
+    "Update": "Update",
+    "Required": "Required",
+    "PasswordsMustMatch": "Passwords must match",
+    "PasswordMustNotMatchWithCurrentPassword": "Password must not match with current password"
   }
 }

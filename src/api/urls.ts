@@ -23,6 +23,10 @@ export const apiUrls = {
   checkNewUserName: {
     url: '/user/check-new-user-name',
   },
+  checkPassword: {
+    url: 'users/:userId/new-password',
+    regexp: /users\/\d+\/new-password$/,
+  },
   verifyUser: {
     url: '/auth/verify',
   },

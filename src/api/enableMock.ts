@@ -32,7 +32,7 @@ export const enableMock = (): void => {
     const user = users.find((user) => user.id === Number(userId));
     if (user) return [200, pick(user, ['userName', 'avatar', 'id', 'subscribers'])];
 
-    return [401];
+    return [404];
   });
 
   mock.onPatch(apiUrls.patchUser.regexp).reply((config) => {
@@ -44,21 +44,24 @@ export const enableMock = (): void => {
       if (user)
         return [
           200,
-          {
-            ...user,
-            avatar:
-              'https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/687822/cover-react-context-api-4929b3703a1a7082d99b53eb1bbfc31f.png',
-          },
+          omit(
+            {
+              ...user,
+              avatar:
+                'https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/687822/cover-react-context-api-4929b3703a1a7082d99b53eb1bbfc31f.png',
+            },
+            ['password'],
+          ),
         ];
     } else {
       const data = JSON.parse(config.data);
       const user = users.find((user) => user.id === Number(userId));
       if (user) {
-        return [200, { ...user, ...data }];
+        return [200, omit({ ...user, ...data }, ['password'])];
       }
     }
 
-    return [401];
+    return [404];
   });
 
   mock.onGet(apiUrls.getPosts.regexp).reply((config) => {
@@ -83,7 +86,7 @@ export const enableMock = (): void => {
       return [200, post.likes];
     }
 
-    return [401];
+    return [404];
   });
 
   mock.onGet(apiUrls.getPost.regexp).reply((config) => {
@@ -96,7 +99,7 @@ export const enableMock = (): void => {
       return [200, { ...post, authorId: allPost.userId }];
     }
 
-    return [401];
+    return [404];
   });
 
   mock.onPost(apiUrls.signIn.url).reply((config) => {
@@ -121,6 +124,16 @@ export const enableMock = (): void => {
 
     if (!users.find((user) => user.userName === data.userName)) return [200, `such user name isn't exist`];
 
-    return [400, 'such user name is exist'];
+    return [404, 'such user name is exist'];
+  });
+
+  mock.onPost(apiUrls.checkPassword.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    const data = JSON.parse(config.data);
+
+    const user = users.find((user) => user.id === Number(userId));
+    if (user && user.password === data.currentPassword) return [200, `its your password`];
+
+    return [404, 'it isnt your password'];
   });
 };

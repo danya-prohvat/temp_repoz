@@ -18,10 +18,17 @@ interface SignUping {
   userNameIsExists: boolean;
   errorMessage: string;
 }
+
+interface ChangePassword {
+  changePasswordIsExists: boolean;
+  errorMessage: string;
+}
+
 interface UserStore {
   isAuthorized: boolean;
   user: User;
   signUping: SignUping;
+  changePassword: ChangePassword;
   limit: number;
   offset: number;
   postLoader: boolean;
@@ -45,6 +52,10 @@ const initialState: UserStore = {
   },
   signUping: {
     userNameIsExists: false,
+    errorMessage: '',
+  },
+  changePassword: {
+    changePasswordIsExists: false,
     errorMessage: '',
   },
   limit: config.constants.postsLimit,
@@ -80,6 +91,16 @@ export const checkNewUserNameThunk = createAsyncThunk('user/checkNewUserName', a
   return response.data;
 });
 
+export const checkPasswordThunk = createAsyncThunk(
+  'user/checkPasswordThunk',
+  async (data: { currentPassword: string }, { getState }: any) => {
+    const { user } = getState().user;
+
+    const response = await postRequest(apiUrls.checkPassword.url.replace(':userId', user.id), data);
+    return response.data;
+  },
+);
+
 export const getMeThunk = createAsyncThunk('user/getMe', async () => {
   const response = await getRequest(apiUrls.getMe.url);
   return response.data;
@@ -87,8 +108,19 @@ export const getMeThunk = createAsyncThunk('user/getMe', async () => {
 
 export const patchUser = createAsyncThunk('user/patchUser', async (data: any, { getState }: any) => {
   const { user } = getState().user;
+
+  let headers;
+  try {
+    if (data.has('avatar')) {
+      console.log(555);
+      headers = { 'Content-Type': 'multipart/form-data' };
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
   const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers,
   });
   return response.data;
 });
@@ -166,6 +198,17 @@ const UserSlice = createSlice({
       state.signUping.userNameIsExists = false;
       state.signUping.errorMessage = 'Sorry, this username is taken';
     });
+    builder.addCase(checkPasswordThunk.pending, (state) => {
+      state.changePassword.errorMessage = '';
+    });
+    builder.addCase(checkPasswordThunk.fulfilled, (state) => {
+      state.changePassword.changePasswordIsExists = true;
+      state.changePassword.errorMessage = '';
+    });
+    builder.addCase(checkPasswordThunk.rejected, (state) => {
+      state.changePassword.changePasswordIsExists = false;
+      state.changePassword.errorMessage = 'Sorry, its not your password';
+    });
     builder.addCase(getPostsThunk.pending, (state) => {
       UserSlice.caseReducers.changePostLoader(state);
     });
@@ -211,6 +254,12 @@ export const getPostsInfo = createSelector(getState, (state) => {
 export const checkAuthorization = createSelector(getState, (state) => state.isAuthorized);
 export const checkNewUserName = createSelector(getState, (state) => {
   return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
+});
+export const checkPassword = createSelector(getState, (state) => {
+  return {
+    changePasswordIsExists: state.changePassword.changePasswordIsExists,
+    errorMessage: state.changePassword.errorMessage,
+  };
 });
 
 export const { setUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader, resetUser } =
