@@ -21,6 +21,8 @@ const S = {
     margin-right: 40px;
   `,
   ProfileToggles: styled.div``,
+  ProfileSettings: styled.div``,
+  PasswordSettings: styled.div``,
 };
 
 export { S };
