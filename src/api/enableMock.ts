@@ -44,20 +44,17 @@ export const enableMock = (): void => {
       if (user)
         return [
           200,
-          omit(
-            {
-              ...user,
-              avatar:
-                'https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/687822/cover-react-context-api-4929b3703a1a7082d99b53eb1bbfc31f.png',
-            },
-            ['password'],
-          ),
+          {
+            ...user,
+            avatar:
+              'https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/687822/cover-react-context-api-4929b3703a1a7082d99b53eb1bbfc31f.png',
+          },
         ];
     } else {
       const data = JSON.parse(config.data);
       const user = users.find((user) => user.id === Number(userId));
       if (user) {
-        return [200, omit({ ...user, ...data }, ['password'])];
+        return [200, { ...user, ...data }];
       }
     }
 
@@ -127,13 +124,13 @@ export const enableMock = (): void => {
     return [404, 'such user name is exist'];
   });
 
-  mock.onPost(apiUrls.checkPassword.regexp).reply((config) => {
+  mock.onPost(apiUrls.updatePassword.regexp).reply((config) => {
     const userId = config.url?.split('/')[1];
     const data = JSON.parse(config.data);
 
     const user = users.find((user) => user.id === Number(userId));
-    if (user && user.password === data.currentPassword) return [200, `its your password`];
+    if (user && user.password === data.currentPassword) return [200, 'your password was changed'];
 
-    return [404, 'it isnt your password'];
+    return [404, "it isn't your password"];
   });
 };

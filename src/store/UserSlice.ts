@@ -19,16 +19,10 @@ interface SignUping {
   errorMessage: string;
 }
 
-interface ChangePassword {
-  changePasswordIsExists: boolean;
-  errorMessage: string;
-}
-
 interface UserStore {
   isAuthorized: boolean;
   user: User;
   signUping: SignUping;
-  changePassword: ChangePassword;
   limit: number;
   offset: number;
   postLoader: boolean;
@@ -52,10 +46,6 @@ const initialState: UserStore = {
   },
   signUping: {
     userNameIsExists: false,
-    errorMessage: '',
-  },
-  changePassword: {
-    changePasswordIsExists: false,
     errorMessage: '',
   },
   limit: config.constants.postsLimit,
@@ -91,12 +81,12 @@ export const checkNewUserNameThunk = createAsyncThunk('user/checkNewUserName', a
   return response.data;
 });
 
-export const checkPasswordThunk = createAsyncThunk(
-  'user/checkPasswordThunk',
-  async (data: { currentPassword: string }, { getState }: any) => {
+export const updatePasswordThunk = createAsyncThunk(
+  'user/updatePasswordThunk',
+  async (data: any, { getState }: any) => {
     const { user } = getState().user;
 
-    const response = await postRequest(apiUrls.checkPassword.url.replace(':userId', user.id), data);
+    const response = await postRequest(apiUrls.updatePassword.url.replace(':userId', user.id), data);
     return response.data;
   },
 );
@@ -198,16 +188,11 @@ const UserSlice = createSlice({
       state.signUping.userNameIsExists = false;
       state.signUping.errorMessage = 'Sorry, this username is taken';
     });
-    builder.addCase(checkPasswordThunk.pending, (state) => {
-      state.changePassword.errorMessage = '';
+    builder.addCase(updatePasswordThunk.fulfilled, (state, action) => {
+      toast.success(action.payload);
     });
-    builder.addCase(checkPasswordThunk.fulfilled, (state) => {
-      state.changePassword.changePasswordIsExists = true;
-      state.changePassword.errorMessage = '';
-    });
-    builder.addCase(checkPasswordThunk.rejected, (state) => {
-      state.changePassword.changePasswordIsExists = false;
-      state.changePassword.errorMessage = 'Sorry, its not your password';
+    builder.addCase(updatePasswordThunk.rejected, () => {
+      toast.error("it isn't your password");
     });
     builder.addCase(getPostsThunk.pending, (state) => {
       UserSlice.caseReducers.changePostLoader(state);
@@ -254,12 +239,6 @@ export const getPostsInfo = createSelector(getState, (state) => {
 export const checkAuthorization = createSelector(getState, (state) => state.isAuthorized);
 export const checkNewUserName = createSelector(getState, (state) => {
   return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
-});
-export const checkPassword = createSelector(getState, (state) => {
-  return {
-    changePasswordIsExists: state.changePassword.changePasswordIsExists,
-    errorMessage: state.changePassword.errorMessage,
-  };
 });
 
 export const { setUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader, resetUser } =
