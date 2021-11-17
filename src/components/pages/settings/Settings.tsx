@@ -9,7 +9,7 @@ import { Typography } from 'components/common/typography';
 import { Button } from 'components/common/button';
 import { Avatar } from 'components/common/avatar';
 import { Switch } from 'components/common/switch';
-import { getUserInfo, patchUser } from 'store/UserSlice';
+import { getUserInfo, patchUser, patchUserAvatar } from 'store/UserSlice';
 import { S } from './Settings.styles';
 import { UpdatePassword } from 'components/core/updatePassword';
 import { UpdateProfile } from 'components/core/updateProfile';
@@ -27,7 +27,7 @@ const Settings: React.FC = () => {
       else {
         const fd: FormData = new FormData();
         fd.append('avatar', event.currentTarget.files[0]);
-        dispatch(patchUser(fd));
+        dispatch(patchUserAvatar(fd));
       }
   };
 
@@ -61,7 +61,7 @@ const Settings: React.FC = () => {
         <Typography type="heading2">{t(`Settings.MySettings`)}</Typography>
       </S.H2>
       <S.AvatarSettings>
-        <Avatar src={avatar} size="200px" />
+        <Avatar src={avatar || ''} size="200px" />
 
         <S.Label htmlFor="file">
           <Typography type="button1">{t('Settings.EditAvatar')}</Typography>

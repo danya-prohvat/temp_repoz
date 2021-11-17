@@ -1,3 +1,4 @@
+import { updatePasswordProps } from './../components/core/updatePassword/UpdatePassword';
 import { createSlice, PayloadAction, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { config } from 'config';
@@ -14,15 +15,15 @@ interface Post {
   commentsCount: number;
   likesCount: number;
 }
-interface SignUping {
-  userNameIsExists: boolean;
+interface checkUserName {
+  exist: boolean;
   errorMessage: string;
 }
 
 interface UserStore {
   isAuthorized: boolean;
   user: User;
-  signUping: SignUping;
+  checkUserName: checkUserName;
   limit: number;
   offset: number;
   postLoader: boolean;
@@ -45,8 +46,8 @@ const initialState: UserStore = {
     privateProfile: false,
     allowComments: false,
   },
-  signUping: {
-    userNameIsExists: false,
+  checkUserName: {
+    exist: false,
     errorMessage: '',
   },
   limit: config.constants.postsLimit,
@@ -78,14 +79,13 @@ export const signUpThunk = createAsyncThunk('user/signUp', async ({ userName, em
 });
 
 export const checkNewUserNameThunk = createAsyncThunk('user/checkNewUserName', async (userName: string) => {
-  // throw new Error();
   const response = await postRequest(apiUrls.checkNewUserName.url, { userName });
   return response.data;
 });
 
 export const updatePasswordThunk = createAsyncThunk(
   'user/updatePasswordThunk',
-  async (data: any, { getState }: any) => {
+  async (data: updatePasswordProps, { getState }: any) => {
     const { user } = getState().user;
 
     const response = await postRequest(apiUrls.updatePassword.url.replace(':userId', user.id), data);
@@ -98,35 +98,34 @@ export const getMeThunk = createAsyncThunk('user/getMe', async () => {
   return response.data;
 });
 
-export const patchUser = createAsyncThunk('user/patchUser', async (data: any, { dispatch, getState }: any) => {
+export const patchUserAvatar = createAsyncThunk('user/patchUser', async (data: FormData, { getState }: any) => {
   const { user } = getState().user;
 
-  let headers;
-  try {
-    if (data.has('avatar')) {
-      headers = { 'Content-Type': 'multipart/form-data' };
-    }
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data;
+});
 
-  if (data.userName && data.userName !== user.userName) {
-    await dispatch(checkNewUserNameThunk(data.userName));
-    const { signUping } = getState().user;
+export const patchUser = createAsyncThunk(
+  'user/patchUser',
+  async (data: Partial<User>, { dispatch, getState }: any) => {
+    const { user } = getState().user;
 
-    if (signUping.userNameIsExists) {
-      const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
-        headers,
-      });
+    if (data.userName && data.userName !== user.userName) {
+      await dispatch(checkNewUserNameThunk(data.userName));
+      const { checkUserName } = getState().user;
+      // TODO: naming
+      if (checkUserName.exist) {
+        const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data);
+        return response.data;
+      }
+    } else {
+      const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data);
       return response.data;
     }
-  } else {
-    const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
-      headers,
-    });
-    return response.data;
-  }
-});
+  },
+);
 
 export const verifyUserThunk = createAsyncThunk('user/verifyUser', async (_, { dispatch }) => {
   try {
@@ -193,15 +192,15 @@ const UserSlice = createSlice({
       toast.error('Error');
     });
     builder.addCase(checkNewUserNameThunk.pending, (state) => {
-      state.signUping.errorMessage = '';
+      state.checkUserName.errorMessage = '';
     });
     builder.addCase(checkNewUserNameThunk.fulfilled, (state) => {
-      state.signUping.userNameIsExists = true;
-      state.signUping.errorMessage = '';
+      state.checkUserName.exist = true;
+      state.checkUserName.errorMessage = '';
     });
     builder.addCase(checkNewUserNameThunk.rejected, (state) => {
-      state.signUping.userNameIsExists = false;
-      state.signUping.errorMessage = 'Sorry, this username is taken';
+      state.checkUserName.exist = false;
+      state.checkUserName.errorMessage = 'Sorry, this username is taken';
     });
     builder.addCase(updatePasswordThunk.fulfilled, (state, action) => {
       toast.success(action.payload);
@@ -255,7 +254,7 @@ export const getPostsInfo = createSelector(getState, (state) => {
 });
 export const checkAuthorization = createSelector(getState, (state) => state.isAuthorized);
 export const checkNewUserName = createSelector(getState, (state) => {
-  return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
+  return { exist: state.checkUserName.exist, errorMessage: state.checkUserName.errorMessage };
 });
 
 export const { setUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader, resetUser } =

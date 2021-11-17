@@ -11,7 +11,7 @@ export interface TextareaProps
   errorMessage?: string;
   errors?: FormikErrors<FormikValues>;
   values?: FormikValues;
-  textarea?: string;
+  textareaName?: string;
   hasLabel?: boolean;
   label?: string;
   // TODO
@@ -24,7 +24,7 @@ const Textarea: React.FC<TextareaProps> = ({
   handleChange,
   errors,
   values,
-  textarea,
+  textareaName,
   label,
   hasLabel,
   ...rest
@@ -34,7 +34,7 @@ const Textarea: React.FC<TextareaProps> = ({
   return (
     <S.FieldWrapper>
       {hasLabel && (
-        <S.FieldLabel htmlFor={textarea}>
+        <S.FieldLabel htmlFor={textareaName}>
           <Typography type="label1">
             {t(String(label))}
             {required && '*'}
@@ -43,20 +43,20 @@ const Textarea: React.FC<TextareaProps> = ({
       )}
       <S.Field
         disabled={disabled}
-        id={textarea}
-        name={textarea}
+        id={textareaName}
+        name={textareaName}
         placeholder={t(String(label))}
         onChange={handleChange}
-        value={values && textarea && values[textarea]}
+        value={values && textareaName && values[textareaName]}
         {...rest}
       />
-      {errors && textarea && errors[textarea] && (
+      {errors && textareaName && errors[textareaName] && (
         <>
-          <S.IconWrapper data-type="light" data-border={true} data-tip data-for={`${textarea}Error`}>
+          <S.IconWrapper data-type="light" data-border={true} data-tip data-for={`${textareaName}Error`}>
             <Icon type="warning" />
           </S.IconWrapper>
-          <ReactTooltip borderColor="red" textColor="red" id={`${textarea}Error`} place="bottom" effect="solid">
-            {errors && textarea && errors[textarea]}
+          <ReactTooltip borderColor="red" textColor="red" id={`${textareaName}Error`} place="bottom" effect="solid">
+            {errors && textareaName && errors[textareaName]}
           </ReactTooltip>
         </>
       )}

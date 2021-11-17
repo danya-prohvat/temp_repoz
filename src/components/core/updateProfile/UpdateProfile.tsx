@@ -54,7 +54,7 @@ const UpdateProfile: React.FC = () => {
           <Input
             label="Settings.Username"
             hasLabel={true}
-            input="userName"
+            inputName="userName"
             type="text"
             handleChange={formik.handleChange}
             errors={formik.errors}
@@ -65,7 +65,7 @@ const UpdateProfile: React.FC = () => {
         <Input
           label="Settings.FirstName"
           hasLabel={true}
-          input="firstName"
+          inputName="firstName"
           type="text"
           handleChange={formik.handleChange}
           errors={formik.errors}
@@ -77,7 +77,7 @@ const UpdateProfile: React.FC = () => {
           <Input
             label="Settings.Email"
             hasLabel={true}
-            input="email"
+            inputName="email"
             type="email"
             handleChange={formik.handleChange}
             errors={formik.errors}
@@ -87,7 +87,7 @@ const UpdateProfile: React.FC = () => {
         <Input
           label="Settings.LastName"
           hasLabel={true}
-          input="lastName"
+          inputName="lastName"
           type="text"
           handleChange={formik.handleChange}
           errors={formik.errors}
@@ -98,7 +98,8 @@ const UpdateProfile: React.FC = () => {
         <Textarea
           label="Settings.Description"
           hasLabel={true}
-          textarea="profileDescription"
+          //TODO: naming
+          textareaName="profileDescription"
           handleChange={formik.handleChange}
           errors={formik.errors}
           values={formik.values}

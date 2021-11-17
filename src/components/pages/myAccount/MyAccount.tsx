@@ -43,7 +43,7 @@ const MyAccount: React.FC = () => {
   return (
     <S.Container>
       <S.UserInfo>
-        <S.UserImg src={avatar} />
+        <S.UserImg src={avatar || ''} />
         <S.ProfileInfo>
           <S.UserNameBlock>
             <S.UserName>

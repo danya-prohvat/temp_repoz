@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import axios, { AxiosRequestConfig } from 'axios';
 import { config as envConfig } from 'config';
 
@@ -48,20 +49,11 @@ export const getRequest = (url: string, config?: AxiosRequestConfig<any> | undef
 export const deleteRequest = (url: string, config?: AxiosRequestConfig<any> | undefined): Promise<any> =>
   instance.delete(url, config);
 
-export const postRequest = (
-  url: string,
-  data: Record<string, unknown>,
-  config?: AxiosRequestConfig<any> | undefined,
-): Promise<any> => instance.post(url, data, config);
+export const postRequest = (url: string, data: any, config?: AxiosRequestConfig<any> | undefined): Promise<any> =>
+  instance.post(url, data, config);
 
-export const putRequest = (
-  url: string,
-  data?: Record<string, unknown>,
-  config?: AxiosRequestConfig<any> | undefined,
-): Promise<any> => instance.put(url, data, config);
+export const putRequest = (url: string, data?: any, config?: AxiosRequestConfig<any> | undefined): Promise<any> =>
+  instance.put(url, data, config);
 
-export const patchRequest = (
-  url: string,
-  data?: Record<string, unknown> | FormData,
-  config?: AxiosRequestConfig<any> | undefined,
-): Promise<any> => instance.patch(url, data, config);
+export const patchRequest = (url: string, data?: any, config?: AxiosRequestConfig<any> | undefined): Promise<any> =>
+  instance.patch(url, data, config);

@@ -57,7 +57,7 @@ const SignInForm: React.FC = () => {
         <Input
           label="Sign-in/up.Email"
           hasLabel={true}
-          input="email"
+          inputName="email"
           type="email"
           handleChange={formik.handleChange}
           errors={formik.errors}
@@ -69,7 +69,7 @@ const SignInForm: React.FC = () => {
         <Input
           label="Sign-in/up.Password"
           hasLabel={true}
-          input="password"
+          inputName="password"
           type="password"
           handleChange={formik.handleChange}
           errors={formik.errors}

@@ -51,7 +51,7 @@ const UpdatePassword: React.FC = () => {
         <Input
           label="Settings.CurrentPassword"
           hasLabel={true}
-          input="currentPassword"
+          inputName="currentPassword"
           type="password"
           handleChange={formik.handleChange}
           errors={formik.errors}
@@ -63,7 +63,7 @@ const UpdatePassword: React.FC = () => {
         <Input
           label="Settings.NewPassword"
           hasLabel={true}
-          input="password"
+          inputName="password"
           type="password"
           handleChange={formik.handleChange}
           errors={formik.errors}
@@ -76,7 +76,7 @@ const UpdatePassword: React.FC = () => {
         <Input
           label="Settings.RepeatNewPassword"
           hasLabel={true}
-          input="repeatPassword"
+          inputName="repeatPassword"
           type="password"
           handleChange={formik.handleChange}
           errors={formik.errors}

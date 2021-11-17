@@ -32,7 +32,7 @@ export const enableMock = (): void => {
     const user = users.find((user) => user.id === Number(userId));
     if (user) return [200, pick(user, ['userName', 'avatar', 'id', 'subscribers'])];
 
-    return [404];
+    return [400];
   });
 
   mock.onPatch(apiUrls.patchUser.regexp).reply((config) => {
@@ -58,7 +58,7 @@ export const enableMock = (): void => {
       }
     }
 
-    return [404];
+    return [400];
   });
 
   mock.onGet(apiUrls.getPosts.regexp).reply((config) => {
@@ -83,7 +83,7 @@ export const enableMock = (): void => {
       return [200, post.likes];
     }
 
-    return [404];
+    return [400];
   });
 
   mock.onGet(apiUrls.getPost.regexp).reply((config) => {
@@ -96,7 +96,7 @@ export const enableMock = (): void => {
       return [200, { ...post, authorId: allPost.userId }];
     }
 
-    return [404];
+    return [400];
   });
 
   mock.onPost(apiUrls.signIn.url).reply((config) => {
@@ -121,7 +121,7 @@ export const enableMock = (): void => {
 
     if (!users.find((user) => user.userName === data.userName)) return [200, `such user name isn't exist`];
 
-    return [404, 'such user name is exist'];
+    return [400];
   });
 
   mock.onPost(apiUrls.updatePassword.regexp).reply((config) => {
@@ -131,6 +131,6 @@ export const enableMock = (): void => {
     const user = users.find((user) => user.id === Number(userId));
     if (user && user.password === data.currentPassword) return [200, 'your password was changed'];
 
-    return [404, "it isn't your password"];
+    return [400, "it isn't your password"];
   });
 };

@@ -11,7 +11,7 @@ export interface InputProps
   errorMessage?: string;
   errors?: FormikErrors<FormikValues>;
   values?: FormikValues;
-  input?: string;
+  inputName?: string;
   hasLabel?: boolean;
   label?: string;
   paddingLeft?: string;
@@ -26,7 +26,7 @@ const Input: React.FC<InputProps> = ({
   handleChange,
   errors,
   values,
-  input,
+  inputName,
   label,
   paddingLeft,
   hasLabel,
@@ -37,7 +37,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <S.FieldWrapper>
       {hasLabel && (
-        <S.FieldLabel htmlFor={input}>
+        <S.FieldLabel htmlFor={inputName}>
           <Typography type="label1">
             {t(String(label))}
             {required && '*'}
@@ -47,11 +47,11 @@ const Input: React.FC<InputProps> = ({
       <S.Field
         disabled={disabled}
         paddingLeft={paddingLeft}
-        id={input}
-        name={input}
+        id={inputName}
+        name={inputName}
         placeholder={t(String(label))}
         onChange={handleChange}
-        value={values && input && values[input]}
+        value={values && inputName && values[inputName]}
         {...rest}
       />
       {String(errorMessage).length > 0 && (
@@ -59,13 +59,13 @@ const Input: React.FC<InputProps> = ({
           <Typography type="caption2">{errorMessage}</Typography>
         </S.ErrorMessage>
       )}
-      {errors && input && errors[input] && (
+      {errors && inputName && errors[inputName] && (
         <>
-          <S.IconWrapper data-type="light" data-border={true} data-tip data-for={`${input}Error`}>
+          <S.IconWrapper data-type="light" data-border={true} data-tip data-for={`${inputName}Error`}>
             <Icon type="warning" />
           </S.IconWrapper>
-          <ReactTooltip borderColor="red" textColor="red" id={`${input}Error`} place="bottom" effect="solid">
-            {errors && input && errors[input]}
+          <ReactTooltip borderColor="red" textColor="red" id={`${inputName}Error`} place="bottom" effect="solid">
+            {errors && inputName && errors[inputName]}
           </ReactTooltip>
         </>
       )}

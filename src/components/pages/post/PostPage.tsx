@@ -108,7 +108,7 @@ const PostPage: React.FC = () => {
           <S.InputBlock onSubmit={formik.handleSubmit}>
             <Input
               label="PostPage.InputPlaceholder"
-              input="comment"
+              inputName="comment"
               paddingLeft="35px"
               handleChange={formik.handleChange}
               errors={formik.errors}
