@@ -17,8 +17,16 @@ const MyAccount: React.FC = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
 
-  const { userName, fullName, avatar, profileDescription, postsCount, subscribersCount, subscriptionsCount } =
-    useSelector(getUserInfo);
+  const {
+    userName,
+    firstName,
+    lastName,
+    avatar,
+    profileDescription,
+    postsCount,
+    subscribersCount,
+    subscriptionsCount,
+  } = useSelector(getUserInfo);
   const isAuthorized = useSelector(checkAuthorization);
   const { posts, postLoader } = useSelector(getPostsInfo);
 
@@ -70,7 +78,7 @@ const MyAccount: React.FC = () => {
           </S.SubscribeBlock>
           <S.FullName>
             <S.Name>
-              <Typography type="body3Bold">{fullName}</Typography>
+              <Typography type="body3Bold">{`${firstName} ${lastName}`}</Typography>
             </S.Name>
             <S.ProfileDescription>
               <Typography type="body2">{profileDescription}</Typography>

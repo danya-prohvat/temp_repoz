@@ -3,7 +3,8 @@ export interface User {
   email: string;
   id: number | null;
   avatar: string;
-  fullName: string;
+  firstName: string;
+  lastName: string;
   profileDescription: string;
   postsCount: number;
   subscribersCount: number;

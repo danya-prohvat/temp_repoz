@@ -36,7 +36,8 @@ const initialState: UserStore = {
     email: '',
     id: null,
     avatar: '',
-    fullName: '',
+    firstName: '',
+    lastName: '',
     profileDescription: '',
     postsCount: 0,
     subscribersCount: 0,
@@ -233,7 +234,9 @@ export const getState = (state: RootState): UserStore => state.user;
 export const getUserInfo = createSelector(getState, (state) => {
   return {
     userName: state.user.userName,
-    fullName: state.user.fullName,
+    email: state.user.email,
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
     id: state.user.id,
     avatar: state.user.avatar,
     profileDescription: state.user.profileDescription,

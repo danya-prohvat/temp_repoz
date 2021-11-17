@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Input } from 'components/common/input';
 import { Textarea } from 'components/common/textarea';
 import { Button } from 'components/common/button';
-import { checkNewUserName, patchUser } from 'store/UserSlice';
+import { checkNewUserName, patchUser, getUserInfo } from 'store/UserSlice';
 import { S } from './UpdateProfile.styles';
 
 export interface UpdateProfileProps {
@@ -15,13 +15,14 @@ export interface UpdateProfileProps {
   email: string;
   firstName: string;
   lastName: string;
-  description: string;
+  profileDescription: string;
 }
 
 const UpdateProfile: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { errorMessage } = useSelector(checkNewUserName);
+  const { userName, email, profileDescription, firstName, lastName } = useSelector(getUserInfo);
 
   const validationSchema = useMemo(() => {
     return Yup.object({
@@ -31,11 +32,11 @@ const UpdateProfile: React.FC = () => {
   }, [t]);
 
   const initialValues: UpdateProfileProps = {
-    userName: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    description: '',
+    userName: userName,
+    email: email,
+    firstName: firstName,
+    lastName: lastName,
+    profileDescription: profileDescription,
   };
 
   const formik = useFormik({
@@ -97,7 +98,7 @@ const UpdateProfile: React.FC = () => {
         <Textarea
           label="Settings.Description"
           hasLabel={true}
-          textarea="description"
+          textarea="profileDescription"
           handleChange={formik.handleChange}
           errors={formik.errors}
           values={formik.values}
