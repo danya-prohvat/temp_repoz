@@ -115,15 +115,13 @@ export const patchUser = createAsyncThunk(
     if (data.userName && data.userName !== user.userName) {
       await dispatch(checkNewUserNameThunk(data.userName));
       const { checkUserName } = getState().user;
-      // TODO: naming
       if (checkUserName.exist) {
         const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data);
         return response.data;
       }
-    } else {
-      const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data);
-      return response.data;
     }
+    const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data);
+    return response.data;
   },
 );
 

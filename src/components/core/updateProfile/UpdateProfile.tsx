@@ -98,7 +98,6 @@ const UpdateProfile: React.FC = () => {
         <Textarea
           label="Settings.Description"
           hasLabel={true}
-          //TODO: naming
           textareaName="profileDescription"
           handleChange={formik.handleChange}
           errors={formik.errors}

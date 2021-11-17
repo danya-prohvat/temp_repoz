@@ -57,9 +57,9 @@ const Settings: React.FC = () => {
 
   return (
     <S.Container>
-      <S.H2>
+      <S.PageTittle>
         <Typography type="heading2">{t(`Settings.MySettings`)}</Typography>
-      </S.H2>
+      </S.PageTittle>
       <S.AvatarSettings>
         <Avatar src={avatar || ''} size="200px" />
 

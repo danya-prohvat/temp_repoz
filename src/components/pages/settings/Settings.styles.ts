@@ -8,7 +8,7 @@ const S = {
     margin: 0 auto;
     padding-bottom: 40px;
   `,
-  H2: styled.h2`
+  PageTittle: styled.div`
     margin-bottom: 50px;
   `,
   AvatarSettings: styled.div`
