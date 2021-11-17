@@ -77,6 +77,7 @@ export const signUpThunk = createAsyncThunk('user/signUp', async ({ userName, em
 });
 
 export const checkNewUserNameThunk = createAsyncThunk('user/checkNewUserName', async (userName: string) => {
+  // throw new Error();
   const response = await postRequest(apiUrls.checkNewUserName.url, { userName });
   return response.data;
 });
@@ -96,23 +97,34 @@ export const getMeThunk = createAsyncThunk('user/getMe', async () => {
   return response.data;
 });
 
-export const patchUser = createAsyncThunk('user/patchUser', async (data: any, { getState }: any) => {
+export const patchUser = createAsyncThunk('user/patchUser', async (data: any, { dispatch, getState }: any) => {
   const { user } = getState().user;
 
   let headers;
   try {
     if (data.has('avatar')) {
-      console.log(555);
       headers = { 'Content-Type': 'multipart/form-data' };
     }
   } catch (error) {
     console.log(error);
   }
 
-  const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
-    headers,
-  });
-  return response.data;
+  if (data.userName && data.userName !== user.userName) {
+    await dispatch(checkNewUserNameThunk(data.userName));
+    const { signUping } = getState().user;
+
+    if (signUping.userNameIsExists) {
+      const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
+        headers,
+      });
+      return response.data;
+    }
+  } else {
+    const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
+      headers,
+    });
+    return response.data;
+  }
 });
 
 export const verifyUserThunk = createAsyncThunk('user/verifyUser', async (_, { dispatch }) => {
@@ -133,7 +145,9 @@ const UserSlice = createSlice({
       state.isAuthorized = true;
     },
     setUser(state, action: PayloadAction<User>) {
-      state.user = { ...action.payload };
+      if (action.payload) {
+        state.user = { ...action.payload };
+      }
     },
     incrementPageSize(state) {
       state.offset = ++state.offset;

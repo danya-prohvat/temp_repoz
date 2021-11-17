@@ -47,37 +47,47 @@ const UpdatePassword: React.FC = () => {
 
   return (
     <S.Form onSubmit={formik.handleSubmit}>
-      <Input
-        label="Settings.CurrentPassword"
-        hasLabel={true}
-        input="currentPassword"
-        type="password"
-        handleChange={formik.handleChange}
-        errors={formik.errors}
-        values={formik.values}
-        required={true}
-      />
-      <Input
-        label="Settings.NewPassword"
-        hasLabel={true}
-        input="password"
-        type="password"
-        handleChange={formik.handleChange}
-        errors={formik.errors}
-        values={formik.values}
-        required={true}
-      />
-      <Input
-        label="Settings.RepeatNewPassword"
-        hasLabel={true}
-        input="repeatPassword"
-        type="password"
-        handleChange={formik.handleChange}
-        errors={formik.errors}
-        values={formik.values}
-        required={true}
-      />
-      <Button text="Settings.Update" variant="primary" />
+      <S.InputWrapper>
+        <Input
+          label="Settings.CurrentPassword"
+          hasLabel={true}
+          input="currentPassword"
+          type="password"
+          handleChange={formik.handleChange}
+          errors={formik.errors}
+          values={formik.values}
+          required={true}
+        />
+      </S.InputWrapper>
+      <S.InputWrapper>
+        <Input
+          label="Settings.NewPassword"
+          hasLabel={true}
+          input="password"
+          type="password"
+          handleChange={formik.handleChange}
+          errors={formik.errors}
+          values={formik.values}
+          required={true}
+        />
+      </S.InputWrapper>
+
+      <S.InputWrapper>
+        <Input
+          label="Settings.RepeatNewPassword"
+          hasLabel={true}
+          input="repeatPassword"
+          type="password"
+          handleChange={formik.handleChange}
+          errors={formik.errors}
+          values={formik.values}
+          required={true}
+        />
+      </S.InputWrapper>
+
+      <S.ButtonWrapper>
+        <Button text="Settings.Update" variant="primary" />
+      </S.ButtonWrapper>
     </S.Form>
   );
 };

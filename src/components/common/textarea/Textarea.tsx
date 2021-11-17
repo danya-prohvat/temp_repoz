@@ -1,34 +1,31 @@
 import { useTranslation } from 'react-i18next';
 import ReactTooltip from 'react-tooltip';
-import { S } from './Input.styles';
+import { S } from './Textarea.styles';
 import { Typography } from 'components/common/typography';
 import { Icon } from 'components/common/icon';
 import { FormikValues, FormikErrors } from 'formik';
 import React from 'react';
 
-export interface InputProps
-  extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+export interface TextareaProps
+  extends React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
   errorMessage?: string;
   errors?: FormikErrors<FormikValues>;
   values?: FormikValues;
-  input?: string;
+  textarea?: string;
   hasLabel?: boolean;
   label?: string;
-  paddingLeft?: string;
   // TODO
   handleChange?: (e: any) => void;
 }
 
-const Input: React.FC<InputProps> = ({
+const Textarea: React.FC<TextareaProps> = ({
   disabled,
   required,
-  errorMessage,
   handleChange,
   errors,
   values,
-  input,
+  textarea,
   label,
-  paddingLeft,
   hasLabel,
   ...rest
 }) => {
@@ -37,7 +34,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <S.FieldWrapper>
       {hasLabel && (
-        <S.FieldLabel htmlFor={input}>
+        <S.FieldLabel htmlFor={textarea}>
           <Typography type="label1">
             {t(String(label))}
             {required && '*'}
@@ -46,26 +43,20 @@ const Input: React.FC<InputProps> = ({
       )}
       <S.Field
         disabled={disabled}
-        paddingLeft={paddingLeft}
-        id={input}
-        name={input}
+        id={textarea}
+        name={textarea}
         placeholder={t(String(label))}
         onChange={handleChange}
-        value={values && input && values[input]}
+        value={values && textarea && values[textarea]}
         {...rest}
       />
-      {String(errorMessage).length > 0 && (
-        <S.ErrorMessage>
-          <Typography type="caption2">{errorMessage}</Typography>
-        </S.ErrorMessage>
-      )}
-      {errors && input && errors[input] && (
+      {errors && textarea && errors[textarea] && (
         <>
-          <S.IconWrapper data-type="light" data-border={true} data-tip data-for={`${input}Error`}>
+          <S.IconWrapper data-type="light" data-border={true} data-tip data-for={`${textarea}Error`}>
             <Icon type="warning" />
           </S.IconWrapper>
-          <ReactTooltip borderColor="red" textColor="red" id={`${input}Error`} place="bottom" effect="solid">
-            {errors && input && errors[input]}
+          <ReactTooltip borderColor="red" textColor="red" id={`${textarea}Error`} place="bottom" effect="solid">
+            {errors && textarea && errors[textarea]}
           </ReactTooltip>
         </>
       )}
@@ -73,4 +64,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export { Input };
+export { Textarea };

@@ -65,6 +65,12 @@
     "Update": "Update",
     "Required": "Required",
     "PasswordsMustMatch": "Passwords must match",
-    "PasswordMustNotMatchWithCurrentPassword": "Password must not match with current password"
+    "PasswordMustNotMatchWithCurrentPassword": "Password must not match with current password",
+    "Username": "Username",
+    "Email": "Email",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Description": "Description",
+    "InvalidEmail": "InvalidEmail"
   }
 }

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { InputProps } from './Input';
+import { TextareaProps } from './Textarea';
 
 const S = {
   FieldWrapper: styled.div`
@@ -7,19 +7,22 @@ const S = {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     flex: 1 1 auto;
   `,
-  Field: styled.input<InputProps>`
+  Field: styled.textarea<TextareaProps>`
     outline: none;
     border-radius: 2px;
-    height: 40px;
+    height: 100%;
     min-width: 300px;
     width: 100%;
-    padding-left: ${(props) => (props.paddingLeft ? props.paddingLeft : '15px')};
+    padding-left: 15px;
+    padding-top: 10px;
     display: flex;
     background-color: ${(props) => (props.disabled ? props.theme.colors.backgroundColor.darkGray : '')};
     border: 1px solid
       ${(props) => (props.disabled ? props.theme.colors.borderColor.darkGray : props.theme.colors.borderColor.gray)};
+    resize: none;
   `,
   FieldLabel: styled.label`
     margin-bottom: 6px;

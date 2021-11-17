@@ -12,6 +12,7 @@ import { Switch } from 'components/common/switch';
 import { getUserInfo, patchUser } from 'store/UserSlice';
 import { S } from './Settings.styles';
 import { UpdatePassword } from 'components/core/updatePassword';
+import { UpdateProfile } from 'components/core/updateProfile';
 
 const Settings: React.FC = () => {
   const { t } = useTranslation();
@@ -63,22 +64,25 @@ const Settings: React.FC = () => {
         <Avatar src={avatar} size="200px" />
 
         <S.Label htmlFor="file">
-          <Button text="Settings.EditAvatar" variant="primary" />
-          button
+          <Typography type="button1">{t('Settings.EditAvatar')}</Typography>
         </S.Label>
-
-        {/* <button>
-          <S.Label htmlFor="file1">button</S.Label>
-        </button> */}
 
         <S.Input id="file" name="file" type="file" onChange={inputOnChange} accept={config.env.acceptImages} />
         <Button text="Settings.RemoveAvatar" variant="secondary" onClick={buttonOnClick} />
       </S.AvatarSettings>
       <S.ProfileToggles>
-        <Switch label="Settings.PrivateProfile" onChange={privateProfileOnChange} checked={localPrivateProfile} />
-        <Switch label="Settings.AllowComments" onChange={allowCommentsOnChange} checked={localAllowComments} />
+        <S.SwitchWrapper>
+          <Switch label="Settings.PrivateProfile" onChange={privateProfileOnChange} checked={localPrivateProfile} />
+        </S.SwitchWrapper>
+        <S.SwitchWrapper>
+          <Switch label="Settings.AllowComments" onChange={allowCommentsOnChange} checked={localAllowComments} />
+        </S.SwitchWrapper>
+        <S.SwitchWrapper></S.SwitchWrapper>
+        <S.SwitchWrapper></S.SwitchWrapper>
       </S.ProfileToggles>
-      <S.ProfileSettings></S.ProfileSettings>
+      <S.ProfileSettings>
+        <UpdateProfile />
+      </S.ProfileSettings>
       <S.PasswordSettings>
         <UpdatePassword />
       </S.PasswordSettings>

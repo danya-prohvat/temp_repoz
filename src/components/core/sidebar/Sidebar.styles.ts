@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const S = {
   Sidebar: styled.div`
-    position: fixed;
+    position: sticky;
     display: flex;
     padding-top: 40px;
     padding-bottom: 30px;
@@ -12,10 +12,10 @@ const S = {
     height: 100%;
   `,
   SidebarButton: styled.button`
-    position: absolute;
+    position: sticky;
     right: 0;
     transform: translateX(50%);
-    bottom: 150px;
+    bottom: 50px;
     font-size: 20px;
     border: none;
     cursor: pointer;

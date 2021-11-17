@@ -4,15 +4,19 @@ const S = {
   Form: styled.form`
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
   `,
-  InputWrapper: styled.div`
+  Column: styled.div`
     width: 21%;
   `,
   ButtonWrapper: styled.div`
     width: 21%;
     display: flex;
+    align-items: flex-start;
     justify-content: center;
+    margin-top: 29px;
+  `,
+  TopInput: styled.div`
+    margin-bottom: 40px;
   `,
 };
 
