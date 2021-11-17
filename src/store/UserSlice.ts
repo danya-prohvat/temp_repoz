@@ -1,7 +1,8 @@
+import { updatePasswordProps } from './../components/core/updatePassword/UpdatePassword';
 import { createSlice, PayloadAction, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { config } from 'config';
-import { postRequest, getRequest } from 'api/apiClient';
+import { postRequest, getRequest, patchRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
@@ -14,14 +15,15 @@ interface Post {
   commentsCount: number;
   likesCount: number;
 }
-interface SignUping {
-  userNameIsExists: boolean;
+interface checkUserName {
+  exist: boolean;
   errorMessage: string;
 }
+
 interface UserStore {
   isAuthorized: boolean;
   user: User;
-  signUping: SignUping;
+  checkUserName: checkUserName;
   limit: number;
   offset: number;
   postLoader: boolean;
@@ -35,14 +37,17 @@ const initialState: UserStore = {
     email: '',
     id: null,
     avatar: '',
-    fullName: '',
+    firstName: '',
+    lastName: '',
     profileDescription: '',
     postsCount: 0,
     subscribersCount: 0,
     subscriptionsCount: 0,
+    privateProfile: false,
+    allowComments: false,
   },
-  signUping: {
-    userNameIsExists: false,
+  checkUserName: {
+    exist: false,
     errorMessage: '',
   },
   limit: config.constants.postsLimit,
@@ -78,10 +83,47 @@ export const checkNewUserNameThunk = createAsyncThunk('user/checkNewUserName', a
   return response.data;
 });
 
+export const updatePasswordThunk = createAsyncThunk(
+  'user/updatePasswordThunk',
+  async (data: updatePasswordProps, { getState }: any) => {
+    const { user } = getState().user;
+
+    const response = await postRequest(apiUrls.updatePassword.url.replace(':userId', user.id), data);
+    return response.data;
+  },
+);
+
 export const getMeThunk = createAsyncThunk('user/getMe', async () => {
   const response = await getRequest(apiUrls.getMe.url);
   return response.data;
 });
+
+export const patchUserAvatar = createAsyncThunk('user/patchUser', async (data: FormData, { getState }: any) => {
+  const { user } = getState().user;
+
+  const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data;
+});
+
+export const patchUser = createAsyncThunk(
+  'user/patchUser',
+  async (data: Partial<User>, { dispatch, getState }: any) => {
+    const { user } = getState().user;
+
+    if (data.userName && data.userName !== user.userName) {
+      await dispatch(checkNewUserNameThunk(data.userName));
+      const { checkUserName } = getState().user;
+      if (checkUserName.exist) {
+        const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data);
+        return response.data;
+      }
+    }
+    const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data);
+    return response.data;
+  },
+);
 
 export const verifyUserThunk = createAsyncThunk('user/verifyUser', async (_, { dispatch }) => {
   try {
@@ -100,8 +142,10 @@ const UserSlice = createSlice({
     changeAuthorization(state) {
       state.isAuthorized = true;
     },
-    signInUser(state, action: PayloadAction<User>) {
-      state.user = { ...action.payload };
+    setUser(state, action: PayloadAction<User>) {
+      if (action.payload) {
+        state.user = { ...action.payload };
+      }
     },
     incrementPageSize(state) {
       state.offset = ++state.offset;
@@ -124,12 +168,12 @@ const UserSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getMeThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
-      UserSlice.caseReducers.signInUser(state, action);
+      UserSlice.caseReducers.setUser(state, action);
       localStorage.setItem('token', action.payload.token);
     });
     builder.addCase(signInThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
-      UserSlice.caseReducers.signInUser(state, action);
+      UserSlice.caseReducers.setUser(state, action);
       toast.success('You authorized');
       localStorage.setItem('token', action.payload.token);
     });
@@ -138,7 +182,7 @@ const UserSlice = createSlice({
     });
     builder.addCase(signUpThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
-      UserSlice.caseReducers.signInUser(state, action);
+      UserSlice.caseReducers.setUser(state, action);
       toast.success('You authorized');
       localStorage.setItem('token', action.payload.token);
     });
@@ -146,15 +190,21 @@ const UserSlice = createSlice({
       toast.error('Error');
     });
     builder.addCase(checkNewUserNameThunk.pending, (state) => {
-      state.signUping.errorMessage = '';
+      state.checkUserName.errorMessage = '';
     });
     builder.addCase(checkNewUserNameThunk.fulfilled, (state) => {
-      state.signUping.userNameIsExists = true;
-      state.signUping.errorMessage = '';
+      state.checkUserName.exist = true;
+      state.checkUserName.errorMessage = '';
     });
     builder.addCase(checkNewUserNameThunk.rejected, (state) => {
-      state.signUping.userNameIsExists = false;
-      state.signUping.errorMessage = 'Sorry, this username is taken';
+      state.checkUserName.exist = false;
+      state.checkUserName.errorMessage = 'Sorry, this username is taken';
+    });
+    builder.addCase(updatePasswordThunk.fulfilled, (state, action) => {
+      toast.success(action.payload);
+    });
+    builder.addCase(updatePasswordThunk.rejected, () => {
+      toast.error("it isn't your password");
     });
     builder.addCase(getPostsThunk.pending, (state) => {
       UserSlice.caseReducers.changePostLoader(state);
@@ -167,6 +217,12 @@ const UserSlice = createSlice({
       UserSlice.caseReducers.changePostLoader(state);
       toast.error('Error');
     });
+    builder.addCase(patchUser.fulfilled, (state, action) => {
+      UserSlice.caseReducers.setUser(state, action);
+    });
+    builder.addCase(patchUser.rejected, () => {
+      toast.error('Error');
+    });
   },
 });
 
@@ -175,13 +231,17 @@ export const getState = (state: RootState): UserStore => state.user;
 export const getUserInfo = createSelector(getState, (state) => {
   return {
     userName: state.user.userName,
-    fullName: state.user.fullName,
+    email: state.user.email,
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
     id: state.user.id,
     avatar: state.user.avatar,
     profileDescription: state.user.profileDescription,
     postsCount: state.user.postsCount,
     subscribersCount: state.user.subscribersCount,
     subscriptionsCount: state.user.subscriptionsCount,
+    privateProfile: state.user.privateProfile,
+    allowComments: state.user.allowComments,
   };
 });
 export const getPostsInfo = createSelector(getState, (state) => {
@@ -192,9 +252,9 @@ export const getPostsInfo = createSelector(getState, (state) => {
 });
 export const checkAuthorization = createSelector(getState, (state) => state.isAuthorized);
 export const checkNewUserName = createSelector(getState, (state) => {
-  return { userNameIsExists: state.signUping.userNameIsExists, errorMessage: state.signUping.errorMessage };
+  return { exist: state.checkUserName.exist, errorMessage: state.checkUserName.errorMessage };
 });
 
-export const { signInUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader, resetUser } =
+export const { setUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader, resetUser } =
   UserSlice.actions;
 export { UserSlice };

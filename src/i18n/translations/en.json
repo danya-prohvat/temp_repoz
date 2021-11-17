@@ -52,5 +52,25 @@
   },
   "Popup": {
     "NoLikesYet": "No likes yet"
+  },
+  "Settings": {
+    "MySettings": "My Settings",
+    "EditAvatar": "Edit avatar",
+    "RemoveAvatar": "Remove avatar",
+    "PrivateProfile": "Private profile",
+    "AllowComments": "Allow comments",
+    "CurrentPassword": "Current Password",
+    "NewPassword": "New Password",
+    "RepeatNewPassword": "Repeat New Password",
+    "Update": "Update",
+    "Required": "Required",
+    "PasswordsMustMatch": "Passwords must match",
+    "PasswordMustNotMatchWithCurrentPassword": "Password must not match with current password",
+    "Username": "Username",
+    "Email": "Email",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Description": "Description",
+    "InvalidEmail": "InvalidEmail"
   }
 }

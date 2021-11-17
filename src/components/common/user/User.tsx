@@ -8,7 +8,7 @@ import { getUserInfo } from 'store/UserSlice';
 import { DropDownList } from 'components/core/dropDownList';
 
 const User: React.FC = () => {
-  const { userName } = useSelector(getUserInfo);
+  const { userName, avatar } = useSelector(getUserInfo);
 
   return (
     <S.Container
@@ -19,7 +19,7 @@ const User: React.FC = () => {
       data-tip
       data-for="tooltip"
     >
-      <Avatar src={'https://reactjs.org/logo-og.png'} />
+      <Avatar size="50px" src={avatar || ''} />
       <Typography type="body1Bold">{userName}</Typography>
       <S.IconWrapper>
         <Icon type={'arrow-down'} />

@@ -1,3 +1,4 @@
+import { Settings } from 'components/pages/settings';
 import { locations } from 'routing/locations';
 
 export const links = [
@@ -7,5 +8,5 @@ export const links = [
   { iconType: 'user', text: 'Subscriptions', link: locations.subscriptions },
   { iconType: 'message', text: 'Messages', link: locations.messages },
   { iconType: 'saved', text: 'Saved', link: locations.saved },
-  { iconType: 'settings', text: 'Settings', link: locations.settings },
+  { iconType: 'settings', text: 'Settings', content: <Settings />, link: locations.settings },
 ];

@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 const S = {
   Header: styled.header`
-    position: fixed;
+    position: sticky;
+    /* top: 0; */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -13,8 +14,8 @@ const S = {
   `,
   MainContent: styled.main`
     display: flex;
-    padding-top: 92px;
-    padding-bottom: 60px;
+    /* padding-top: 92px; */
+    /* padding-bottom: 60px; */
   `,
   ChangeableContent: styled.div`
     width: 100%;

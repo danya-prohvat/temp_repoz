@@ -41,7 +41,7 @@ export const Router: React.FC = () => {
           return (
             <PrivateRoute key={link.link} path={link.link} exact>
               <CommonLayout>
-                <Main>{link.text}</Main>
+                <Main>{link.content}</Main>
               </CommonLayout>
             </PrivateRoute>
           );

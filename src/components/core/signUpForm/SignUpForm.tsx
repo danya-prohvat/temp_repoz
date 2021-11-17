@@ -19,13 +19,13 @@ export interface SingUpFormProps {
 }
 
 const SignUpForm: React.FC = () => {
-  const { userNameIsExists, errorMessage } = useSelector(checkNewUserName);
+  const { exist, errorMessage } = useSelector(checkNewUserName);
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const validationSchema = useMemo(() => {
-    return userNameIsExists
+    return exist
       ? Yup.object({
           userName: Yup.string().required(t(`FormValidErrors.Required`)),
           email: Yup.string().email(t(`FormValidErrors.InvalidEmail`)).required(t(`FormValidErrors.Required`)),
@@ -37,7 +37,7 @@ const SignUpForm: React.FC = () => {
       : Yup.object({
           userName: Yup.string().required(t(`FormValidErrors.Required`)),
         });
-  }, [userNameIsExists, t]);
+  }, [exist, t]);
 
   const initialValues: SingUpFormProps = {
     userName: '',
@@ -49,7 +49,7 @@ const SignUpForm: React.FC = () => {
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (value: SingUpFormProps) => {
-      dispatch(userNameIsExists ? signUpThunk(value) : checkNewUserNameThunk(value.userName));
+      dispatch(exist ? signUpThunk(value) : checkNewUserNameThunk(value.userName));
     },
     validationSchema,
   });
@@ -62,12 +62,12 @@ const SignUpForm: React.FC = () => {
 
       <S.FormStatus>
         <S.FormStatusText>
-          <Typography type={userNameIsExists ? 'body2' : 'body2Bold'}>{t(`Sign-in/up.Nickname`)}</Typography>
+          <Typography type={exist ? 'body2' : 'body2Bold'}>{t(`Sign-in/up.Nickname`)}</Typography>
         </S.FormStatusText>
         <S.FormStatusText>
-          <Typography type={!userNameIsExists ? 'body2' : 'body2Bold'}>{t(`Sign-in/up.Information`)}</Typography>
+          <Typography type={!exist ? 'body2' : 'body2Bold'}>{t(`Sign-in/up.Information`)}</Typography>
         </S.FormStatusText>
-        <S.FormStatusProgressBar isFilled={userNameIsExists} />
+        <S.FormStatusProgressBar isFilled={exist} />
       </S.FormStatus>
 
       <S.FieldsContainer>
@@ -75,23 +75,23 @@ const SignUpForm: React.FC = () => {
           <Input
             label="Sign-in/up.UserName"
             hasLabel={true}
-            input="userName"
+            inputName="userName"
             type="text"
             handleChange={formik.handleChange}
             errors={formik.errors}
             values={formik.values}
             errorMessage={errorMessage}
-            disabled={userNameIsExists}
+            disabled={exist}
           />
         </S.InputWrapper>
 
-        {userNameIsExists && (
+        {exist && (
           <>
             <S.InputWrapper>
               <Input
                 label="Sign-in/up.Email"
                 hasLabel={true}
-                input="email"
+                inputName="email"
                 type="email"
                 handleChange={formik.handleChange}
                 errors={formik.errors}
@@ -102,7 +102,7 @@ const SignUpForm: React.FC = () => {
               <Input
                 label="Sign-in/up.Password"
                 hasLabel={true}
-                input="password"
+                inputName="password"
                 type="password"
                 handleChange={formik.handleChange}
                 errors={formik.errors}
@@ -113,7 +113,7 @@ const SignUpForm: React.FC = () => {
               <Input
                 label="Sign-in/up.RepeatPassword"
                 hasLabel={true}
-                input="repeatPassword"
+                inputName="repeatPassword"
                 type="password"
                 handleChange={formik.handleChange}
                 errors={formik.errors}
@@ -126,7 +126,7 @@ const SignUpForm: React.FC = () => {
 
       <Button text="Sign-in/up.SignUp" variant="primary" />
 
-      {!userNameIsExists && (
+      {!exist && (
         <S.FormDescription>
           <Typography type="body2">
             <Trans

@@ -32,7 +32,33 @@ export const enableMock = (): void => {
     const user = users.find((user) => user.id === Number(userId));
     if (user) return [200, pick(user, ['userName', 'avatar', 'id', 'subscribers'])];
 
-    return [401];
+    return [400];
+  });
+
+  mock.onPatch(apiUrls.patchUser.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    // TODO: why its string
+
+    if (typeof config.data === 'object') {
+      const user = users.find((user) => user.id === Number(userId));
+      if (user)
+        return [
+          200,
+          {
+            ...user,
+            avatar:
+              'https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/687822/cover-react-context-api-4929b3703a1a7082d99b53eb1bbfc31f.png',
+          },
+        ];
+    } else {
+      const data = JSON.parse(config.data);
+      const user = users.find((user) => user.id === Number(userId));
+      if (user) {
+        return [200, { ...user, ...data }];
+      }
+    }
+
+    return [400];
   });
 
   mock.onGet(apiUrls.getPosts.regexp).reply((config) => {
@@ -57,7 +83,7 @@ export const enableMock = (): void => {
       return [200, post.likes];
     }
 
-    return [401];
+    return [400];
   });
 
   mock.onGet(apiUrls.getPost.regexp).reply((config) => {
@@ -70,7 +96,7 @@ export const enableMock = (): void => {
       return [200, { ...post, authorId: allPost.userId }];
     }
 
-    return [401];
+    return [400];
   });
 
   mock.onPost(apiUrls.signIn.url).reply((config) => {
@@ -95,6 +121,16 @@ export const enableMock = (): void => {
 
     if (!users.find((user) => user.userName === data.userName)) return [200, `such user name isn't exist`];
 
-    return [400, 'such user name is exist'];
+    return [400];
+  });
+
+  mock.onPost(apiUrls.updatePassword.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    const data = JSON.parse(config.data);
+
+    const user = users.find((user) => user.id === Number(userId));
+    if (user && user.password === data.currentPassword) return [200, 'your password was changed'];
+
+    return [400, "it isn't your password"];
   });
 };
