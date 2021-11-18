@@ -90,6 +90,7 @@ const darkTheme = {
     borderColor: {
       gray: '#DEDEDE',
       darkGray: '#979797',
+      red: '#F34E4E',
     },
   },
   typography: typography,
@@ -124,6 +125,7 @@ const whiteTheme: Theme = {
     borderColor: {
       gray: '#DEDEDE',
       darkGray: '#979797',
+      red: '#F34E4E',
     },
   },
   typography: typography,

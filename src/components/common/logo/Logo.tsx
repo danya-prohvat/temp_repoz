@@ -7,7 +7,7 @@ const Logo: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <S.Container>
+    <S.Container to="/">
       <S.Logo>
         <Icon type="logo" />
       </S.Logo>

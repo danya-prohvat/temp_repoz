@@ -14,7 +14,6 @@ const S = {
     outline: none;
     border-radius: 2px;
     height: 100%;
-    min-width: 300px;
     width: 100%;
     padding-left: 15px;
     padding-top: 10px;

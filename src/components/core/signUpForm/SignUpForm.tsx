@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'hooks/useTypedSelector';
 import { useFormik } from 'formik';
+import { useSelector } from 'hooks/useTypedSelector';
 import { Typography } from 'components/common/typography';
 import { S } from './SignUpForm.styles';
 import { Input } from 'components/common/input';
@@ -83,6 +83,7 @@ const SignUpForm: React.FC = () => {
             errorMessage={errorMessage}
             disabled={exist}
             minWidth={exist ? '' : '300px'}
+            maxWidth={exist ? '' : '300px'}
           />
         </S.InputWrapper>
 

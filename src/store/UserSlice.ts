@@ -98,7 +98,7 @@ export const getMeThunk = createAsyncThunk('user/getMe', async () => {
   return response.data;
 });
 
-export const patchUserAvatar = createAsyncThunk('user/patchUser', async (data: FormData, { getState }: any) => {
+export const patchUserAvatar = createAsyncThunk('user/patchUserAvatar', async (data: FormData, { getState }: any) => {
   const { user } = getState().user;
 
   const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
@@ -204,7 +204,7 @@ const UserSlice = createSlice({
       toast.success(action.payload);
     });
     builder.addCase(updatePasswordThunk.rejected, () => {
-      toast.error("it isn't your password");
+      toast.error("Your password wasn't changed, try again");
     });
     builder.addCase(getPostsThunk.pending, (state) => {
       UserSlice.caseReducers.changePostLoader(state);
@@ -219,9 +219,17 @@ const UserSlice = createSlice({
     });
     builder.addCase(patchUser.fulfilled, (state, action) => {
       UserSlice.caseReducers.setUser(state, action);
+      toast.success('Your information was changed');
     });
     builder.addCase(patchUser.rejected, () => {
-      toast.error('Error');
+      toast.error("Your information wasn't changed, try again");
+    });
+    builder.addCase(patchUserAvatar.fulfilled, (state, action) => {
+      UserSlice.caseReducers.setUser(state, action);
+      toast.success('Your avatar was changed');
+    });
+    builder.addCase(patchUserAvatar.rejected, () => {
+      toast.error("Your avatar wasn't changed, try again");
     });
   },
 });

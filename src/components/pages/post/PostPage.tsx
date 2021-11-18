@@ -6,7 +6,7 @@ import { useSelector } from 'hooks/useTypedSelector';
 import { useTranslation } from 'react-i18next';
 import { locations } from 'routing/locations';
 import { Typography } from 'components/common/typography';
-import { getPost } from 'store/PostSlice';
+import { getPost, setPost } from 'store/PostSlice';
 import { getPosts, getAuthorInfo, getComments } from 'store/PostSlice';
 import { getUserInfo } from 'store/UserSlice';
 import { Icon } from 'components/common/icon';
@@ -29,6 +29,9 @@ const PostPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(getPost({ postId: Number(postId), userId: Number(userId) }));
+    return () => {
+      dispatch(setPost());
+    };
   }, [dispatch, postId, userId]);
 
   const formik = useFormik({
@@ -60,11 +63,12 @@ const PostPage: React.FC = () => {
           <S.Username to={locations.user.replace(':userId', String(authorId))}>
             <Typography type="heading3">{userName}</Typography>
           </S.Username>
-          {subscribers.length > 0 && subscribers.includes(Number(id)) ? (
-            <Button text="PostPage.Subscription" variant="secondary" />
-          ) : (
-            <Button text="PostPage.Subscribe" variant="primary" />
-          )}
+          {id !== authorId &&
+            (subscribers.length > 0 && subscribers.includes(Number(id)) ? (
+              <Button text="PostPage.Subscription" variant="secondary" />
+            ) : (
+              <Button text="PostPage.Subscribe" variant="primary" />
+            ))}
         </S.AuthorBlock>
         <S.PostInfoBlock>
           <S.LikesButton onClick={openPopupOnClick}>

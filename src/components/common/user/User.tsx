@@ -21,11 +21,14 @@ const User: React.FC = () => {
       data-tip
       data-for="tooltip"
     >
+      <S.QuestionIconWrapper>
+        <Icon type="question-mark" />
+      </S.QuestionIconWrapper>
       <Avatar size="50px" src={avatar || ''} />
       <Typography type="body1Bold">{userName}</Typography>
-      <S.IconWrapper>
+      <S.ArrowIconWrapper>
         <Icon type={'arrow-down'} />
-      </S.IconWrapper>
+      </S.ArrowIconWrapper>
 
       <ReactTooltip
         borderColor={theme.colors.backgroundColor.darkGray}
