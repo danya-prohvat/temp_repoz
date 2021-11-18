@@ -13,7 +13,7 @@ const S = {
     align-items: center;
     justify-content: center;
     margin-right: 15px;
-    font-size: ${(props) => (props.iconSize ? props.iconSize : '32px')};
+    font-size: ${(props) => props.iconSize || '32px'};
   `,
   Img: styled.img<AvatarImgProps>`
     width: ${(props) => props.size};

@@ -14,9 +14,9 @@ const S = {
     border-radius: 2px;
     height: 40px;
     width: 100%;
-    min-width: ${(props) => (props.minWidth ? props.minWidth : '')};
+    min-width: ${(props) => props.minWidth || ''};
 
-    padding-left: ${(props) => (props.paddingLeft ? props.paddingLeft : '15px')};
+    padding-left: ${(props) => props.paddingLeft || '15px'};
     display: flex;
     background-color: ${(props) => (props.disabled ? props.theme.colors.backgroundColor.darkGray : '')};
     border: 1px solid
