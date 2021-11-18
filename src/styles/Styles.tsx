@@ -29,6 +29,10 @@ const Global: React.FC = () => {
           padding: 0;
           box-sizing: border-box;
         }
+        //TODO: dangerous
+        .ReactModal__Overlay {
+          z-index: 99;
+        }
       `}
     />
   );

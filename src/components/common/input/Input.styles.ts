@@ -13,8 +13,9 @@ const S = {
     outline: none;
     border-radius: 2px;
     height: 40px;
-    min-width: 300px;
     width: 100%;
+    min-width: ${(props) => (props.minWidth ? props.minWidth : '')};
+
     padding-left: ${(props) => (props.paddingLeft ? props.paddingLeft : '15px')};
     display: flex;
     background-color: ${(props) => (props.disabled ? props.theme.colors.backgroundColor.darkGray : '')};
@@ -32,6 +33,10 @@ const S = {
   `,
   ErrorMessage: styled.span`
     color: ${(props) => props.theme.colors.textColor.red};
+    position: absolute;
+    bottom: 0;
+    min-width: 300px;
+    transform: translateY(100%);
   `,
 };
 

@@ -5,13 +5,12 @@ const S = {
   Container: styled.div`
     padding-top: 25px;
     padding-bottom: 25px;
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     background-color: ${(props) => props.theme.colors.backgroundColor.beige};
     display: flex;
   `,
   ImgWrapper: styled.div`
-    width: 50%;
     padding: 15px;
     display: flex;
     min-height: 600px;

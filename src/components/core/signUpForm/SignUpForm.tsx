@@ -82,6 +82,7 @@ const SignUpForm: React.FC = () => {
             values={formik.values}
             errorMessage={errorMessage}
             disabled={exist}
+            minWidth={exist ? '' : '300px'}
           />
         </S.InputWrapper>
 

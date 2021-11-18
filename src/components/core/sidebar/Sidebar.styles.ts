@@ -4,15 +4,17 @@ const S = {
   Sidebar: styled.div`
     position: sticky;
     display: flex;
-    padding-top: 40px;
+    padding-top: 120px;
     padding-bottom: 30px;
     flex-direction: column;
     background-color: ${(props) => props.theme.colors.backgroundColor.lightGray};
     border-right: 2px solid ${(props) => props.theme.colors.borderColor.gray};
-    height: 100%;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
   `,
   SidebarButton: styled.button`
-    position: sticky;
+    position: absolute;
     right: 0;
     transform: translateX(50%);
     bottom: 50px;

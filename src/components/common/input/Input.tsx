@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import ReactTooltip from 'react-tooltip';
+import { useTheme } from '@emotion/react';
 import { S } from './Input.styles';
 import { Typography } from 'components/common/typography';
 import { Icon } from 'components/common/icon';
@@ -15,6 +16,7 @@ export interface InputProps
   hasLabel?: boolean;
   label?: string;
   paddingLeft?: string;
+  minWidth?: string;
   // TODO
   handleChange?: (e: any) => void;
 }
@@ -33,6 +35,7 @@ const Input: React.FC<InputProps> = ({
   ...rest
 }) => {
   const { t } = useTranslation();
+  const theme = useTheme();
 
   return (
     <S.FieldWrapper>
@@ -54,17 +57,21 @@ const Input: React.FC<InputProps> = ({
         value={values && inputName && values[inputName]}
         {...rest}
       />
-      {String(errorMessage).length > 0 && (
-        <S.ErrorMessage>
-          <Typography type="caption2">{errorMessage}</Typography>
-        </S.ErrorMessage>
-      )}
+      <S.ErrorMessage>
+        <Typography type="caption2">{errorMessage}</Typography>
+      </S.ErrorMessage>
       {errors && inputName && errors[inputName] && (
         <>
           <S.IconWrapper data-type="light" data-border={true} data-tip data-for={`${inputName}Error`}>
             <Icon type="warning" />
           </S.IconWrapper>
-          <ReactTooltip borderColor="red" textColor="red" id={`${inputName}Error`} place="bottom" effect="solid">
+          <ReactTooltip
+            borderColor={theme.colors.backgroundColor.red}
+            textColor={theme.colors.backgroundColor.red}
+            id={`${inputName}Error`}
+            place="bottom"
+            effect="solid"
+          >
             {errors && inputName && errors[inputName]}
           </ReactTooltip>
         </>
