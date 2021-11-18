@@ -26,11 +26,16 @@ const S = {
     height: 100%;
   `,
   FieldsContainer: styled.div`
-    width: 600px;
+    max-width: 600px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+  `,
+  InputWrapper: styled.div`
+    display: flex;
+    width: 45%;
+    margin-bottom: 30px;
   `,
   Link: styled(Link)`
     text-decoration: none;
@@ -56,9 +61,6 @@ const S = {
       height: 100%;
       background-color: ${(props) => props.theme.colors.backgroundColor.blue};
     }
-  `,
-  InputWrapper: styled.div`
-    margin-bottom: 30px;
   `,
 };
 

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const S = {
   Container: styled.div`
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
   `,
   UserInfo: styled.div`

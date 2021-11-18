@@ -61,7 +61,7 @@ const Settings: React.FC = () => {
         <Typography type="heading2">{t(`Settings.MySettings`)}</Typography>
       </S.PageTittle>
       <S.AvatarSettings>
-        <Avatar src={avatar || ''} size="200px" />
+        <Avatar iconSize="84px" src={avatar || ''} size="200px" />
 
         <S.Label htmlFor="file">
           <Typography type="button1">{t('Settings.EditAvatar')}</Typography>

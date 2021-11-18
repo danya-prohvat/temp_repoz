@@ -5,9 +5,9 @@ interface AvatarProps extends AvatarImgProps {
   src?: string;
 }
 
-const Avatar: React.FC<AvatarProps> = ({ src, size }) => {
+const Avatar: React.FC<AvatarProps> = ({ src, size, iconSize }) => {
   return (
-    <S.Container>
+    <S.Container size={size} iconSize={iconSize}>
       {src ? <S.Img size={size} src={src} alt="user's photo"></S.Img> : <span className="icon-user"></span>}
     </S.Container>
   );

@@ -63,6 +63,7 @@ const SignInForm: React.FC = () => {
           errors={formik.errors}
           values={formik.values}
           required={true}
+          minWidth="300px"
         />
       </S.InputWrapper>
       <S.InputWrapper>
@@ -75,6 +76,7 @@ const SignInForm: React.FC = () => {
           errors={formik.errors}
           values={formik.values}
           required={true}
+          minWidth="300px"
         />
       </S.InputWrapper>
 

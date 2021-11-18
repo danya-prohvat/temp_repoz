@@ -1,4 +1,5 @@
 import ReactTooltip from 'react-tooltip';
+import { useTheme } from '@emotion/react';
 import { useSelector } from 'hooks/useTypedSelector';
 import { Typography } from 'components/common/typography';
 import { Avatar } from 'components/common/avatar';
@@ -9,6 +10,7 @@ import { DropDownList } from 'components/core/dropDownList';
 
 const User: React.FC = () => {
   const { userName, avatar } = useSelector(getUserInfo);
+  const theme = useTheme();
 
   return (
     <S.Container
@@ -25,7 +27,13 @@ const User: React.FC = () => {
         <Icon type={'arrow-down'} />
       </S.IconWrapper>
 
-      <ReactTooltip id="tooltip" clickable={true} place="bottom" effect="solid">
+      <ReactTooltip
+        borderColor={theme.colors.backgroundColor.darkGray}
+        id="tooltip"
+        clickable={true}
+        place="bottom"
+        effect="solid"
+      >
         <DropDownList />
       </ReactTooltip>
     </S.Container>

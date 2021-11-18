@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'hooks/useTypedSelector';
+import { useTheme } from '@emotion/react';
 import ReactTooltip from 'react-tooltip';
 import { useLocation } from 'react-router-dom';
 import { S } from './Sidebar.styles';
@@ -13,6 +14,7 @@ import { links } from './links';
 const Sidebar: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const theme = useTheme();
 
   const showSideBar = useSelector(getVisibilitySideBar);
   const dispatch = useDispatch();
@@ -34,7 +36,12 @@ const Sidebar: React.FC = () => {
                 <Typography type="body1">{t(`Sidebar.${link.text}`)}</Typography>
               </S.Link>
             ) : (
-              <ReactTooltip id={link.text} place="right" effect="solid">
+              <ReactTooltip
+                borderColor={theme.colors.backgroundColor.darkGray}
+                id={link.text}
+                place="right"
+                effect="solid"
+              >
                 {t(`Sidebar.${link.text}`)}
               </ReactTooltip>
             )}
