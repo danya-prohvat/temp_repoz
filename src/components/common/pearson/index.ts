@@ -1,0 +1,1 @@
+export { Pearson } from './Pearson';

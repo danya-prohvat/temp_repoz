@@ -9,12 +9,14 @@ import { RouterLink } from 'components/common/routerLink';
 import { Icon } from 'components/common/icon';
 import { Typography } from 'components/common/typography';
 import { toggleSideBar, getVisibilitySideBar } from 'store/UiSlice';
+import { getUserInfo } from 'store/UserSlice';
 import { links } from './links';
 
 const Sidebar: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const theme = useTheme();
+  const { id } = useSelector(getUserInfo);
 
   const showSideBar = useSelector(getVisibilitySideBar);
   const dispatch = useDispatch();
@@ -27,7 +29,11 @@ const Sidebar: React.FC = () => {
     <S.Sidebar>
       {links.map((link) => {
         return (
-          <RouterLink isactive={location.pathname === link.link} to={link.link} key={link.text}>
+          <RouterLink
+            isactive={location.pathname === link.link}
+            to={link.link.replace(':userId', String(id))}
+            key={link.text}
+          >
             <div data-type="light" data-border={true} data-tip data-for={link.text}>
               <Icon type={link.iconType} />
             </div>

@@ -21,7 +21,7 @@ export const enableMock = (): void => {
 
   mock.onGet(apiUrls.getMe.url).reply((config) => {
     const user = users.find((user) => user.token === config.headers?.Authorization.split(' ')[1]);
-    if (user) return [200, omit(user, ['password'])];
+    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions'])];
 
     return [401];
   });
@@ -54,7 +54,7 @@ export const enableMock = (): void => {
       const data = JSON.parse(config.data);
       const user = users.find((user) => user.id === Number(userId));
       if (user) {
-        return [200, { ...user, ...data }];
+        return [200, { ...omit(user, ['password', 'subscribers', 'subscriptions']), ...data }];
       }
     }
 
@@ -103,7 +103,7 @@ export const enableMock = (): void => {
     const data = JSON.parse(config.data);
 
     const user = users.find((user) => user.email === data.email && user.password === data.password);
-    if (user) return [200, omit(user, ['password'])];
+    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions'])];
 
     return [401];
   });
@@ -132,5 +132,33 @@ export const enableMock = (): void => {
     if (user && user.password === data.currentPassword) return [200, 'your password was changed'];
 
     return [400, "it isn't your password"];
+  });
+
+  mock.onGet(apiUrls.getSubscribers.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    const { search } = config.params;
+
+    const user = users.find((user) => user.id === Number(userId));
+    if (user) {
+      if (search) {
+        return [200, user.subscribers.filter((subscriber) => subscriber.userName.includes(search))];
+      } else return [200, user.subscribers];
+    }
+
+    return [401];
+  });
+
+  mock.onGet(apiUrls.getSubscriptions.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    const { search } = config.params;
+
+    const user = users.find((user) => user.id === Number(userId));
+    if (user) {
+      if (search) {
+        return [200, user.subscriptions.filter((subscription) => subscription.userName.includes(search))];
+      } else return [200, user.subscriptions];
+    }
+
+    return [401];
   });
 };
