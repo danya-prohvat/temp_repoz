@@ -38,6 +38,12 @@ const S = {
     min-width: 300px;
     transform: translateY(100%);
   `,
+  PasswordIcon: styled.div`
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+  `,
 };
 
 export { S };
