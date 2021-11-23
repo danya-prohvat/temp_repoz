@@ -45,4 +45,12 @@ export const apiUrls = {
     url: 'users/:userId/posts/:postId/likes',
     regexp: /users\/\d+\/posts\/\d+\/likes$/,
   },
+  getSubscribers: {
+    url: 'user/:userId/subscribers',
+    regexp: /user\/\d+\/subscribers$/,
+  },
+  getSubscriptions: {
+    url: 'user/:userId/subscriptions',
+    regexp: /user\/\d+\/subscriptions$/,
+  },
 };

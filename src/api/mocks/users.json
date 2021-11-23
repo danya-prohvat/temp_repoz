@@ -11,9 +11,85 @@
       "lastName": "Millington",
       "profileDescription": "Kelly Millington profile description",
       "postsCount": 13,
-      "subscribersCount": 876,
-      "subscriptionsCount": 987,
-      "subscribers": [1, 3],
+      "subscribersCount": 8,
+      "subscriptionsCount": 8,
+      "subscribers": [
+        {
+          "id": 9,
+          "userName": "iraqilate",
+          "description": "Sasha Uliana profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
+        },
+        {
+          "id": 8,
+          "userName": "pretendform",
+          "description": "Inna Illya profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/3.jpg"
+        },
+        {
+          "id": 7,
+          "userName": "balancedwoebegone",
+          "description": "Mykola Luba profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
+        },
+        {
+          "id": 6,
+          "userName": "paintingsacred",
+          "description": "Yevgen Anatoli profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
+        },
+
+        {
+          "id": 5,
+          "userName": "textfacility",
+          "description": "Yevhen Mariyka profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
+        },
+        {
+          "id": 4,
+          "userName": "fermentedexpress",
+          "description": "Iolanta Marko profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/7.jpg"
+        }
+      ],
+      "subscriptions": [
+        {
+          "id": 4,
+          "userName": "fermentedexpress",
+          "description": "Iolanta Marko profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/7.jpg"
+        },
+        {
+          "id": 5,
+          "userName": "textfacility",
+          "description": "Yevhen Mariyka profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
+        },
+        {
+          "id": 6,
+          "userName": "paintingsacred",
+          "description": "Yevgen Anatoli profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
+        },
+        {
+          "id": 7,
+          "userName": "balancedwoebegone",
+          "description": "Mykola Luba profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
+        },
+        {
+          "id": 8,
+          "userName": "pretendform",
+          "description": "Inna Illya profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/3.jpg"
+        },
+        {
+          "id": 9,
+          "userName": "iraqilate",
+          "description": "Sasha Uliana profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
+        }
+      ],
       "privateProfile": false,
       "allowComments": true
     },
@@ -28,9 +104,85 @@
       "lastName": "Millington2",
       "profileDescription": "Kelly Millington profile description222",
       "postsCount": 3,
-      "subscribersCount": 221,
-      "subscriptionsCount": 978,
-      "subscribers": [1, 3],
+      "subscribersCount": 8,
+      "subscriptionsCount": 8,
+      "subscribers": [
+        {
+          "id": 9,
+          "userName": "iraqilate",
+          "description": "Sasha Uliana profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
+        },
+        {
+          "id": 8,
+          "userName": "pretendform",
+          "description": "Inna Illya profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/3.jpg"
+        },
+        {
+          "id": 7,
+          "userName": "balancedwoebegone",
+          "description": "Mykola Luba profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
+        },
+        {
+          "id": 6,
+          "userName": "paintingsacred",
+          "description": "Yevgen Anatoli profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
+        },
+
+        {
+          "id": 5,
+          "userName": "textfacility",
+          "description": "Yevhen Mariyka profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
+        },
+        {
+          "id": 4,
+          "userName": "fermentedexpress",
+          "description": "Iolanta Marko profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/7.jpg"
+        }
+      ],
+      "subscriptions": [
+        {
+          "id": 4,
+          "userName": "fermentedexpress",
+          "description": "Iolanta Marko profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/7.jpg"
+        },
+        {
+          "id": 5,
+          "userName": "textfacility",
+          "description": "Yevhen Mariyka profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
+        },
+        {
+          "id": 6,
+          "userName": "paintingsacred",
+          "description": "Yevgen Anatoli profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
+        },
+        {
+          "id": 7,
+          "userName": "balancedwoebegone",
+          "description": "Mykola Luba profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
+        },
+        {
+          "id": 8,
+          "userName": "pretendform",
+          "description": "Inna Illya profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/3.jpg"
+        },
+        {
+          "id": 9,
+          "userName": "iraqilate",
+          "description": "Sasha Uliana profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
+        }
+      ],
       "privateProfile": true,
       "allowComments": false
     },
@@ -45,9 +197,211 @@
       "lastName": "Millington3",
       "profileDescription": "Kelly Millington profile description333",
       "postsCount": 5,
-      "subscribersCount": 123,
-      "subscriptionsCount": 432,
-      "subscribers": [1, 2],
+      "subscribersCount": 8,
+      "subscriptionsCount": 8,
+      "subscribers": [
+        {
+          "id": 9,
+          "userName": "iraqilate",
+          "description": "Sasha Uliana profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
+        },
+        {
+          "id": 8,
+          "userName": "pretendform",
+          "description": "Inna Illya profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/3.jpg"
+        },
+        {
+          "id": 7,
+          "userName": "balancedwoebegone",
+          "description": "Mykola Luba profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
+        },
+        {
+          "id": 6,
+          "userName": "paintingsacred",
+          "description": "Yevgen Anatoli profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
+        },
+
+        {
+          "id": 5,
+          "userName": "textfacility",
+          "description": "Yevhen Mariyka profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
+        },
+        {
+          "id": 4,
+          "userName": "fermentedexpress",
+          "description": "Iolanta Marko profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/7.jpg"
+        }
+      ],
+      "subscriptions": [
+        {
+          "id": 4,
+          "userName": "fermentedexpress",
+          "description": "Iolanta Marko profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/7.jpg"
+        },
+        {
+          "id": 5,
+          "userName": "textfacility",
+          "description": "Yevhen Mariyka profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
+        },
+        {
+          "id": 6,
+          "userName": "paintingsacred",
+          "description": "Yevgen Anatoli profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
+        },
+        {
+          "id": 7,
+          "userName": "balancedwoebegone",
+          "description": "Mykola Luba profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
+        },
+        {
+          "id": 8,
+          "userName": "pretendform",
+          "description": "Inna Illya profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/3.jpg"
+        },
+        {
+          "id": 9,
+          "userName": "iraqilate",
+          "description": "Sasha Uliana profile description",
+          "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
+        }
+      ],
+      "privateProfile": false,
+      "allowComments": true
+    },
+    {
+      "userName": "fermentedexpress",
+      "email": "musicismyhoe@gmail.com",
+      "id": 4,
+      "password": "0000",
+      "avatar": "https://randomuser.me/api/portraits/women/7.jpg",
+      "token": "token4",
+      "firstName": "Iolanta",
+      "lastName": "Marko",
+      "profileDescription": "Iolanta Marko profile description",
+      "postsCount": 0,
+      "subscribersCount": 0,
+      "subscriptionsCount": 0,
+      "subscribers": [],
+      "subscriptions": [],
+      "privateProfile": false,
+      "allowComments": true
+    },
+    {
+      "userName": "textfacility",
+      "email": "kimenhen@gmail.com",
+      "id": 5,
+      "password": "0000",
+      "avatar": "https://randomuser.me/api/portraits/women/6.jpg",
+      "token": "token5",
+      "firstName": "Yevhen",
+      "lastName": "Mariyka",
+      "profileDescription": "Yevhen Mariyka profile description",
+      "postsCount": 0,
+      "subscribersCount": 0,
+      "subscriptionsCount": 0,
+      "subscribers": [],
+      "subscriptions": [],
+      "privateProfile": false,
+      "allowComments": true
+    },
+    {
+      "userName": "paintingsacred",
+      "email": "purdue92@gmail.com",
+      "id": 6,
+      "password": "0000",
+      "avatar": "https://randomuser.me/api/portraits/women/5.jpg",
+      "token": "token6",
+      "firstName": "Yevgen",
+      "lastName": "Anatoli",
+      "profileDescription": "Yevgen Anatoli profile description",
+      "postsCount": 0,
+      "subscribersCount": 0,
+      "subscriptionsCount": 0,
+      "subscribers": [],
+      "subscriptions": [],
+      "privateProfile": false,
+      "allowComments": true
+    },
+    {
+      "userName": "balancedwoebegone",
+      "email": "finechico20@gmail.com",
+      "id": 7,
+      "password": "0000",
+      "avatar": "https://randomuser.me/api/portraits/women/4.jpg",
+      "token": "token7",
+      "firstName": "Mykola",
+      "lastName": "Luba",
+      "profileDescription": "Mykola Luba profile description",
+      "postsCount": 0,
+      "subscribersCount": 0,
+      "subscriptionsCount": 0,
+      "subscribers": [],
+      "subscriptions": [],
+      "privateProfile": false,
+      "allowComments": true
+    },
+    {
+      "userName": "pretendform",
+      "email": "jkporch@gmail.com",
+      "id": 8,
+      "password": "0000",
+      "avatar": "https://randomuser.me/api/portraits/women/3.jpg",
+      "token": "token8",
+      "firstName": "Yosyp",
+      "lastName": "mvrosiy",
+      "profileDescription": "Yosyp mvrosiy profile description",
+      "postsCount": 0,
+      "subscribersCount": 0,
+      "subscriptionsCount": 0,
+      "subscribers": [],
+      "subscriptions": [],
+      "privateProfile": false,
+      "allowComments": true
+    },
+    {
+      "userName": "iraqilate",
+      "email": "angelangel47@gmail.com",
+      "id": 9,
+      "password": "0000",
+      "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
+      "token": "token9",
+      "firstName": "Inna",
+      "lastName": "Illya",
+      "profileDescription": "Inna Illya profile description",
+      "postsCount": 0,
+      "subscribersCount": 0,
+      "subscriptionsCount": 0,
+      "subscribers": [],
+      "subscriptions": [],
+      "privateProfile": false,
+      "allowComments": true
+    },
+    {
+      "userName": "fearlessfoot",
+      "email": "yanceyam@gmail.com",
+      "id": 10,
+      "password": "0000",
+      "avatar": "https://randomuser.me/api/portraits/women/1.jpg",
+      "token": "token10",
+      "firstName": "Sasha",
+      "lastName": "Uliana",
+      "profileDescription": "Sasha Uliana profile description",
+      "postsCount": 0,
+      "subscribersCount": 0,
+      "subscriptionsCount": 0,
+      "subscribers": [],
+      "subscriptions": [],
       "privateProfile": false,
       "allowComments": true
     }

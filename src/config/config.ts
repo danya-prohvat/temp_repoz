@@ -7,4 +7,5 @@ export const env = {
   useLogger: Boolean(process.env.REACT_APP_USE_LOGGER) || false,
   maxAvatarSize: String(process.env.REACT_APP_USE_MAX_AVATAR_SIZE) || '5MB',
   acceptImages: String(process.env.REACT_APP_USE_ACCEPT_IMAGES) || 'image/png, image/jpeg',
+  debounceTiming: Number(process.env.REACT_APP_USE_DEBOUNCE_TIMING) || 200,
 };
