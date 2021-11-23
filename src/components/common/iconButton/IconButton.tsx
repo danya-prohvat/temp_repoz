@@ -9,7 +9,6 @@ const IconButton: React.FC<IconButton> = ({ icon }) => {
   return (
     <S.Button>
       <Icon name={icon} />
-      ds
     </S.Button>
   );
 };
