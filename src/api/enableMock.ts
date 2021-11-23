@@ -145,7 +145,7 @@ export const enableMock = (): void => {
       } else return [200, user.subscribers];
     }
 
-    return [401];
+    return [404];
   });
 
   mock.onGet(apiUrls.getSubscriptions.regexp).reply((config) => {
@@ -159,6 +159,6 @@ export const enableMock = (): void => {
       } else return [200, user.subscriptions];
     }
 
-    return [401];
+    return [404];
   });
 };

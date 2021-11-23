@@ -10,7 +10,7 @@ import { getUserInfo, getSubscribersThunk, getUserSubscribers } from 'store/User
 import { UserInfo } from 'components/core/userInfo';
 import { S } from './Subscribers.styles';
 import { config } from 'config';
-import { Pearson } from 'components/common/pearson';
+import { Person } from 'components/common/person';
 import { IconButton } from 'components/common/iconButton';
 import { Input } from 'components/common/input';
 
@@ -36,7 +36,7 @@ const Subscribers: React.FC = () => {
   } = useSelector(getUserInfo);
   const subscribers = useSelector(getUserSubscribers);
   const iconButtonOnClick = () => {
-    setOpenSearch(!openSearch);
+    setOpenSearch((prev) => !prev);
   };
 
   const searchInputOnChange = debounce((event) => {
@@ -74,9 +74,9 @@ const Subscribers: React.FC = () => {
         </S.Search>
       </S.PageTitle>
       <S.SubscribersWrapper>
-        {subscribers && subscribers.length > 0 ? (
+        {subscribers?.length > 0 ? (
           subscribers.map((subscriber) => (
-            <Pearson
+            <Person
               key={subscriber.id}
               id={subscriber.id}
               userName={subscriber.userName}

@@ -1,9 +1,9 @@
 import { Pearson as PersonProps } from 'types/types';
 import { Typography } from 'components/common/typography';
 import { locations } from 'routing/locations';
-import { S } from './Pearson.styles';
+import { S } from './Person.styles';
 
-const Pearson: React.FC<PersonProps> = ({ id, userName, description, avatar }) => {
+const Person: React.FC<PersonProps> = ({ id, userName, description, avatar }) => {
   return (
     <S.Container to={locations.user.replace(':userId', String(id))}>
       <S.Img>
@@ -17,4 +17,4 @@ const Pearson: React.FC<PersonProps> = ({ id, userName, description, avatar }) =
   );
 };
 
-export { Pearson };
+export { Person };

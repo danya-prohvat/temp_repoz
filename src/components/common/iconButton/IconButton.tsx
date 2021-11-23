@@ -1,15 +1,15 @@
 import { Icon } from 'components/icon';
 import { S } from './IconButton.styles';
 
-interface IconButton {
+interface IconButton extends React.HTMLProps<HTMLButtonElement> {
   icon: string;
-  onClick?: () => void;
 }
 
-const IconButton: React.FC<IconButton> = ({ icon, onClick }) => {
+const IconButton: React.FC<IconButton> = ({ icon }) => {
   return (
-    <S.Button onClick={onClick}>
+    <S.Button>
       <Icon name={icon} />
+      ds
     </S.Button>
   );
 };
