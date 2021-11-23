@@ -55,7 +55,7 @@ const SignUpForm: React.FC = () => {
   });
 
   return (
-    <S.Form onSubmit={formik.handleSubmit}>
+    <S.Form onSubmit={formik.handleSubmit} onBlur={formik.handleSubmit}>
       <S.FormTitle>
         <Typography type="heading2">{t(`Sign-in/up.WelcomeToMEDIA`)}</Typography>
       </S.FormTitle>
@@ -83,7 +83,8 @@ const SignUpForm: React.FC = () => {
             errorMessage={errorMessage}
             disabled={exist}
             minWidth={exist ? '' : '300px'}
-            maxWidth={exist ? '' : '300px'}
+            containerMaxWidth={exist ? '' : '300px'}
+            required={true}
           />
         </S.InputWrapper>
 
@@ -98,6 +99,7 @@ const SignUpForm: React.FC = () => {
                 handleChange={formik.handleChange}
                 errors={formik.errors}
                 values={formik.values}
+                required={true}
               />
             </S.InputWrapper>
             <S.InputWrapper>
@@ -109,6 +111,7 @@ const SignUpForm: React.FC = () => {
                 handleChange={formik.handleChange}
                 errors={formik.errors}
                 values={formik.values}
+                required={true}
               />
             </S.InputWrapper>
             <S.InputWrapper>
@@ -120,6 +123,7 @@ const SignUpForm: React.FC = () => {
                 handleChange={formik.handleChange}
                 errors={formik.errors}
                 values={formik.values}
+                required={true}
               />
             </S.InputWrapper>
           </>

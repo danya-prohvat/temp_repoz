@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUserInfo, getPostsInfo, checkAuthorization, getPostsThunk } from 'store/UserSlice';
 import { S } from './MyAccount.styles';
+import { locations } from 'routing/locations';
 import { Typography } from 'components/common/typography';
 import { PagesSeparator } from 'components/common/pagesSeparator';
 import { Post } from 'components/common/post';
@@ -49,10 +50,10 @@ const MyAccount: React.FC = () => {
             <S.UserName>
               <Typography type="heading4">{userName}</Typography>
             </S.UserName>
-            <S.ButtonWrapper>
+            <S.ButtonWrapper to={locations.saved}>
               <Button text="MyAccount.Saved" icon="saved" variant="outlined" />
             </S.ButtonWrapper>
-            <S.ButtonWrapper>
+            <S.ButtonWrapper to={locations.settings}>
               <Button text="MyAccount.Settings" icon="settings" variant="outlined" />
             </S.ButtonWrapper>
           </S.UserNameBlock>

@@ -40,7 +40,7 @@ const SignInForm: React.FC = () => {
   });
 
   return (
-    <S.Form onSubmit={formik.handleSubmit}>
+    <S.Form onSubmit={formik.handleSubmit} onBlur={formik.handleSubmit}>
       <S.FormTitle>
         <Typography type="heading2">{t(`Sign-in/up.SignIn`)}</Typography>
       </S.FormTitle>

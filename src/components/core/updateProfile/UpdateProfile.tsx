@@ -48,7 +48,7 @@ const UpdateProfile: React.FC = () => {
   });
 
   return (
-    <S.Form onSubmit={formik.handleSubmit}>
+    <S.Form onSubmit={formik.handleSubmit} onBlur={formik.handleSubmit}>
       <S.Column>
         <S.TopInput>
           <Input
