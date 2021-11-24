@@ -45,6 +45,7 @@ const initialState: UserStore = {
     subscriptionsCount: 0,
     privateProfile: false,
     allowComments: false,
+    actualToken: null,
   },
   checkUserName: {
     exist: false,
@@ -180,6 +181,10 @@ const UserSlice = createSlice({
     builder.addCase(signInThunk.rejected, () => {
       toast.error('Email or password is incorrect');
     });
+    builder.addCase(verifyUserThunk.rejected, (state) => {
+      localStorage.removeItem('token');
+      state.user.actualToken = false;
+    });
     builder.addCase(signUpThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
       UserSlice.caseReducers.setUser(state, action);
@@ -250,6 +255,7 @@ export const getUserInfo = createSelector(getState, (state) => {
     subscriptionsCount: state.user.subscriptionsCount,
     privateProfile: state.user.privateProfile,
     allowComments: state.user.allowComments,
+    actualToken: state.user.actualToken,
   };
 });
 export const getPostsInfo = createSelector(getState, (state) => {

@@ -11,4 +11,5 @@ export interface User {
   subscriptionsCount: number;
   privateProfile: boolean;
   allowComments: boolean;
+  actualToken: boolean | null;
 }
