@@ -7,6 +7,7 @@ import { S } from './User.styles';
 import { Icon } from 'components/common/icon';
 import { getUserInfo } from 'store/UserSlice';
 import { DropDownList } from 'components/core/dropDownList';
+import { ExternalLink } from 'components/common/externalLink';
 
 const User: React.FC = () => {
   const { userName, avatar } = useSelector(getUserInfo);
@@ -22,7 +23,7 @@ const User: React.FC = () => {
       data-for="tooltip"
     >
       <S.QuestionIconWrapper>
-        <Icon type="question-mark" />
+        <ExternalLink src="https://www.google.com/" />
       </S.QuestionIconWrapper>
       <Avatar size="50px" src={avatar || ''} />
       <Typography type="body1Bold">{userName}</Typography>

@@ -17,7 +17,7 @@ export interface InputProps
   label?: string;
   paddingLeft?: string;
   minWidth?: string;
-  containerMaxWidth?: string;
+  containerWidth?: string;
   errorMode?: boolean;
   // TODO
   handleChange?: (e: any) => void;
@@ -34,14 +34,14 @@ const Input: React.FC<InputProps> = ({
   label,
   paddingLeft,
   hasLabel,
-  containerMaxWidth,
+  containerWidth,
   ...rest
 }) => {
   const { t } = useTranslation();
   const theme = useTheme();
 
   return (
-    <S.FieldWrapper containerMaxWidth={containerMaxWidth}>
+    <S.FieldWrapper containerWidth={containerWidth}>
       {hasLabel && (
         <S.FieldLabel htmlFor={inputName}>
           <Typography type="label1">

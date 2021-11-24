@@ -7,7 +7,7 @@ const S = {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: ${(props) => props.containerMaxWidth};
+    min-width: ${(props) => props.containerWidth};
     flex: 1 1 auto;
   `,
   Field: styled.input<InputProps>`

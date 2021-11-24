@@ -83,7 +83,7 @@ const SignUpForm: React.FC = () => {
             errorMessage={errorMessage}
             disabled={exist}
             minWidth={exist ? '' : '300px'}
-            containerMaxWidth={exist ? '' : '300px'}
+            containerWidth={exist ? '' : '300px'}
             required={true}
           />
         </S.InputWrapper>

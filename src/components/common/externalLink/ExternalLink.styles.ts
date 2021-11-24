@@ -1,16 +1,17 @@
 import styled from '@emotion/styled';
 
 const S = {
-  Container: styled.div`
+  Container: styled.a`
     display: flex;
     align-items: center;
     justify-content: center;
+    color: ${(props) => props.theme.colors.textColor.black};
+    text-decoration: none;
   `,
-  A: styled.a`
+  Span: styled.span`
     margin-left: 10px;
     text-decoration: underline;
     cursor: pointer;
-    color: ${(props) => props.theme.colors.textColor.black};
   `,
   Icon: styled.span``,
 };
