@@ -35,7 +35,7 @@ const UserInfo: React.FC<UserInfoProps> = ({
       <S.ProfileInfo>
         <S.UserNameBlock>
           <S.UserName>
-            <Typography type="heading4">{userName}</Typography>
+            <Typography type="heading4">{userName ? userName : t('MyAccount.NoUsernameYet')}</Typography>
           </S.UserName>
           <S.ButtonWrapper>
             <Button text="MyAccount.Saved" icon="saved" variant="outlined" />
@@ -66,10 +66,14 @@ const UserInfo: React.FC<UserInfoProps> = ({
         </S.SubscribeBlock>
         <S.FullName>
           <S.Name>
-            <Typography type="body3Bold">{`${firstName} ${lastName}`}</Typography>
+            <Typography type="body3Bold">
+              {firstName || lastName ? `${firstName} ${lastName}` : t('MyAccount.NoNameYet')}
+            </Typography>
           </S.Name>
           <S.ProfileDescription>
-            <Typography type="body2">{profileDescription}</Typography>
+            <Typography type="body2">
+              {profileDescription ? profileDescription : t('MyAccount.NoDescriptionYet')}
+            </Typography>
           </S.ProfileDescription>
         </S.FullName>
       </S.ProfileInfo>

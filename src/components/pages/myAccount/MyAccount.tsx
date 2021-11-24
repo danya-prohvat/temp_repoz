@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import { useSelector } from 'hooks/useTypedSelector';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { getUserInfo, getPostsInfo, checkAuthorization, getPostsThunk } from 'store/UserSlice';
 import { S } from './MyAccount.styles';
+import { Typography } from 'components/common/typography';
 import { PagesSeparator } from 'components/common/pagesSeparator';
 import { Post } from 'components/common/post';
 import { Loader } from 'components/common/loader';
@@ -12,6 +14,7 @@ import { UserInfo } from 'components/core/userInfo';
 
 const MyAccount: React.FC = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { userId } = useParams();
 
   const {
@@ -52,9 +55,15 @@ const MyAccount: React.FC = () => {
       />
       <PagesSeparator marginTop="60px" marginBottom="50px" />
       <S.Posts>
-        {posts.map((post) => (
-          <Post key={post.id} id={post.id} src={post.src} likes={post.likesCount} comments={post.commentsCount} />
-        ))}
+        {posts.length > 0 ? (
+          posts.map((post) => (
+            <Post key={post.id} id={post.id} src={post.src} likes={post.likesCount} comments={post.commentsCount} />
+          ))
+        ) : (
+          <S.MessageWrapper>
+            <Typography type="body1">{t('PostPage.NoPostsYet')}</Typography>
+          </S.MessageWrapper>
+        )}
         {postLoader && <Loader />}
       </S.Posts>
     </S.Container>
