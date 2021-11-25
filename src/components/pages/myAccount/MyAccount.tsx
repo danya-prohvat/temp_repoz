@@ -31,8 +31,10 @@ const MyAccount: React.FC = () => {
   const { posts, postLoader } = useSelector(getPostsInfo);
 
   useEffect(() => {
-    if (isAuthorized && String(userId) !== String(id)) dispatch(getAnotherUserThunk(Number(userId)));
-    isAuthorized && dispatch(getPostsThunk({ userId: Number(userId), initialRequest: true }));
+    (async function () {
+      if (isAuthorized && String(userId) !== String(id)) await dispatch(getAnotherUserThunk(Number(userId)));
+      isAuthorized && dispatch(getPostsThunk({ userId: Number(userId), initialRequest: true }));
+    })();
   }, [isAuthorized, dispatch, userId, id]);
 
   useInfiniteScroll({
