@@ -3,6 +3,7 @@ import { useSelector } from 'hooks/useTypedSelector';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUserInfo, getPostsInfo, checkAuthorization, getPostsThunk } from 'store/UserSlice';
+import { getAnotherUserInfo, getAnotherUserThunk } from 'store/AnotherUserSlice';
 import { S } from './MyAccount.styles';
 import { PagesSeparator } from 'components/common/pagesSeparator';
 import { Post } from 'components/common/post';
@@ -13,6 +14,8 @@ import { UserInfo } from 'components/core/userInfo';
 const MyAccount: React.FC = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
+  const { id } = useSelector(getUserInfo);
+  const isAuthorized = useSelector(checkAuthorization);
 
   const {
     userName,
@@ -23,18 +26,19 @@ const MyAccount: React.FC = () => {
     postsCount,
     subscribersCount,
     subscriptionsCount,
-  } = useSelector(getUserInfo);
-  const isAuthorized = useSelector(checkAuthorization);
+  } = useSelector(String(userId) !== String(id) ? getAnotherUserInfo : getUserInfo);
+
   const { posts, postLoader } = useSelector(getPostsInfo);
 
   useEffect(() => {
-    isAuthorized && dispatch(getPostsThunk(Number(userId)));
-  }, [isAuthorized, dispatch, userId]);
+    if (isAuthorized && String(userId) !== String(id)) dispatch(getAnotherUserThunk(Number(userId)));
+    isAuthorized && dispatch(getPostsThunk({ userId: Number(userId), initialRequest: true }));
+  }, [isAuthorized, dispatch, userId, id]);
 
   useInfiniteScroll({
     loader: postLoader,
     isAuthorized: isAuthorized,
-    callBack: () => getPostsThunk(Number(userId)),
+    callBack: () => getPostsThunk({ userId: Number(userId) }),
   });
 
   return (

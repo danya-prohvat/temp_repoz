@@ -11,8 +11,8 @@
       "lastName": "Millington",
       "profileDescription": "Kelly Millington profile description",
       "postsCount": 13,
-      "subscribersCount": 8,
-      "subscriptionsCount": 8,
+      "subscribersCount": 6,
+      "subscriptionsCount": 6,
       "subscribers": [
         {
           "id": 9,
@@ -103,9 +103,9 @@
       "firstName": "Kelly",
       "lastName": "Millington2",
       "profileDescription": "Kelly Millington profile description222",
-      "postsCount": 3,
-      "subscribersCount": 8,
-      "subscriptionsCount": 8,
+      "postsCount": 7,
+      "subscribersCount": 2,
+      "subscriptionsCount": 2,
       "subscribers": [
         {
           "id": 9,
@@ -118,31 +118,6 @@
           "userName": "pretendform",
           "description": "Inna Illya profile description",
           "avatar": "https://randomuser.me/api/portraits/women/3.jpg"
-        },
-        {
-          "id": 7,
-          "userName": "balancedwoebegone",
-          "description": "Mykola Luba profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
-        },
-        {
-          "id": 6,
-          "userName": "paintingsacred",
-          "description": "Yevgen Anatoli profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
-        },
-
-        {
-          "id": 5,
-          "userName": "textfacility",
-          "description": "Yevhen Mariyka profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
-        },
-        {
-          "id": 4,
-          "userName": "fermentedexpress",
-          "description": "Iolanta Marko profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/7.jpg"
         }
       ],
       "subscriptions": [
@@ -157,30 +132,6 @@
           "userName": "textfacility",
           "description": "Yevhen Mariyka profile description",
           "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
-        },
-        {
-          "id": 6,
-          "userName": "paintingsacred",
-          "description": "Yevgen Anatoli profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
-        },
-        {
-          "id": 7,
-          "userName": "balancedwoebegone",
-          "description": "Mykola Luba profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
-        },
-        {
-          "id": 8,
-          "userName": "pretendform",
-          "description": "Inna Illya profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/3.jpg"
-        },
-        {
-          "id": 9,
-          "userName": "iraqilate",
-          "description": "Sasha Uliana profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
         }
       ],
       "privateProfile": true,
@@ -196,9 +147,9 @@
       "firstName": "Kelly",
       "lastName": "Millington3",
       "profileDescription": "Kelly Millington profile description333",
-      "postsCount": 5,
-      "subscribersCount": 8,
-      "subscriptionsCount": 8,
+      "postsCount": 1,
+      "subscribersCount": 3,
+      "subscriptionsCount": 3,
       "subscribers": [
         {
           "id": 9,
@@ -217,25 +168,6 @@
           "userName": "balancedwoebegone",
           "description": "Mykola Luba profile description",
           "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
-        },
-        {
-          "id": 6,
-          "userName": "paintingsacred",
-          "description": "Yevgen Anatoli profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
-        },
-
-        {
-          "id": 5,
-          "userName": "textfacility",
-          "description": "Yevhen Mariyka profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
-        },
-        {
-          "id": 4,
-          "userName": "fermentedexpress",
-          "description": "Iolanta Marko profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/7.jpg"
         }
       ],
       "subscriptions": [
@@ -256,24 +188,6 @@
           "userName": "paintingsacred",
           "description": "Yevgen Anatoli profile description",
           "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
-        },
-        {
-          "id": 7,
-          "userName": "balancedwoebegone",
-          "description": "Mykola Luba profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
-        },
-        {
-          "id": 8,
-          "userName": "pretendform",
-          "description": "Inna Illya profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/3.jpg"
-        },
-        {
-          "id": 9,
-          "userName": "iraqilate",
-          "description": "Sasha Uliana profile description",
-          "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
         }
       ],
       "privateProfile": false,

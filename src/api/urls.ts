@@ -6,6 +6,10 @@ export const apiUrls = {
     url: 'user/:userId',
     regexp: /user\/\d+$/,
   },
+  getAnotherUser: {
+    url: 'anotherUser/:userId',
+    regexp: /anotherUser\/\d+$/,
+  },
   patchUser: {
     url: 'user/:userId',
     regexp: /user\/\d+$/,

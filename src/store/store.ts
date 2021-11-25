@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { UserSlice } from './UserSlice';
+import { AnotherUserSlice } from './AnotherUserSlice';
 import { UiSlice } from './UiSlice';
 import { PostSlice } from './PostSlice';
 
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   user: UserSlice.reducer,
+  anotherUser: AnotherUserSlice.reducer,
   ui: UiSlice.reducer,
   post: PostSlice.reducer,
 });

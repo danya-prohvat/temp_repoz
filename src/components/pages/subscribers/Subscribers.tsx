@@ -7,6 +7,7 @@ import { PagesSeparator } from 'components/common/pagesSeparator';
 import { useSelector } from 'hooks/useTypedSelector';
 import { Typography } from 'components/common/typography';
 import { getUserInfo, getSubscribersThunk, getUserSubscribers } from 'store/UserSlice';
+import { getAnotherUserInfo, getAnotherUserThunk } from 'store/AnotherUserSlice';
 import { UserInfo } from 'components/core/userInfo';
 import { S } from './Subscribers.styles';
 import { config } from 'config';
@@ -19,10 +20,17 @@ const Subscribers: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [openSearch, setOpenSearch] = useState(false);
+  const { id } = useSelector(getUserInfo);
 
   useEffect(() => {
     dispatch(getSubscribersThunk({ userId: Number(userId) }));
   }, [dispatch, userId]);
+
+  useEffect(() => {
+    if (String(userId) !== String(id)) {
+      dispatch(getAnotherUserThunk(Number(userId)));
+    }
+  }, [dispatch, userId, id]);
 
   const {
     userName,
@@ -33,7 +41,7 @@ const Subscribers: React.FC = () => {
     postsCount,
     subscribersCount,
     subscriptionsCount,
-  } = useSelector(getUserInfo);
+  } = useSelector(String(userId) !== String(id) ? getAnotherUserInfo : getUserInfo);
   const subscribers = useSelector(getUserSubscribers);
   const iconButtonOnClick = () => {
     setOpenSearch((prev) => !prev);
