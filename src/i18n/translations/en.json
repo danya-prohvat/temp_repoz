@@ -40,7 +40,10 @@
     "Settings": "Settings",
     "Posts": "posts",
     "Subscribers": "subscribers",
-    "Subscriptions": "subscriptions"
+    "Subscriptions": "subscriptions",
+    "NoDescriptionYet": "No description yet",
+    "NoNameYet": "No name yet",
+    "NoUsernameYet": "No username yet"
   },
   "PostPage": {
     "Subscribe": "Subscribe",
@@ -48,7 +51,8 @@
     "Save": "Save",
     "Saved": "Saved",
     "InputPlaceholder": "Leave a comment",
-    "NoCommentsYet": "No comments yet"
+    "NoCommentsYet": "No comments yet",
+    "NoPostsYet": "No posts yet"
   },
   "Popup": {
     "NoLikesYet": "No likes yet"

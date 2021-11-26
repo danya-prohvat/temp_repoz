@@ -55,6 +55,10 @@ const S = {
     display: flex;
     flex-wrap: wrap;
   `,
+  MessageWrapper: styled.div`
+    width: 100%;
+    text-align: center;
+  `,
 };
 
 export { S };

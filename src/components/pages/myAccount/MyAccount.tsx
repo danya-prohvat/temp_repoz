@@ -15,8 +15,8 @@ import { Button } from 'components/common/button';
 
 const MyAccount: React.FC = () => {
   const dispatch = useDispatch();
-  const { userId } = useParams();
   const { t } = useTranslation();
+  const { userId } = useParams();
 
   const {
     userName,
@@ -89,9 +89,15 @@ const MyAccount: React.FC = () => {
       </S.UserInfo>
       <PagesSeparator marginTop="60px" marginBottom="50px" />
       <S.Posts>
-        {posts.map((post) => (
-          <Post key={post.id} id={post.id} src={post.src} likes={post.likesCount} comments={post.commentsCount} />
-        ))}
+        {posts.length > 0 ? (
+          posts.map((post) => (
+            <Post key={post.id} id={post.id} src={post.src} likes={post.likesCount} comments={post.commentsCount} />
+          ))
+        ) : (
+          <S.MessageWrapper>
+            <Typography type="body1">{t('PostPage.NoPostsYet')}</Typography>
+          </S.MessageWrapper>
+        )}
         {postLoader && <Loader />}
       </S.Posts>
     </S.Container>
