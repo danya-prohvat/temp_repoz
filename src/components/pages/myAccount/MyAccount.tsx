@@ -2,21 +2,21 @@ import { useEffect } from 'react';
 import { useSelector } from 'hooks/useTypedSelector';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { getUserInfo, getPostsInfo, checkAuthorization, getPostsThunk } from 'store/UserSlice';
 import { S } from './MyAccount.styles';
 import { locations } from 'routing/locations';
 import { Typography } from 'components/common/typography';
 import { PagesSeparator } from 'components/common/pagesSeparator';
 import { Post } from 'components/common/post';
-import { useTranslation } from 'react-i18next';
-import { Button } from 'components/common/button';
 import { Loader } from 'components/common/loader';
 import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
+import { Button } from 'components/common/button';
 
 const MyAccount: React.FC = () => {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { userId } = useParams();
+  const { t } = useTranslation();
 
   const {
     userName,
@@ -92,7 +92,6 @@ const MyAccount: React.FC = () => {
         {posts.map((post) => (
           <Post key={post.id} id={post.id} src={post.src} likes={post.likesCount} comments={post.commentsCount} />
         ))}
-
         {postLoader && <Loader />}
       </S.Posts>
     </S.Container>

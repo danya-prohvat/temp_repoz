@@ -68,6 +68,7 @@ const darkTheme = {
       white: '#FFFFFF',
       blue: '#6E71F8',
       red: '#F34E4E',
+      gray: '#DEDEDE',
     },
     backgroundColor: {
       lightGray: '#F3F3F3',
@@ -103,6 +104,7 @@ const whiteTheme: Theme = {
       white: '#FFFFFF',
       blue: '#6E71F8',
       red: '#F34E4E',
+      gray: '#DEDEDE',
     },
     backgroundColor: {
       lightGray: '#F3F3F3',

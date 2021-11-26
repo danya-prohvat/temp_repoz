@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactTooltip from 'react-tooltip';
 import { useTheme } from '@emotion/react';
@@ -5,7 +6,6 @@ import { S } from './Input.styles';
 import { Typography } from 'components/common/typography';
 import { Icon } from 'components/common/icon';
 import { FormikValues, FormikErrors } from 'formik';
-import React from 'react';
 
 export interface InputProps
   extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
@@ -35,10 +35,16 @@ const Input: React.FC<InputProps> = ({
   paddingLeft,
   hasLabel,
   containerWidth,
+  type,
   ...rest
 }) => {
   const { t } = useTranslation();
   const theme = useTheme();
+  const [inputType, setInputType] = useState(type);
+
+  const PasswordIconOnClick = () => {
+    setInputType('text');
+  };
 
   return (
     <S.FieldWrapper containerWidth={containerWidth}>
@@ -50,6 +56,11 @@ const Input: React.FC<InputProps> = ({
           </Typography>
         </S.FieldLabel>
       )}
+      {type === 'password' && (
+        <S.PasswordIcon onClick={PasswordIconOnClick}>
+          <Icon type={inputType === 'password' ? 'lock-close' : 'lock-open'} />
+        </S.PasswordIcon>
+      )}
       <S.Field
         disabled={disabled}
         paddingLeft={paddingLeft}
@@ -59,6 +70,7 @@ const Input: React.FC<InputProps> = ({
         onChange={handleChange}
         value={values && inputName && values[inputName]}
         errorMode={Boolean(errorMessage) || Boolean(errors && inputName && errors[inputName])}
+        type={inputType}
         {...rest}
       />
       <S.ErrorMessage>

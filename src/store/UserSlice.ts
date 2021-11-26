@@ -7,7 +7,7 @@ import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
 import { RootState } from './store';
-import { User } from 'types/types';
+import { Pearson, User } from 'types/types';
 
 interface Post {
   id: number;
@@ -46,6 +46,8 @@ const initialState: UserStore = {
     privateProfile: false,
     allowComments: false,
     actualToken: null,
+    subscribers: [],
+    subscriptions: [],
   },
   checkUserName: {
     exist: false,
@@ -136,6 +138,26 @@ export const verifyUserThunk = createAsyncThunk('user/verifyUser', async (_, { d
   }
 });
 
+export const getSubscribersThunk = createAsyncThunk(
+  'user/getSubscribersThunk',
+  async ({ userId, search }: { userId: number; search?: string }) => {
+    const response = await getRequest(apiUrls.getSubscribers.url.replace(':userId', String(userId)), {
+      params: { search: search || '' },
+    });
+    return response.data;
+  },
+);
+
+export const getSubscriptionsThunk = createAsyncThunk(
+  'user/getSubscriptionsThunk',
+  async ({ userId, search }: { userId: number; search?: string }) => {
+    const response = await getRequest(apiUrls.getSubscriptions.url.replace(':userId', String(userId)), {
+      params: { search: search || '' },
+    });
+    return response.data;
+  },
+);
+
 const UserSlice = createSlice({
   name: 'user',
   initialState,
@@ -164,6 +186,12 @@ const UserSlice = createSlice({
       state.user = initialState.user;
 
       localStorage.removeItem('token');
+    },
+    setSubscribers(state, action: PayloadAction<Pearson[]>) {
+      state.user.subscribers = action.payload;
+    },
+    setSubscriptions(state, action: PayloadAction<Pearson[]>) {
+      state.user.subscriptions = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -236,6 +264,18 @@ const UserSlice = createSlice({
     builder.addCase(patchUserAvatar.rejected, () => {
       toast.error("Your avatar wasn't changed, try again");
     });
+    builder.addCase(getSubscribersThunk.fulfilled, (state, action) => {
+      UserSlice.caseReducers.setSubscribers(state, action);
+    });
+    builder.addCase(getSubscribersThunk.rejected, () => {
+      toast.error('Error');
+    });
+    builder.addCase(getSubscriptionsThunk.fulfilled, (state, action) => {
+      UserSlice.caseReducers.setSubscriptions(state, action);
+    });
+    builder.addCase(getSubscriptionsThunk.rejected, () => {
+      toast.error('Error');
+    });
   },
 });
 
@@ -269,6 +309,17 @@ export const checkNewUserName = createSelector(getState, (state) => {
   return { exist: state.checkUserName.exist, errorMessage: state.checkUserName.errorMessage };
 });
 
-export const { setUser, changeAuthorization, addPosts, incrementPageSize, changePostLoader, resetUser } =
-  UserSlice.actions;
+export const getUserSubscribers = createSelector(getState, (state) => state.user.subscribers);
+export const getUserSubscriptions = createSelector(getState, (state) => state.user.subscriptions);
+
+export const {
+  setUser,
+  changeAuthorization,
+  addPosts,
+  incrementPageSize,
+  changePostLoader,
+  resetUser,
+  setSubscribers,
+  setSubscriptions,
+} = UserSlice.actions;
 export { UserSlice };

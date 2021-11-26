@@ -1,3 +1,9 @@
+export interface Pearson {
+  id: number;
+  userName: string;
+  description: string;
+  avatar: string;
+}
 export interface User {
   userName: string;
   email: string;
@@ -12,4 +18,7 @@ export interface User {
   privateProfile: boolean;
   allowComments: boolean;
   actualToken: boolean | null;
+
+  subscribers: Pearson[];
+  subscriptions: Pearson[];
 }
