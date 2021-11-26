@@ -27,6 +27,10 @@ const S = {
     text-align: center;
     background-color: ${(props) => props.theme.colors.backgroundColor.lightPink};
   `,
+  LinkWrapper: styled.div`
+    margin-left: 10px;
+    text-decoration: underline;
+  `,
   HeaderTitle: styled.span`
     position: relative;
     margin-left: 15px;

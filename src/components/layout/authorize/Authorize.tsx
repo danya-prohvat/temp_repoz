@@ -1,9 +1,11 @@
+import { useTranslation } from 'react-i18next';
 import { Typography } from 'components/common/typography';
 import { S } from './Authorize.styles';
 import { Logo } from 'components/common/logo';
 import { ExternalLink } from 'components/common/externalLink';
 import { SignInForm } from 'components/core/signInForm';
 import { SignUpForm } from 'components/core/signUpForm';
+import { Icon } from 'components/common/icon';
 import { config } from 'config';
 
 interface AuthorizeProps {
@@ -11,6 +13,8 @@ interface AuthorizeProps {
 }
 
 const Authorize: React.FC<AuthorizeProps> = ({ authorizeType }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <S.Header>
@@ -23,7 +27,12 @@ const Authorize: React.FC<AuthorizeProps> = ({ authorizeType }) => {
         <S.Form>{authorizeType === 'Sign In' ? <SignInForm /> : <SignUpForm />}</S.Form>
       </S.Main>
       <S.Footer>
-        <ExternalLink text="NeedHelp" src={config.env.externalLink} />
+        <ExternalLink src={config.env.externalLink}>
+          <Icon type="question-mark" />
+          <S.LinkWrapper>
+            <Typography type="body2">{t(`NeedHelp`)}</Typography>
+          </S.LinkWrapper>
+        </ExternalLink>
       </S.Footer>
     </>
   );

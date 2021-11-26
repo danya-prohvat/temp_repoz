@@ -23,7 +23,9 @@ const User: React.FC = () => {
       data-for="tooltip"
     >
       <S.QuestionIconWrapper>
-        <ExternalLink src="https://www.google.com/" />
+        <ExternalLink src="https://www.google.com/">
+          <Icon type="question-mark" />
+        </ExternalLink>
       </S.QuestionIconWrapper>
       <Avatar size="50px" src={avatar || ''} />
       <Typography type="body1Bold">{userName}</Typography>
