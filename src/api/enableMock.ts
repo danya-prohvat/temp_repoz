@@ -1,5 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
-import { omit, pick } from 'lodash';
+import { omit } from 'lodash';
 import { config } from 'config';
 import { apiUrls } from './urls';
 import { instance } from './apiClient';
@@ -26,23 +26,23 @@ export const enableMock = (): void => {
     return [401];
   });
 
-  mock.onGet(apiUrls.getAnotherUser.regexp).reply((config) => {
-    const userId = config.url?.split('/')[1];
-
-    const user = users.find((user) => user.id === Number(userId));
-    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions'])];
-
-    return [400];
-  });
-
   mock.onGet(apiUrls.getUser.regexp).reply((config) => {
     const userId = config.url?.split('/')[1];
 
     const user = users.find((user) => user.id === Number(userId));
-    if (user) return [200, pick(user, ['userName', 'avatar', 'id', 'subscribers'])];
+    if (user) return [200, omit(user, ['password'])];
 
     return [400];
   });
+
+  // mock.onGet(apiUrls.getUser.regexp).reply((config) => {
+  //   const userId = config.url?.split('/')[1];
+
+  //   const user = users.find((user) => user.id === Number(userId));
+  //   if (user) return [200, pick(user, ['userName', 'avatar', 'id', 'subscribers'])];
+
+  //   return [400];
+  // });
 
   mock.onPatch(apiUrls.patchUser.regexp).reply((config) => {
     const userId = config.url?.split('/')[1];

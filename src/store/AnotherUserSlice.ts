@@ -31,7 +31,7 @@ const initialState: AnotherUser = {
 };
 
 export const getAnotherUserThunk = createAsyncThunk('user/getAnotherUser', async (userId: number) => {
-  const response = await getRequest(apiUrls.getAnotherUser.url.replace(':userId', String(userId)));
+  const response = await getRequest(apiUrls.getUser.url.replace(':userId', String(userId)));
   return response.data;
 });
 
