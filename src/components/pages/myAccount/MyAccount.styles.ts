@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const S = {
@@ -29,8 +30,10 @@ const S = {
   UserName: styled.span`
     flex: 1 1 auto;
   `,
-  ButtonWrapper: styled.div`
+  ButtonWrapper: styled(Link)`
     margin-left: 15px;
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.textColor.black};
   `,
   SubscribeBlock: styled.div`
     display: flex;

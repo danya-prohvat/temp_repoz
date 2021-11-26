@@ -129,9 +129,9 @@ export const enableMock = (): void => {
     const data = JSON.parse(config.data);
 
     const user = users.find((user) => user.id === Number(userId));
-    if (user && user.password === data.currentPassword) return [200, 'your password was changed'];
+    if (user && user.password === data.currentPassword) return [200, 'Your password was changed'];
 
-    return [400, "it isn't your password"];
+    return [400];
   });
 
   mock.onGet(apiUrls.getSubscribers.regexp).reply((config) => {

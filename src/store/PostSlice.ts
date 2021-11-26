@@ -92,12 +92,22 @@ const PostSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    setPost(state, action: PayloadAction<PostStore>) {
-      state.id = action.payload.id;
-      state.likesCount = action.payload.likesCount;
-      state.commentsCount = action.payload.commentsCount;
-      state.src = action.payload.src;
-      state.comments = action.payload.comments;
+    setPost(state, action: PayloadAction<PostStore | undefined>) {
+      if (action.payload) {
+        state.id = action.payload.id;
+        state.likesCount = action.payload.likesCount;
+        state.commentsCount = action.payload.commentsCount;
+        state.src = action.payload.src;
+        state.comments = action.payload.comments;
+      } else {
+        state.id = initialState.id;
+        state.likesCount = initialState.likesCount;
+        state.commentsCount = initialState.commentsCount;
+        state.src = initialState.src;
+        state.comments = initialState.comments;
+        state.likes = initialState.likes;
+        state.author = initialState.author;
+      }
     },
     setAuthor(state, action: PayloadAction<AuthorPayload>) {
       state.author.authorId = action.payload.id;

@@ -24,6 +24,9 @@ const S = {
   Link: styled(Link)`
     text-decoration: none;
     color: ${(props) => props.theme.colors.textColor.blue};
+    &:hover {
+      text-decoration: underline;
+    }
   `,
   InputWrapper: styled.div`
     margin-bottom: 30px;

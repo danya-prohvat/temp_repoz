@@ -45,6 +45,7 @@ const initialState: UserStore = {
     subscriptionsCount: 0,
     privateProfile: false,
     allowComments: false,
+    actualToken: null,
     subscribers: [],
     subscriptions: [],
   },
@@ -100,7 +101,7 @@ export const getMeThunk = createAsyncThunk('user/getMe', async () => {
   return response.data;
 });
 
-export const patchUserAvatar = createAsyncThunk('user/patchUser', async (data: FormData, { getState }: any) => {
+export const patchUserAvatar = createAsyncThunk('user/patchUserAvatar', async (data: FormData, { getState }: any) => {
   const { user } = getState().user;
 
   const response = await patchRequest(apiUrls.patchUser.url.replace(':userId', user.id), data, {
@@ -208,6 +209,10 @@ const UserSlice = createSlice({
     builder.addCase(signInThunk.rejected, () => {
       toast.error('Email or password is incorrect');
     });
+    builder.addCase(verifyUserThunk.rejected, (state) => {
+      localStorage.removeItem('token');
+      state.user.actualToken = false;
+    });
     builder.addCase(signUpThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.changeAuthorization(state);
       UserSlice.caseReducers.setUser(state, action);
@@ -232,7 +237,7 @@ const UserSlice = createSlice({
       toast.success(action.payload);
     });
     builder.addCase(updatePasswordThunk.rejected, () => {
-      toast.error("it isn't your password");
+      toast.error("Your password wasn't changed, try again");
     });
     builder.addCase(getPostsThunk.pending, (state) => {
       UserSlice.caseReducers.changePostLoader(state);
@@ -247,9 +252,17 @@ const UserSlice = createSlice({
     });
     builder.addCase(patchUser.fulfilled, (state, action) => {
       UserSlice.caseReducers.setUser(state, action);
+      toast.success('Your information was changed');
     });
     builder.addCase(patchUser.rejected, () => {
-      toast.error('Error');
+      toast.error("Your information wasn't changed, try again");
+    });
+    builder.addCase(patchUserAvatar.fulfilled, (state, action) => {
+      UserSlice.caseReducers.setUser(state, action);
+      toast.success('Your avatar was changed');
+    });
+    builder.addCase(patchUserAvatar.rejected, () => {
+      toast.error("Your avatar wasn't changed, try again");
     });
     builder.addCase(getSubscribersThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.setSubscribers(state, action);
@@ -282,6 +295,7 @@ export const getUserInfo = createSelector(getState, (state) => {
     subscriptionsCount: state.user.subscriptionsCount,
     privateProfile: state.user.privateProfile,
     allowComments: state.user.allowComments,
+    actualToken: state.user.actualToken,
   };
 });
 export const getPostsInfo = createSelector(getState, (state) => {

@@ -17,6 +17,7 @@ export interface User {
   subscriptionsCount: number;
   privateProfile: boolean;
   allowComments: boolean;
+  actualToken: boolean | null;
 
   subscribers: Pearson[];
   subscriptions: Pearson[];
