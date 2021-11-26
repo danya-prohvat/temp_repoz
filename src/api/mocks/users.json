@@ -11,6 +11,7 @@
       "lastName": "",
       "profileDescription": "Kelly Millington profile description",
       "postsCount": 13,
+      "savedPostsCount": 9,
       "subscribersCount": 6,
       "subscriptionsCount": 6,
       "subscribers": [
@@ -90,6 +91,68 @@
           "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
         }
       ],
+      "savedPosts": [
+        {
+          "id": 1,
+          "likesCount": 98,
+          "commentsCount": 87,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 2,
+          "likesCount": 1,
+          "commentsCount": 1,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 3,
+          "likesCount": 101,
+          "commentsCount": 99,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 4,
+          "likesCount": 0,
+          "commentsCount": 0,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 5,
+          "likesCount": 0,
+          "commentsCount": 0,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 6,
+          "likesCount": 0,
+          "commentsCount": 0,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 7,
+          "likesCount": 0,
+          "commentsCount": 0,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 8,
+          "likesCount": 0,
+          "commentsCount": 0,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 9,
+          "likesCount": 0,
+          "commentsCount": 0,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png"
+        },
+        {
+          "id": 10,
+          "likesCount": 0,
+          "commentsCount": 0,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        }
+      ],
       "privateProfile": false,
       "allowComments": true
     },
@@ -132,6 +195,14 @@
           "userName": "textfacility",
           "description": "Yevhen Mariyka profile description",
           "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
+        }
+      ],
+      "savedPosts": [
+        {
+          "id": 1,
+          "likesCount": 98,
+          "commentsCount": 87,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
         }
       ],
       "privateProfile": true,
@@ -188,6 +259,20 @@
           "userName": "paintingsacred",
           "description": "Yevgen Anatoli profile description",
           "avatar": "https://randomuser.me/api/portraits/women/5.jpg"
+        }
+      ],
+      "savedPosts": [
+        {
+          "id": 1,
+          "likesCount": 98,
+          "commentsCount": 87,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
+        },
+        {
+          "id": 3,
+          "likesCount": 101,
+          "commentsCount": 99,
+          "src": "https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736401_960_720.png"
         }
       ],
       "privateProfile": false,

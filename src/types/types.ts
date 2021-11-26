@@ -4,6 +4,13 @@ export interface Pearson {
   description: string;
   avatar: string;
 }
+
+export interface SavedPosts {
+  id: number;
+  likesCount: number;
+  commentsCount: number;
+  src: string;
+}
 export interface User {
   userName: string;
   email: string;
@@ -13,6 +20,7 @@ export interface User {
   lastName: string;
   profileDescription: string;
   postsCount: number;
+  savedPostsCount: number;
   subscribersCount: number;
   subscriptionsCount: number;
   privateProfile: boolean;
@@ -21,4 +29,5 @@ export interface User {
 
   subscribers: Pearson[];
   subscriptions: Pearson[];
+  savedPosts: SavedPosts[];
 }

@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { locations } from 'routing/locations';
+import { useSelector } from 'hooks/useTypedSelector';
+import { getUserInfo } from 'store/UserSlice';
 import { Icon } from 'components/common/icon';
 import { Typography } from 'components/common/typography';
 import { S } from './Post.styles';
@@ -12,10 +14,11 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ src, id, likes, comments }) => {
-  const { userId } = useParams();
+  const { urlUserId } = useParams();
+  const userId = String(useSelector(getUserInfo).id);
 
   return (
-    <S.Post to={locations.post.replace(':userId', String(userId)).replace(':postId', String(id))}>
+    <S.Post to={locations.post.replace(':userId', String(urlUserId || userId)).replace(':postId', String(id))}>
       <S.PostImg src={src} alt="post img" />
       <S.PostOverlay>
         <S.PostOverlayElement>

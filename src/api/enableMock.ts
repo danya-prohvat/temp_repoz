@@ -21,7 +21,7 @@ export const enableMock = (): void => {
 
   mock.onGet(apiUrls.getMe.url).reply((config) => {
     const user = users.find((user) => user.token === config.headers?.Authorization.split(' ')[1]);
-    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions'])];
+    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions', 'savedPosts'])];
 
     return [401];
   });
@@ -30,7 +30,7 @@ export const enableMock = (): void => {
     const userId = config.url?.split('/')[1];
 
     const user = users.find((user) => user.id === Number(userId));
-    if (user) return [200, omit(user, ['password'])];
+    if (user) return [200, omit(user, ['password', 'savedPosts'])];
 
     return [400];
   });
@@ -54,7 +54,7 @@ export const enableMock = (): void => {
       const data = JSON.parse(config.data);
       const user = users.find((user) => user.id === Number(userId));
       if (user) {
-        return [200, { ...omit(user, ['password', 'subscribers', 'subscriptions']), ...data }];
+        return [200, { ...omit(user, ['password', 'subscribers', 'subscriptions', 'savedPosts']), ...data }];
       }
     }
 
@@ -103,7 +103,7 @@ export const enableMock = (): void => {
     const data = JSON.parse(config.data);
 
     const user = users.find((user) => user.email === data.email && user.password === data.password);
-    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions'])];
+    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions', 'savedPosts'])];
 
     return [401];
   });
@@ -157,6 +157,26 @@ export const enableMock = (): void => {
       if (search) {
         return [200, user.subscriptions.filter((subscription) => subscription.userName.includes(search))];
       } else return [200, user.subscriptions];
+    }
+
+    return [404];
+  });
+
+  mock.onGet(apiUrls.getSavedPosts.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    const { limit, offset } = config.params;
+
+    const user = users.find((user) => user.id === Number(userId));
+    // // if (user) return [200, user.savedPosts];
+
+    // const post = posts.find((post) => post.userId === Number(userId));
+
+    // if (post && !(offset > Math.ceil(post.total / limit)))
+    //   return [200, post.posts.slice(limit * offset - limit, limit * offset)];
+
+    if (user) {
+      if (user.savedPosts && !(offset > Math.ceil(user.savedPosts.length / limit)))
+        return [200, user.savedPosts.slice(limit * offset - limit, limit * offset)];
     }
 
     return [404];

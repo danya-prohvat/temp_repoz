@@ -7,7 +7,7 @@ import { apiUrls } from 'api/urls';
 import { SingInFormProps } from 'components/core/signInForm/SignInForm';
 import { SingUpFormProps } from 'components/core/signUpForm/SignUpForm';
 import { RootState } from './store';
-import { Pearson, User } from 'types/types';
+import { Pearson, SavedPosts, User } from 'types/types';
 
 interface Post {
   id: number;
@@ -41,6 +41,7 @@ const initialState: UserStore = {
     lastName: '',
     profileDescription: '',
     postsCount: 0,
+    savedPostsCount: 0,
     subscribersCount: 0,
     subscriptionsCount: 0,
     privateProfile: false,
@@ -48,6 +49,7 @@ const initialState: UserStore = {
     actualToken: null,
     subscribers: [],
     subscriptions: [],
+    savedPosts: [],
   },
   checkUserName: {
     exist: false,
@@ -74,6 +76,7 @@ export const getPostsThunk = createAsyncThunk(
 
     if (offset <= Math.ceil(postsCount / limit)) {
       dispatch(incrementPageSize());
+
       const response = await getRequest(apiUrls.getPosts.url.replace(':userId', String(userId)), {
         params: { limit: limit, offset: offset },
       });
@@ -170,6 +173,25 @@ export const getSubscriptionsThunk = createAsyncThunk(
   },
 );
 
+export const getSavedPostsThunk = createAsyncThunk(
+  'user/getSavedPostsThunk',
+  async ({ initialRequest }: { initialRequest?: boolean }, { dispatch, getState }: any) => {
+    const { user } = getState().user;
+
+    if (initialRequest) dispatch(resetPosts());
+
+    const { limit, offset } = getState().user;
+
+    if (offset <= Math.ceil(user.savedPostsCount / limit)) {
+      dispatch(incrementPageSize());
+      const response = await getRequest(apiUrls.getSavedPosts.url.replace(':userId', String(user.id)), {
+        params: { limit: limit, offset: offset },
+      });
+      return response.data;
+    }
+  },
+);
+
 const UserSlice = createSlice({
   name: 'user',
   initialState,
@@ -202,12 +224,16 @@ const UserSlice = createSlice({
     resetPosts(state) {
       state.posts = initialState.posts;
       state.offset = initialState.offset;
+      state.user.savedPosts = initialState.user.savedPosts;
     },
     setSubscribers(state, action: PayloadAction<Pearson[]>) {
       state.user.subscribers = action.payload;
     },
     setSubscriptions(state, action: PayloadAction<Pearson[]>) {
       state.user.subscriptions = action.payload;
+    },
+    setSavedPosts(state, action: PayloadAction<SavedPosts[]>) {
+      if (action.payload) state.user.savedPosts = [...state.user.savedPosts, ...action.payload];
     },
   },
   extraReducers: (builder) => {
@@ -292,6 +318,17 @@ const UserSlice = createSlice({
     builder.addCase(getSubscriptionsThunk.rejected, () => {
       toast.error('Error');
     });
+    builder.addCase(getSavedPostsThunk.pending, (state) => {
+      UserSlice.caseReducers.changePostLoader(state);
+    });
+    builder.addCase(getSavedPostsThunk.fulfilled, (state, action) => {
+      UserSlice.caseReducers.changePostLoader(state);
+      UserSlice.caseReducers.setSavedPosts(state, action);
+    });
+    builder.addCase(getSavedPostsThunk.rejected, (state) => {
+      UserSlice.caseReducers.changePostLoader(state);
+      toast.error('Error');
+    });
   },
 });
 
@@ -328,6 +365,8 @@ export const checkNewUserName = createSelector(getState, (state) => {
 export const getUserSubscribers = createSelector(getState, (state) => state.user.subscribers);
 export const getUserSubscriptions = createSelector(getState, (state) => state.user.subscriptions);
 
+export const getSavedPosts = createSelector(getState, (state) => state.user.savedPosts);
+
 export const {
   setUser,
   changeAuthorization,
@@ -338,5 +377,6 @@ export const {
   setSubscribers,
   setSubscriptions,
   resetPosts,
+  setSavedPosts,
 } = UserSlice.actions;
 export { UserSlice };

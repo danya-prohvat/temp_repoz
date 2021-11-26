@@ -53,4 +53,8 @@ export const apiUrls = {
     url: 'user/:userId/subscriptions',
     regexp: /user\/\d+\/subscriptions$/,
   },
+  getSavedPosts: {
+    url: 'user/:userId/savedPosts',
+    regexp: /user\/\d+\/savedPosts$/,
+  },
 };
