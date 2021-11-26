@@ -1,5 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
-import { omit, pick } from 'lodash';
+import { omit } from 'lodash';
 import { config } from 'config';
 import { apiUrls } from './urls';
 import { instance } from './apiClient';
@@ -30,7 +30,7 @@ export const enableMock = (): void => {
     const userId = config.url?.split('/')[1];
 
     const user = users.find((user) => user.id === Number(userId));
-    if (user) return [200, pick(user, ['userName', 'avatar', 'id', 'subscribers'])];
+    if (user) return [200, omit(user, ['password'])];
 
     return [400];
   });

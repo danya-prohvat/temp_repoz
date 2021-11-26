@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getUserInfo, getPostsInfo, checkAuthorization, getPostsThunk } from 'store/UserSlice';
+import { getAnotherUserInfo, getAnotherUserThunk } from 'store/AnotherUserSlice';
 import { S } from './MyAccount.styles';
 import { locations } from 'routing/locations';
 import { Typography } from 'components/common/typography';
@@ -17,6 +18,8 @@ const MyAccount: React.FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { userId } = useParams();
+  const { id } = useSelector(getUserInfo);
+  const isAuthorized = useSelector(checkAuthorization);
 
   const {
     userName,
@@ -27,18 +30,21 @@ const MyAccount: React.FC = () => {
     postsCount,
     subscribersCount,
     subscriptionsCount,
-  } = useSelector(getUserInfo);
-  const isAuthorized = useSelector(checkAuthorization);
+  } = useSelector(String(userId) !== String(id) ? getAnotherUserInfo : getUserInfo);
+
   const { posts, postLoader } = useSelector(getPostsInfo);
 
   useEffect(() => {
-    isAuthorized && dispatch(getPostsThunk(Number(userId)));
-  }, [isAuthorized, dispatch, userId]);
+    (async function () {
+      if (isAuthorized && String(userId) !== String(id)) await dispatch(getAnotherUserThunk(Number(userId)));
+      isAuthorized && dispatch(getPostsThunk({ userId: Number(userId), initialRequest: true }));
+    })();
+  }, [isAuthorized, dispatch, userId, id]);
 
   useInfiniteScroll({
     loader: postLoader,
     isAuthorized: isAuthorized,
-    callBack: () => getPostsThunk(Number(userId)),
+    callBack: () => getPostsThunk({ userId: Number(userId) }),
   });
 
   return (

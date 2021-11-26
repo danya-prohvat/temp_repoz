@@ -59,17 +59,29 @@ const initialState: UserStore = {
   posts: [],
 };
 // TODO: TS
-export const getPostsThunk = createAsyncThunk('user/getPosts', async (userId: number, { getState, dispatch }: any) => {
-  const { limit, offset, user } = getState().user;
-  if (offset <= Math.ceil(user.postsCount / limit)) {
-    dispatch(incrementPageSize());
-    const response = await getRequest(apiUrls.getPosts.url.replace(':userId', String(userId)), {
-      params: { limit: limit, offset: offset },
-    });
+export const getPostsThunk = createAsyncThunk(
+  'user/getPosts',
+  async ({ userId, initialRequest }: { userId: number; initialRequest?: boolean }, { getState, dispatch }: any) => {
+    let postsCount;
+    const { user } = getState().user;
 
-    return response.data;
-  }
-});
+    if (initialRequest) dispatch(resetPosts());
+
+    if (userId !== user.id) postsCount = getState().anotherUser.postsCount;
+    else postsCount = getState().user.user.postsCount;
+
+    const { limit, offset } = getState().user;
+
+    if (offset <= Math.ceil(postsCount / limit)) {
+      dispatch(incrementPageSize());
+      const response = await getRequest(apiUrls.getPosts.url.replace(':userId', String(userId)), {
+        params: { limit: limit, offset: offset },
+      });
+
+      return response.data;
+    }
+  },
+);
 
 export const signInThunk = createAsyncThunk('user/signIn', async ({ email, password }: SingInFormProps) => {
   const response = await postRequest(apiUrls.signIn.url, { email: email, password: password });
@@ -186,6 +198,10 @@ const UserSlice = createSlice({
       state.user = initialState.user;
 
       localStorage.removeItem('token');
+    },
+    resetPosts(state) {
+      state.posts = initialState.posts;
+      state.offset = initialState.offset;
     },
     setSubscribers(state, action: PayloadAction<Pearson[]>) {
       state.user.subscribers = action.payload;
@@ -321,5 +337,6 @@ export const {
   resetUser,
   setSubscribers,
   setSubscriptions,
+  resetPosts,
 } = UserSlice.actions;
 export { UserSlice };
