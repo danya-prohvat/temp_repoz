@@ -47,9 +47,8 @@ const UserInfo: React.FC<UserInfoProps> = ({
         <S.SubscribeBlock>
           <S.PostElement>
             <S.PostSubElement>
-              <Typography type="body3Bold">{postsCount}</Typography>
+              <Typography type="body3Bold">{postsCount || t('MyAccount.Posts')}</Typography>
             </S.PostSubElement>
-            <Typography type="body2">{t('MyAccount.Posts')}</Typography>
           </S.PostElement>
           <S.SubscribeElement to={locations.subscribers.replace(':userId', String(userId))}>
             <S.SubscribeSubElement>
@@ -71,9 +70,7 @@ const UserInfo: React.FC<UserInfoProps> = ({
             </Typography>
           </S.Name>
           <S.ProfileDescription>
-            <Typography type="body2">
-              {profileDescription ? profileDescription : t('MyAccount.NoDescriptionYet')}
-            </Typography>
+            <Typography type="body2">{profileDescription || t('MyAccount.NoDescriptionYet')}</Typography>
           </S.ProfileDescription>
         </S.FullName>
       </S.ProfileInfo>
