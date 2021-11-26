@@ -7,6 +7,7 @@ import { S } from './User.styles';
 import { Icon } from 'components/common/icon';
 import { getUserInfo } from 'store/UserSlice';
 import { DropDownList } from 'components/core/dropDownList';
+import { ExternalLink } from 'components/common/externalLink';
 
 const User: React.FC = () => {
   const { userName, avatar } = useSelector(getUserInfo);
@@ -21,11 +22,16 @@ const User: React.FC = () => {
       data-tip
       data-for="tooltip"
     >
+      <S.QuestionIconWrapper>
+        <ExternalLink src="https://www.google.com/">
+          <Icon type="question-mark" />
+        </ExternalLink>
+      </S.QuestionIconWrapper>
       <Avatar size="50px" src={avatar || ''} />
       <Typography type="body1Bold">{userName}</Typography>
-      <S.IconWrapper>
+      <S.ArrowIconWrapper>
         <Icon type={'arrow-down'} />
-      </S.IconWrapper>
+      </S.ArrowIconWrapper>
 
       <ReactTooltip
         borderColor={theme.colors.backgroundColor.darkGray}

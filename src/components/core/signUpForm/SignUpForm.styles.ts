@@ -40,6 +40,9 @@ const S = {
   Link: styled(Link)`
     text-decoration: none;
     color: ${(props) => props.theme.colors.textColor.blue};
+    &:hover {
+      text-decoration: underline;
+    }
   `,
   FormStatus: styled.div`
     width: 600px;

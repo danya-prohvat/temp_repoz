@@ -35,7 +35,9 @@ const Sidebar: React.FC = () => {
             key={link.text}
           >
             <div data-type="light" data-border={true} data-tip data-for={link.text}>
-              <Icon type={link.iconType} />
+              <S.IconWrapper>
+                <Icon type={link.iconType} />
+              </S.IconWrapper>
             </div>
             {showSideBar ? (
               <S.Link>

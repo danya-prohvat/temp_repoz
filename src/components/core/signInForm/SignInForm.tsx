@@ -79,7 +79,6 @@ const SignInForm: React.FC = () => {
           minWidth="300px"
         />
       </S.InputWrapper>
-
       <Button text="Sign-in/up.SignIn" variant="primary" />
     </S.Form>
   );

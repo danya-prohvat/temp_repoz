@@ -26,7 +26,13 @@ const S = {
   `,
   Link: styled.span`
     font-size: 12px;
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 35px;
+  `,
+  IconWrapper: styled.div`
+    font-size: 18px;
+    margin-left: 8px;
+    margin-right: 10px;
   `,
 };
 

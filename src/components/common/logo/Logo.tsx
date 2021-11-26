@@ -2,12 +2,13 @@ import { useTranslation } from 'react-i18next';
 import { S } from './Logo.styles';
 import { Icon } from 'components/common/icon';
 import { Typography } from 'components/common/typography';
+import { locations } from 'routing/locations';
 
 const Logo: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <S.Container>
+    <S.Container to={locations.home}>
       <S.Logo>
         <Icon type="logo" />
       </S.Logo>
