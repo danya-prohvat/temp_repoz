@@ -35,15 +35,6 @@ export const enableMock = (): void => {
     return [400];
   });
 
-  // mock.onGet(apiUrls.getUser.regexp).reply((config) => {
-  //   const userId = config.url?.split('/')[1];
-
-  //   const user = users.find((user) => user.id === Number(userId));
-  //   if (user) return [200, pick(user, ['userName', 'avatar', 'id', 'subscribers'])];
-
-  //   return [400];
-  // });
-
   mock.onPatch(apiUrls.patchUser.regexp).reply((config) => {
     const userId = config.url?.split('/')[1];
     // TODO: why its string
