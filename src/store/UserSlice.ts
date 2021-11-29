@@ -175,7 +175,8 @@ export const getSubscriptionsThunk = createAsyncThunk(
 
 export const getSavedPostsThunk = createAsyncThunk(
   'user/getSavedPostsThunk',
-  async ({ initialRequest }: { initialRequest?: boolean }, { dispatch, getState }: any) => {
+  // TS
+  async ({ initialRequest, sortBy }: { initialRequest?: boolean; sortBy: string }, { dispatch, getState }: any) => {
     const { user } = getState().user;
 
     if (initialRequest) dispatch(resetPosts());
@@ -185,7 +186,7 @@ export const getSavedPostsThunk = createAsyncThunk(
     if (offset <= Math.ceil(user.savedPostsCount / limit)) {
       dispatch(incrementPageSize());
       const response = await getRequest(apiUrls.getSavedPosts.url.replace(':userId', String(user.id)), {
-        params: { limit: limit, offset: offset },
+        params: { limit: limit, offset: offset, sortBy: sortBy },
       });
       return response.data;
     }

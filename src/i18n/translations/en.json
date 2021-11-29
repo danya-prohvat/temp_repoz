@@ -55,7 +55,8 @@
     "NoPostsYet": "No posts yet"
   },
   "SavedPostPage": {
-    "NoSavedPostsYet": "No saved posts yet"
+    "NoSavedPostsYet": "No saved posts yet",
+    "MySavedPosts": "My Saved Posts"
   },
   "Popup": {
     "NoLikesYet": "No likes yet"
@@ -86,5 +87,11 @@
     "YouDontHaveSubscribers": "You don't have subscribers yet",
     "YouDontHaveSubscriptions": "You don't have Subscriptions yet",
     "Search": "Search..."
+  },
+  "Sorting": {
+    "DateAdded": "Date added",
+    "DateAddedDesc": "Date added desc",
+    "DatePosted": "Date posted",
+    "DatePostedDesc": "Date posted desc"
   }
 }

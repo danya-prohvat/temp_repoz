@@ -13,6 +13,13 @@ const S = {
     width: 100%;
     text-align: center;
   `,
+  TopLine: styled.div`
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  `,
+  PageTitle: styled.div``,
 };
 
 export { S };

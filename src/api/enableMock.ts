@@ -1,5 +1,6 @@
+import { constants } from './../config/constants';
 import MockAdapter from 'axios-mock-adapter';
-import { omit } from 'lodash';
+import _, { omit } from 'lodash';
 import { config } from 'config';
 import { apiUrls } from './urls';
 import { instance } from './apiClient';
@@ -164,20 +165,50 @@ export const enableMock = (): void => {
 
   mock.onGet(apiUrls.getSavedPosts.regexp).reply((config) => {
     const userId = config.url?.split('/')[1];
-    const { limit, offset } = config.params;
+    const { limit, offset, sortBy } = config.params;
 
     const user = users.find((user) => user.id === Number(userId));
-    // // if (user) return [200, user.savedPosts];
 
-    // const post = posts.find((post) => post.userId === Number(userId));
+    if (user)
+      if (user.savedPosts && !(offset > Math.ceil(user.savedPosts.length / limit))) {
+        let posts;
+        switch (sortBy) {
+          case constants.savedPostsSortingOptions[0].value:
+            posts = _.sortBy(user.savedPosts, [
+              function (post: any) {
+                return post.addedDate;
+              },
+            ]);
+            break;
+          case constants.savedPostsSortingOptions[1].value:
+            posts = _.sortBy(user.savedPosts, [
+              function (post: any) {
+                return !post.addedDate;
+              },
+            ]);
+            break;
+          case constants.savedPostsSortingOptions[2].value:
+            posts = _.sortBy(user.savedPosts, [
+              function (post: any) {
+                return post.postedDate;
+              },
+            ]);
+            break;
+          case constants.savedPostsSortingOptions[3].value:
+            posts = _.sortBy(user.savedPosts, [
+              function (post: any) {
+                return !post.postedDate;
+              },
+            ]);
+            break;
 
-    // if (post && !(offset > Math.ceil(post.total / limit)))
-    //   return [200, post.posts.slice(limit * offset - limit, limit * offset)];
+          default:
+            posts = user.savedPosts;
+            break;
+        }
 
-    if (user) {
-      if (user.savedPosts && !(offset > Math.ceil(user.savedPosts.length / limit)))
-        return [200, user.savedPosts.slice(limit * offset - limit, limit * offset)];
-    }
+        return [200, posts.slice(limit * offset - limit, limit * offset)];
+      }
 
     return [404];
   });
