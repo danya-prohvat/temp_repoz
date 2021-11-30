@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'hooks/useTypedSelector';
@@ -16,12 +16,14 @@ const SavedPosts: React.FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const updateSelect = [
-    ...config.constants.savedPostsSortingOptions.map((sortOption) => ({
-      ...sortOption,
-      label: t(sortOption.label),
-    })),
-  ];
+  const updateSelect = useMemo(() => {
+    return [
+      ...config.constants.savedPostsSortingOptions.map((sortOption) => ({
+        ...sortOption,
+        label: t(sortOption.label),
+      })),
+    ];
+  }, [t]);
 
   const [sortBy, setSortBy] = useState(updateSelect[0].value);
 
