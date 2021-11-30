@@ -16,7 +16,7 @@ const SavedPosts: React.FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const updateSelect = useMemo(() => {
+  const updateSelectOptions = useMemo(() => {
     return [
       ...config.constants.savedPostsSortingOptions.map((sortOption) => ({
         ...sortOption,
@@ -25,7 +25,7 @@ const SavedPosts: React.FC = () => {
     ];
   }, [t]);
 
-  const [sortBy, setSortBy] = useState(updateSelect[0].value);
+  const [sortBy, setSortBy] = useState(updateSelectOptions[0].value);
 
   const savedPosts = useSelector(getSavedPosts);
   const { postLoader } = useSelector(getPostsInfo);
@@ -51,10 +51,10 @@ const SavedPosts: React.FC = () => {
         <S.PageTitle>
           <Typography type="heading2">{t('SavedPostPage.MySavedPosts')}</Typography>
         </S.PageTitle>
-        <Select options={updateSelect} defaultValue={updateSelect[0]} onChange={selectOnChange} />
+        <Select options={updateSelectOptions} defaultValue={updateSelectOptions[0]} onChange={selectOnChange} />
       </S.TopLine>
       <S.Posts>
-        {savedPosts && savedPosts.length > 0
+        {savedPosts?.length > 0
           ? savedPosts.map((savedPost) => (
               <Post
                 key={savedPost.id}

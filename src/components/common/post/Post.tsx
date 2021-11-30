@@ -14,11 +14,12 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ src, id, likes, comments }) => {
-  const { urlUserId } = useParams();
-  const userId = String(useSelector(getUserInfo).id);
+  const { userId } = useParams();
+
+  const urlUserId = String(useSelector(getUserInfo).id);
 
   return (
-    <S.Post to={locations.post.replace(':userId', String(urlUserId || userId)).replace(':postId', String(id))}>
+    <S.Post to={locations.post.replace(':userId', String(userId || urlUserId)).replace(':postId', String(id))}>
       <S.PostImg src={src} alt="post img" />
       <S.PostOverlay>
         <S.PostOverlayElement>

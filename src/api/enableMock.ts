@@ -174,32 +174,16 @@ export const enableMock = (): void => {
         let posts;
         switch (sortBy) {
           case constants.savedPostsSortingOptions[0].value:
-            posts = _.sortBy(user.savedPosts, [
-              function (post: any) {
-                return post.addedDate;
-              },
-            ]);
+            posts = _.sortBy(user.savedPosts, ['addedDate']);
             break;
           case constants.savedPostsSortingOptions[1].value:
-            posts = _.sortBy(user.savedPosts, [
-              function (post: any) {
-                return !post.addedDate;
-              },
-            ]);
+            posts = _.sortBy(user.savedPosts, ['addedDate']).reverse();
             break;
           case constants.savedPostsSortingOptions[2].value:
-            posts = _.sortBy(user.savedPosts, [
-              function (post: any) {
-                return post.postedDate;
-              },
-            ]);
+            posts = _.sortBy(user.savedPosts, ['postedDate']);
             break;
           case constants.savedPostsSortingOptions[3].value:
-            posts = _.sortBy(user.savedPosts, [
-              function (post: any) {
-                return !post.postedDate;
-              },
-            ]);
+            posts = _.sortBy(user.savedPosts, ['postedDate']).reverse();
             break;
 
           default:

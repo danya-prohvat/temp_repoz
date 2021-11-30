@@ -1,28 +1,31 @@
 import { useMemo } from 'react';
 import { useTheme } from '@emotion/react';
-import SelectProps, { default as SelectDefault } from 'react-select';
+import { CSSObjectWithLabel, default as SelectDefault, SingleValue } from 'react-select';
 
-export interface SelectP extends SelectProps {}
+export interface SelectProps {
+  onChange: (event: SingleValue<{ label: string; value: any }>) => void;
+  options: { label: string; value: any }[];
+  defaultValue?: any;
+}
 
-const Select: SelectP = ({ ...props }) => {
+const Select: React.FC<SelectProps> = ({ ...props }) => {
   const theme = useTheme();
-  console.log(theme);
 
   const customStyles = useMemo(() => {
     return {
-      control: (provided: any) => ({
+      control: (provided: CSSObjectWithLabel) => ({
         ...provided,
         border: 'none',
-        boxShadow: '0px 4px 14px rgba(0, 0, 0, 0.1)',
+        boxShadow: theme.shadows.boxShadows.selectShadow,
         borderRadius: '2px',
       }),
-      menu: (provided: any) => ({
+      menu: (provided: CSSObjectWithLabel) => ({
         ...provided,
         border: 'none',
-        boxShadow: '0px 4px 14px rgba(0, 0, 0, 0.1)',
+        boxShadow: theme.shadows.boxShadows.selectShadow,
       }),
     };
-  }, []);
+  }, [theme]);
 
   return <SelectDefault styles={customStyles} {...props} />;
 };
