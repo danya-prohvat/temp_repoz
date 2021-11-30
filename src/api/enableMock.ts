@@ -1,5 +1,6 @@
+import { constants } from './../config/constants';
 import MockAdapter from 'axios-mock-adapter';
-import { omit } from 'lodash';
+import _, { omit } from 'lodash';
 import { config } from 'config';
 import { apiUrls } from './urls';
 import { instance } from './apiClient';
@@ -21,7 +22,7 @@ export const enableMock = (): void => {
 
   mock.onGet(apiUrls.getMe.url).reply((config) => {
     const user = users.find((user) => user.token === config.headers?.Authorization.split(' ')[1]);
-    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions'])];
+    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions', 'savedPosts'])];
 
     return [401];
   });
@@ -30,7 +31,7 @@ export const enableMock = (): void => {
     const userId = config.url?.split('/')[1];
 
     const user = users.find((user) => user.id === Number(userId));
-    if (user) return [200, omit(user, ['password'])];
+    if (user) return [200, omit(user, ['password', 'savedPosts'])];
 
     return [400];
   });
@@ -54,7 +55,7 @@ export const enableMock = (): void => {
       const data = JSON.parse(config.data);
       const user = users.find((user) => user.id === Number(userId));
       if (user) {
-        return [200, { ...omit(user, ['password', 'subscribers', 'subscriptions']), ...data }];
+        return [200, { ...omit(user, ['password', 'subscribers', 'subscriptions', 'savedPosts']), ...data }];
       }
     }
 
@@ -103,7 +104,7 @@ export const enableMock = (): void => {
     const data = JSON.parse(config.data);
 
     const user = users.find((user) => user.email === data.email && user.password === data.password);
-    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions'])];
+    if (user) return [200, omit(user, ['password', 'subscribers', 'subscriptions', 'savedPosts'])];
 
     return [401];
   });
@@ -158,6 +159,40 @@ export const enableMock = (): void => {
         return [200, user.subscriptions.filter((subscription) => subscription.userName.includes(search))];
       } else return [200, user.subscriptions];
     }
+
+    return [404];
+  });
+
+  mock.onGet(apiUrls.getSavedPosts.regexp).reply((config) => {
+    const userId = config.url?.split('/')[1];
+    const { limit, offset, sortBy } = config.params;
+
+    const user = users.find((user) => user.id === Number(userId));
+
+    if (user)
+      if (user.savedPosts && !(offset > Math.ceil(user.savedPosts.length / limit))) {
+        let posts;
+        switch (sortBy) {
+          case constants.savedPostsSortingOptions[0].value:
+            posts = _.sortBy(user.savedPosts, ['addedDate']);
+            break;
+          case constants.savedPostsSortingOptions[1].value:
+            posts = _.sortBy(user.savedPosts, ['addedDate']).reverse();
+            break;
+          case constants.savedPostsSortingOptions[2].value:
+            posts = _.sortBy(user.savedPosts, ['postedDate']);
+            break;
+          case constants.savedPostsSortingOptions[3].value:
+            posts = _.sortBy(user.savedPosts, ['postedDate']).reverse();
+            break;
+
+          default:
+            posts = user.savedPosts;
+            break;
+        }
+
+        return [200, posts.slice(limit * offset - limit, limit * offset)];
+      }
 
     return [404];
   });

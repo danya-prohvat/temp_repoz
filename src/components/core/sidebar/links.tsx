@@ -1,6 +1,7 @@
 import { Settings } from 'components/pages/settings';
 import { Subscribers } from 'components/pages/subscribers';
 import { Subscriptions } from 'components/pages/subscriptions';
+import { SavedPosts } from 'components/pages/savedPosts';
 import { locations } from 'routing/locations';
 
 export const links = [
@@ -9,6 +10,6 @@ export const links = [
   { iconType: 'user', text: 'Subscribers', content: <Subscribers />, link: locations.subscribers },
   { iconType: 'user', text: 'Subscriptions', content: <Subscriptions />, link: locations.subscriptions },
   { iconType: 'message', text: 'Messages', link: locations.messages },
-  { iconType: 'saved', text: 'Saved', link: locations.saved },
+  { iconType: 'saved', text: 'Saved', content: <SavedPosts />, link: locations.saved },
   { iconType: 'settings', text: 'Settings', content: <Settings />, link: locations.settings },
 ];

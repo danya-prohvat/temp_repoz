@@ -94,6 +94,11 @@ const darkTheme = {
       red: '#F34E4E',
     },
   },
+  shadows: {
+    boxShadows: {
+      selectShadow: '0px 4px 14px rgba(0, 0, 0, 0.1)',
+    },
+  },
   typography: typography,
 };
 
@@ -128,6 +133,11 @@ const whiteTheme: Theme = {
       gray: '#DEDEDE',
       darkGray: '#979797',
       red: '#F34E4E',
+    },
+  },
+  shadows: {
+    boxShadows: {
+      selectShadow: '0px 4px 14px rgba(0, 0, 0, 0.1)',
     },
   },
   typography: typography,
