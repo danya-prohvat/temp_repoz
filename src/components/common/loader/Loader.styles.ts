@@ -3,8 +3,9 @@ import styled from '@emotion/styled';
 const S = {
   LoaderWrapper: styled.span`
     text-align: center;
-    margin-top: 60px;
-    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
   `,
 };

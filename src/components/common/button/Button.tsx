@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({ text, icon, variant = 'primary', loadin
       )}
       {loading && (
         <S.LoaderWrapper>
-          <Loader height={20} width={20} />
+          <Loader height={30} width={30} />
         </S.LoaderWrapper>
       )}
     </ChangeableComponent>

@@ -26,7 +26,6 @@ const loader: Middleware = (store) => (next) => (action) => {
 const middleware: any = [...getDefaultMiddleware<RootState>(), loader];
 
 const persistedReducer = persistReducer(persistConfig, UiSlice.reducer);
-console.log(persistedReducer);
 
 export const store = configureStore({
   reducer: {
