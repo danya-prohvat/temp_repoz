@@ -45,6 +45,7 @@ interface PostStore {
   author: Author;
   comments: Comment[];
   likes: Likes[];
+  modalLoading: boolean;
 }
 
 const initialState: PostStore = {
@@ -60,6 +61,7 @@ const initialState: PostStore = {
   },
   comments: [],
   likes: [],
+  modalLoading: false,
 };
 
 export const getPost = createAsyncThunk(
@@ -135,6 +137,9 @@ const PostSlice = createSlice({
     setLikes(state, action: PayloadAction<Likes[]>) {
       state.likes = action.payload;
     },
+    toggleModalLoading(state) {
+      state.modalLoading = !state.modalLoading;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getPost.fulfilled, (state, action) => {
@@ -149,11 +154,15 @@ const PostSlice = createSlice({
     builder.addCase(getPostAuthor.rejected, () => {
       toast.error('Such post not found');
     });
+    builder.addCase(getLikesThunk.pending, (state) => {
+      PostSlice.caseReducers.toggleModalLoading(state);
+    });
     builder.addCase(getLikesThunk.fulfilled, (state, action) => {
+      PostSlice.caseReducers.toggleModalLoading(state);
       PostSlice.caseReducers.setLikes(state, action);
     });
-    builder.addCase(getLikesThunk.rejected, () => {
-      toast.error('Such likes not found');
+    builder.addCase(getLikesThunk.rejected, (state) => {
+      PostSlice.caseReducers.toggleModalLoading(state);
     });
   },
 });
@@ -181,6 +190,8 @@ export const getAuthorInfo = createSelector(getState, (state) => {
 export const getComments = createSelector(getState, (state) => state.comments);
 
 export const getLikes = createSelector(getState, (state) => state.likes);
+
+export const getModalLoading = createSelector(getState, (state) => state.modalLoading);
 
 export const { setPost, setAuthor, setCommentAuthor } = PostSlice.actions;
 export { PostSlice };
