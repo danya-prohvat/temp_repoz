@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction, createSelector } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import { config } from 'config';
 import { getRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { RootState } from './store';
@@ -62,7 +63,7 @@ const initialState: PostStore = {
 };
 
 export const getPost = createAsyncThunk(
-  'post/getPost',
+  `post/getPost${config.constants.initialLoading}`,
   // TODO: TS
   async ({ postId, userId }: GetPostThunkParams, { dispatch }: any) => {
     const response = await getRequest(

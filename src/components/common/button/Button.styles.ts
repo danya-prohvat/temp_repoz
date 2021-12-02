@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 import { ButtonProps } from './Button';
 
-const S: Record<Required<ButtonProps>['variant'] | 'IconWrapper', any> = {
+interface TextWrapperProps {
+  opacity: boolean;
+}
+
+const S: Record<Required<ButtonProps>['variant'] | 'IconWrapper' | 'LoaderWrapper' | 'TextWrapper', any> = {
   primary: styled.button`
     color: ${(props) => props.theme.colors.textColor.white};
     background-color: ${(props) => props.theme.colors.backgroundColor.red};
@@ -36,6 +40,14 @@ const S: Record<Required<ButtonProps>['variant'] | 'IconWrapper', any> = {
     display: inline;
     margin-right: 5px;
     font-size: 16px;
+  `,
+  LoaderWrapper: styled.div`
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+  `,
+  TextWrapper: styled.div<TextWrapperProps>`
+    opacity: ${(props) => (props.opacity ? '0' : '1')};
   `,
 };
 

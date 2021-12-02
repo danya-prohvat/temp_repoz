@@ -48,8 +48,8 @@ const SignUpForm: React.FC = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    onSubmit: (value: SingUpFormProps) => {
-      dispatch(exist ? signUpThunk(value) : checkNewUserNameThunk(value.userName));
+    onSubmit: async (value: SingUpFormProps) => {
+      await dispatch(exist ? signUpThunk(value) : checkNewUserNameThunk(value.userName));
     },
     validationSchema,
   });
@@ -130,7 +130,7 @@ const SignUpForm: React.FC = () => {
         )}
       </S.FieldsContainer>
 
-      <Button text="Sign-in/up.SignUp" variant="primary" />
+      <Button text="Sign-in/up.SignUp" loading={formik.isSubmitting} variant="primary" />
 
       {!exist && (
         <S.FormDescription>

@@ -38,8 +38,8 @@ const UpdatePassword: React.FC = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    onSubmit: (value: updatePasswordProps, { resetForm }) => {
-      dispatch(updatePasswordThunk(value));
+    onSubmit: async (value: updatePasswordProps, { resetForm }) => {
+      await dispatch(updatePasswordThunk(value));
       resetForm();
     },
     validationSchema,
@@ -86,7 +86,7 @@ const UpdatePassword: React.FC = () => {
       </S.InputWrapper>
 
       <S.ButtonWrapper>
-        <Button text="Settings.Update" variant="primary" />
+        <Button text="Settings.Update" loading={formik.isSubmitting} variant="primary" />
       </S.ButtonWrapper>
     </S.Form>
   );

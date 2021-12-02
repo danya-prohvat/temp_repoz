@@ -22,6 +22,7 @@ interface checkUserName {
 
 interface UserStore {
   isAuthorized: boolean;
+  loading: boolean;
   user: User;
   checkUserName: checkUserName;
   limit: number;
@@ -32,6 +33,7 @@ interface UserStore {
 
 const initialState: UserStore = {
   isAuthorized: false,
+  loading: true,
   user: {
     userName: '',
     email: '',
