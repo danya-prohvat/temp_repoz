@@ -33,8 +33,8 @@ const SignInForm: React.FC = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    onSubmit: (value: SingInFormProps) => {
-      dispatch(signInThunk(value));
+    onSubmit: async (value: SingInFormProps) => {
+      await dispatch(signInThunk(value));
     },
     validationSchema,
   });
@@ -79,7 +79,7 @@ const SignInForm: React.FC = () => {
           minWidth="300px"
         />
       </S.InputWrapper>
-      <Button text="Sign-in/up.SignIn" variant="primary" />
+      <Button text="Sign-in/up.SignIn" loading={formik.isSubmitting} variant="primary" />
     </S.Form>
   );
 };

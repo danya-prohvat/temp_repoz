@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import { createSlice, PayloadAction, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import { config } from 'config';
 import { getRequest } from 'api/apiClient';
 import { apiUrls } from 'api/urls';
 import { RootState } from './store';
@@ -30,10 +31,13 @@ const initialState: AnotherUser = {
   subscriptionsCount: 0,
 };
 
-export const getAnotherUserThunk = createAsyncThunk('user/getAnotherUser', async (userId: number) => {
-  const response = await getRequest(apiUrls.getUser.url.replace(':userId', String(userId)));
-  return response.data;
-});
+export const getAnotherUserThunk = createAsyncThunk(
+  `user/getAnotherUser${config.constants.initialLoading}`,
+  async (userId: number) => {
+    const response = await getRequest(apiUrls.getUser.url.replace(':userId', String(userId)));
+    return response.data;
+  },
+);
 
 const AnotherUserSlice = createSlice({
   name: 'anotherUser',

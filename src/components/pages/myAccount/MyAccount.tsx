@@ -13,6 +13,7 @@ import { Post } from 'components/common/post';
 import { Loader } from 'components/common/loader';
 import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 import { Button } from 'components/common/button';
+import { PageLoader } from 'hocs/pageLoader';
 
 const MyAccount: React.FC = () => {
   const dispatch = useDispatch();
@@ -48,65 +49,67 @@ const MyAccount: React.FC = () => {
   });
 
   return (
-    <S.Container>
-      <S.UserInfo>
-        <S.UserImg src={avatar || ''} />
-        <S.ProfileInfo>
-          <S.UserNameBlock>
-            <S.UserName>
-              <Typography type="heading4">{userName}</Typography>
-            </S.UserName>
-            <S.ButtonWrapper to={locations.saved}>
-              <Button text="MyAccount.Saved" icon="saved" variant="outlined" />
-            </S.ButtonWrapper>
-            <S.ButtonWrapper to={locations.settings}>
-              <Button text="MyAccount.Settings" icon="settings" variant="outlined" />
-            </S.ButtonWrapper>
-          </S.UserNameBlock>
-          <S.SubscribeBlock>
-            <S.SubscribeElement>
-              <S.SubscribeSubElement>
-                <Typography type="body3Bold">{postsCount}</Typography>
-              </S.SubscribeSubElement>
-              <Typography type="body2">{t('MyAccount.Posts')}</Typography>
-            </S.SubscribeElement>
-            <S.SubscribeElement>
-              <S.SubscribeSubElement>
-                <Typography type="body3Bold">{subscribersCount}</Typography>
-              </S.SubscribeSubElement>
-              <Typography type="body2">{t('MyAccount.Subscribers')}</Typography>
-            </S.SubscribeElement>
-            <S.SubscribeElement>
-              <S.SubscribeSubElement>
-                <Typography type="body3Bold">{subscriptionsCount}</Typography>
-              </S.SubscribeSubElement>
-              <Typography type="body2">{t('MyAccount.Subscriptions')}</Typography>
-            </S.SubscribeElement>
-          </S.SubscribeBlock>
-          <S.FullName>
-            <S.Name>
-              <Typography type="body3Bold">{`${firstName} ${lastName}`}</Typography>
-            </S.Name>
-            <S.ProfileDescription>
-              <Typography type="body2">{profileDescription}</Typography>
-            </S.ProfileDescription>
-          </S.FullName>
-        </S.ProfileInfo>
-      </S.UserInfo>
-      <PagesSeparator marginTop="60px" marginBottom="50px" />
-      <S.Posts>
-        {posts.length > 0 ? (
-          posts.map((post) => (
-            <Post key={post.id} id={post.id} src={post.src} likes={post.likesCount} comments={post.commentsCount} />
-          ))
-        ) : (
-          <S.MessageWrapper>
-            <Typography type="body1">{t('PostPage.NoPostsYet')}</Typography>
-          </S.MessageWrapper>
-        )}
-        {postLoader && <Loader />}
-      </S.Posts>
-    </S.Container>
+    <PageLoader>
+      <S.Container>
+        <S.UserInfo>
+          <S.UserImg src={avatar || ''} />
+          <S.ProfileInfo>
+            <S.UserNameBlock>
+              <S.UserName>
+                <Typography type="heading4">{userName}</Typography>
+              </S.UserName>
+              <S.ButtonWrapper to={locations.saved}>
+                <Button text="MyAccount.Saved" icon="saved" variant="outlined" />
+              </S.ButtonWrapper>
+              <S.ButtonWrapper to={locations.settings}>
+                <Button text="MyAccount.Settings" icon="settings" variant="outlined" />
+              </S.ButtonWrapper>
+            </S.UserNameBlock>
+            <S.SubscribeBlock>
+              <S.SubscribeElement>
+                <S.SubscribeSubElement>
+                  <Typography type="body3Bold">{postsCount}</Typography>
+                </S.SubscribeSubElement>
+                <Typography type="body2">{t('MyAccount.Posts')}</Typography>
+              </S.SubscribeElement>
+              <S.SubscribeElement>
+                <S.SubscribeSubElement>
+                  <Typography type="body3Bold">{subscribersCount}</Typography>
+                </S.SubscribeSubElement>
+                <Typography type="body2">{t('MyAccount.Subscribers')}</Typography>
+              </S.SubscribeElement>
+              <S.SubscribeElement>
+                <S.SubscribeSubElement>
+                  <Typography type="body3Bold">{subscriptionsCount}</Typography>
+                </S.SubscribeSubElement>
+                <Typography type="body2">{t('MyAccount.Subscriptions')}</Typography>
+              </S.SubscribeElement>
+            </S.SubscribeBlock>
+            <S.FullName>
+              <S.Name>
+                <Typography type="body3Bold">{`${firstName} ${lastName}`}</Typography>
+              </S.Name>
+              <S.ProfileDescription>
+                <Typography type="body2">{profileDescription}</Typography>
+              </S.ProfileDescription>
+            </S.FullName>
+          </S.ProfileInfo>
+        </S.UserInfo>
+        <PagesSeparator marginTop="60px" marginBottom="50px" />
+        <S.Posts>
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <Post key={post.id} id={post.id} src={post.src} likes={post.likesCount} comments={post.commentsCount} />
+            ))
+          ) : (
+            <S.MessageWrapper>
+              <Typography type="body1">{t('PostPage.NoPostsYet')}</Typography>
+            </S.MessageWrapper>
+          )}
+          {postLoader && <Loader />}
+        </S.Posts>
+      </S.Container>
+    </PageLoader>
   );
 };
 

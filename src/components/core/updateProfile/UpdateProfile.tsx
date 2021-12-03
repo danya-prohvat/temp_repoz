@@ -41,8 +41,8 @@ const UpdateProfile: React.FC = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    onSubmit: (value: UpdateProfileProps) => {
-      dispatch(patchUser(value));
+    onSubmit: async (value: UpdateProfileProps) => {
+      await dispatch(patchUser(value));
     },
     validationSchema,
   });
@@ -106,7 +106,7 @@ const UpdateProfile: React.FC = () => {
       </S.Column>
 
       <S.ButtonWrapper>
-        <Button text="Settings.Update" variant="primary" />
+        <Button text="Settings.Update" loading={formik.isSubmitting} variant="primary" />
       </S.ButtonWrapper>
     </S.Form>
   );
