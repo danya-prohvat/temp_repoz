@@ -13,7 +13,7 @@ const GlobalLoader: React.FC = ({ children }) => {
     </S.Container>,
   );
 
-  useEffect((): any => {
+  useEffect(() => {
     if (!isAuthorized && localStorage.getItem('token'))
       setContent(
         <S.Container>

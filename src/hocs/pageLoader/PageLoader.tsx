@@ -13,7 +13,7 @@ const PageLoader: React.FC = ({ children }) => {
     </S.Container>,
   );
 
-  useEffect((): any => {
+  useEffect(() => {
     if (loading) {
       setContent(
         <S.Container>
