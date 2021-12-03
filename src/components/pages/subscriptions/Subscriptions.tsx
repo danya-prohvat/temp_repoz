@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { PagesSeparator } from 'components/common/pagesSeparator';
 import { useSelector } from 'hooks/useTypedSelector';
 import { Typography } from 'components/common/typography';
-import { getUserInfo, getSubscriptionsThunk, getUserSubscriptions } from 'store/UserSlice';
+import { getUserInfo, getSubscriptionsThunk, getUserSubscriptions, getSubscribeLoading } from 'store/UserSlice';
 import { getAnotherUserInfo, getAnotherUserThunk } from 'store/AnotherUserSlice';
 import { UserInfo } from 'components/core/userInfo';
 import { S } from './Subscriptions.styles';
@@ -14,6 +14,7 @@ import { config } from 'config';
 import { Person } from 'components/common/person';
 import { IconButton } from 'components/common/iconButton';
 import { Input } from 'components/common/input';
+import { Loader } from 'components/common/loader';
 
 const Subscriptions: React.FC = () => {
   const { userId } = useParams();
@@ -21,6 +22,7 @@ const Subscriptions: React.FC = () => {
   const dispatch = useDispatch();
   const [openSearch, setOpenSearch] = useState(false);
   const { id } = useSelector(getUserInfo);
+  const subscribeLoading = useSelector(getSubscribeLoading);
 
   useEffect(() => {
     dispatch(getSubscriptionsThunk({ userId: Number(userId) }));
@@ -82,23 +84,27 @@ const Subscriptions: React.FC = () => {
           )}
         </S.Search>
       </S.PageTitle>
-      <S.SubscriptionsWrapper>
-        {subscriptions?.length > 0 ? (
-          subscriptions.map((subscription) => (
-            <Person
-              key={subscription.id}
-              id={subscription.id}
-              userName={subscription.userName}
-              description={subscription.description}
-              avatar={subscription.avatar}
-            />
-          ))
-        ) : (
-          <S.Empty>
-            <Typography type="body1">{t('Subscribers/subscriptions.YouDontHaveSubscriptions')}</Typography>
-          </S.Empty>
-        )}
-      </S.SubscriptionsWrapper>
+      {subscribeLoading ? (
+        <Loader />
+      ) : (
+        <S.SubscriptionsWrapper>
+          {subscriptions?.length > 0 ? (
+            subscriptions.map((subscription) => (
+              <Person
+                key={subscription.id}
+                id={subscription.id}
+                userName={subscription.userName}
+                description={subscription.description}
+                avatar={subscription.avatar}
+              />
+            ))
+          ) : (
+            <S.Empty>
+              <Typography type="body1">{t('Subscribers/subscriptions.YouDontHaveSubscriptions')}</Typography>
+            </S.Empty>
+          )}
+        </S.SubscriptionsWrapper>
+      )}
     </S.Container>
   );
 };

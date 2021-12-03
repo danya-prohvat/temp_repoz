@@ -23,6 +23,7 @@ interface checkUserName {
 interface UserStore {
   isAuthorized: boolean;
   loading: boolean;
+  subscribeLoading: boolean;
   user: User;
   checkUserName: checkUserName;
   limit: number;
@@ -34,6 +35,7 @@ interface UserStore {
 const initialState: UserStore = {
   isAuthorized: false,
   loading: true,
+  subscribeLoading: false,
   user: {
     userName: '',
     email: '',
@@ -238,6 +240,9 @@ const UserSlice = createSlice({
     setSavedPosts(state, action: PayloadAction<SavedPosts[]>) {
       if (action.payload) state.user.savedPosts = [...state.user.savedPosts, ...action.payload];
     },
+    toggleSubscribeLoading(state) {
+      state.subscribeLoading = !state.subscribeLoading;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getMeThunk.fulfilled, (state, action) => {
@@ -309,16 +314,26 @@ const UserSlice = createSlice({
     builder.addCase(patchUserAvatar.rejected, () => {
       toast.error("Your avatar wasn't changed, try again");
     });
+    builder.addCase(getSubscribersThunk.pending, (state) => {
+      UserSlice.caseReducers.toggleSubscribeLoading(state);
+    });
     builder.addCase(getSubscribersThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.setSubscribers(state, action);
+      UserSlice.caseReducers.toggleSubscribeLoading(state);
     });
-    builder.addCase(getSubscribersThunk.rejected, () => {
+    builder.addCase(getSubscribersThunk.rejected, (state) => {
+      UserSlice.caseReducers.toggleSubscribeLoading(state);
       toast.error('Error');
+    });
+    builder.addCase(getSubscriptionsThunk.pending, (state) => {
+      UserSlice.caseReducers.toggleSubscribeLoading(state);
     });
     builder.addCase(getSubscriptionsThunk.fulfilled, (state, action) => {
       UserSlice.caseReducers.setSubscriptions(state, action);
+      UserSlice.caseReducers.toggleSubscribeLoading(state);
     });
-    builder.addCase(getSubscriptionsThunk.rejected, () => {
+    builder.addCase(getSubscriptionsThunk.rejected, (state) => {
+      UserSlice.caseReducers.toggleSubscribeLoading(state);
       toast.error('Error');
     });
     builder.addCase(getSavedPostsThunk.pending, (state) => {
@@ -369,6 +384,8 @@ export const getUserSubscribers = createSelector(getState, (state) => state.user
 export const getUserSubscriptions = createSelector(getState, (state) => state.user.subscriptions);
 
 export const getSavedPosts = createSelector(getState, (state) => state.user.savedPosts);
+
+export const getSubscribeLoading = createSelector(getState, (state) => state.subscribeLoading);
 
 export const {
   setUser,

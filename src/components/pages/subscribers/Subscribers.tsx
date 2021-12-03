@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { PagesSeparator } from 'components/common/pagesSeparator';
 import { useSelector } from 'hooks/useTypedSelector';
 import { Typography } from 'components/common/typography';
-import { getUserInfo, getSubscribersThunk, getUserSubscribers } from 'store/UserSlice';
+import { getUserInfo, getSubscribersThunk, getUserSubscribers, getSubscribeLoading } from 'store/UserSlice';
 import { getAnotherUserInfo, getAnotherUserThunk } from 'store/AnotherUserSlice';
 import { UserInfo } from 'components/core/userInfo';
 import { S } from './Subscribers.styles';
@@ -14,6 +14,7 @@ import { config } from 'config';
 import { Person } from 'components/common/person';
 import { IconButton } from 'components/common/iconButton';
 import { Input } from 'components/common/input';
+import { Loader } from 'components/common/loader';
 
 const Subscribers: React.FC = () => {
   const { userId } = useParams();
@@ -21,6 +22,7 @@ const Subscribers: React.FC = () => {
   const dispatch = useDispatch();
   const [openSearch, setOpenSearch] = useState(false);
   const { id } = useSelector(getUserInfo);
+  const subscribeLoading = useSelector(getSubscribeLoading);
 
   useEffect(() => {
     dispatch(getSubscribersThunk({ userId: Number(userId) }));
@@ -81,23 +83,27 @@ const Subscribers: React.FC = () => {
           )}
         </S.Search>
       </S.PageTitle>
-      <S.SubscribersWrapper>
-        {subscribers?.length > 0 ? (
-          subscribers.map((subscriber) => (
-            <Person
-              key={subscriber.id}
-              id={subscriber.id}
-              userName={subscriber.userName}
-              description={subscriber.description}
-              avatar={subscriber.avatar}
-            />
-          ))
-        ) : (
-          <S.Empty>
-            <Typography type="body1">{t('Subscribers/subscriptions.YouDontHaveSubscribers')}</Typography>
-          </S.Empty>
-        )}
-      </S.SubscribersWrapper>
+      {subscribeLoading ? (
+        <Loader />
+      ) : (
+        <S.SubscribersWrapper>
+          {subscribers?.length > 0 ? (
+            subscribers.map((subscriber) => (
+              <Person
+                key={subscriber.id}
+                id={subscriber.id}
+                userName={subscriber.userName}
+                description={subscriber.description}
+                avatar={subscriber.avatar}
+              />
+            ))
+          ) : (
+            <S.Empty>
+              <Typography type="body1">{t('Subscribers/subscriptions.YouDontHaveSubscribers')}</Typography>
+            </S.Empty>
+          )}
+        </S.SubscribersWrapper>
+      )}
     </S.Container>
   );
 };
