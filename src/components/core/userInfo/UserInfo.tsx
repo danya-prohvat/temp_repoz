@@ -5,6 +5,7 @@ import { useSelector } from 'hooks/useTypedSelector';
 import { Button } from 'components/common/button';
 import { locations } from 'routing/locations';
 import { S } from './UserInfo.styles';
+import { config } from 'config';
 
 interface UserInfoProps {
   avatar: string | null;
@@ -34,7 +35,7 @@ const UserInfo: React.FC<UserInfoProps> = ({
 
   return (
     <S.Container>
-      <S.UserImg src={avatar || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} />
+      <S.UserImg src={avatar || config.constants.userIcon} />
       <S.ProfileInfo>
         <S.UserNameBlock>
           <S.UserName>
@@ -55,20 +56,20 @@ const UserInfo: React.FC<UserInfoProps> = ({
           <S.PostElement>
             <S.PostSubElement>
               <S.SubscribeSubElement>
-                <Typography type="body3Bold">{postsCount | 0}</Typography>
+                <Typography type="body3Bold">{postsCount || 0}</Typography>
               </S.SubscribeSubElement>
               <Typography type="body2">{t('MyAccount.Posts')}</Typography>
             </S.PostSubElement>
           </S.PostElement>
           <S.SubscribeElement to={locations.subscribers.replace(':userId', String(userId))}>
             <S.SubscribeSubElement>
-              <Typography type="body3Bold">{subscribersCount | 0}</Typography>
+              <Typography type="body3Bold">{subscribersCount || 0}</Typography>
             </S.SubscribeSubElement>
             <Typography type="body2">{t('MyAccount.Subscribers')}</Typography>
           </S.SubscribeElement>
           <S.SubscribeElement to={locations.subscriptions.replace(':userId', String(userId))}>
             <S.SubscribeSubElement>
-              <Typography type="body3Bold">{subscriptionsCount | 0}</Typography>
+              <Typography type="body3Bold">{subscriptionsCount || 0}</Typography>
             </S.SubscribeSubElement>
             <Typography type="body2">{t('MyAccount.Subscriptions')}</Typography>
           </S.SubscribeElement>
