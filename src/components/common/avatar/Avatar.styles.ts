@@ -19,6 +19,7 @@ const S = {
     width: ${(props) => props.size};
     height: ${(props) => props.size};
     border-radius: 50%;
+    object-fit: cover;
   `,
 };
 

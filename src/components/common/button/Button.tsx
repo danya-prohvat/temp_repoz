@@ -30,6 +30,7 @@ const Button: React.FC<ButtonProps> = ({ text, icon, variant = 'primary', loadin
           <Typography type="button1">{t(text)}</Typography>
         </S.TextWrapper>
       )}
+
       {loading && (
         <S.LoaderWrapper>
           <Loader height={30} width={30} />

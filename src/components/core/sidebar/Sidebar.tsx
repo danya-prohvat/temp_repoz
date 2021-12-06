@@ -30,7 +30,7 @@ const Sidebar: React.FC = () => {
       {links.map((link) => {
         return (
           <RouterLink
-            isactive={location.pathname === link.link}
+            isactive={location.pathname === link.link.replace(':userId', String(id))}
             to={link.link.replace(':userId', String(id))}
             key={link.text}
           >
