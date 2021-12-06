@@ -34,7 +34,7 @@ const UserInfo: React.FC<UserInfoProps> = ({
 
   return (
     <S.Container>
-      <S.UserImg src={avatar || ''} />
+      <S.UserImg src={avatar || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} />
       <S.ProfileInfo>
         <S.UserNameBlock>
           <S.UserName>
